@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConfirmAccount;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -53,6 +56,8 @@ class RegisteredUserController extends Controller
 
         // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
+
+        return redirect()->route('home');
     }
 }
