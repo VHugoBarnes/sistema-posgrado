@@ -37,7 +37,15 @@
             <div class="mt-4">
                 <x-label for="tipo_usuario" :value="__('Tipo de Usuario')" />
 
-                <x-input id="tipo_usuario" class="block mt-1 w-full" type="text" name="tipo_usuario" :value="old('tipo_usuario')" required />
+                {{-- <x-input id="tipo_usuario" class="block mt-1 w-full" type="text" name="tipo_usuario" :value="old('tipo_usuario')" required /> --}}
+                <select id="tipo_usuario" name="tipo_usuario">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Docente">Docente</option>
+                    <option value="Estudiante">Estudiante</option>
+                    <option value="Jefe Posgrado">Jefe Posgrado</option>
+                    <option value="Asistente Coordinador">Asistente Coordinador</option>
+                    <option value="Secretaria">Secretaria</option>
+                </select>
             </div>
 
             <!-- Password -->

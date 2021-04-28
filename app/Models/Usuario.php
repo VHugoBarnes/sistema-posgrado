@@ -24,7 +24,7 @@ class Usuario extends Authenticatable
         'genero',
         'direccion',
         'telefono',
-        //'tipo_usuario',
+        'tipo_usuario',
     ];
 
     /**
