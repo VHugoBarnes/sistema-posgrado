@@ -3,19 +3,20 @@ CREATE DATABASE IF NOT EXISTS sisposgrado COLLATE utf8_unicode_ci;
 USE sisposgrado;
 
 CREATE TABLE IF NOT EXISTS usuarios(
-    id              int auto_increment not null,
-    nombre          varchar(200) not null,
-    apellidos       varchar(255) not null,
-    email           varchar(255) not null unique,
-    password        varchar(255) not null,
-    genero          varchar(100) null,
-    direccion       varchar(255) null,
-    telefono        varchar(50) null,
-    tipo_usuario    enum('Administrador', 'Docente', 'Estudiante', 'Jefe Posgrado', 
-                         'Coordinador', 'Asistente Coordinador', 'Secretaria') not null,
-    created_at      datetime,
-    updated_at      datetime,
-    remember_token  varchar(255),
+    id                  int auto_increment not null,
+    nombre              varchar(200) not null,
+    apellidos           varchar(255) not null,
+    email               varchar(255) not null unique,
+    email_verified_at   datetime,
+    password            varchar(255) not null,
+    genero              varchar(100) null,
+    direccion           varchar(255) null,
+    telefono            varchar(50) null,
+    tipo_usuario        enum('Administrador', 'Docente', 'Estudiante', 'Jefe Posgrado', 
+                             'Coordinador', 'Asistente Coordinador', 'Secretaria') not null,
+    created_at          datetime,
+    updated_at          datetime,
+    remember_token      varchar(255),
 
     CONSTRAINT pk_usuarios PRIMARY KEY(id)
 )ENGINE=InnoDB;
@@ -41,7 +42,6 @@ CREATE TABLE IF NOT EXISTS docentes(
     jornada                 varchar(255) null default 'Jornada completa',
     publicaciones           json null,
     cursos                  json null,
-    comite_tutorial         json null,
     created_at              datetime,
     updated_at              datetime,
 
@@ -67,7 +67,6 @@ CREATE TABLE IF NOT EXISTS programas(
 CREATE TABLE IF NOT EXISTS estudiantes(
     id              int auto_increment not null,
     id_usuario      int not null,
-    id_tutor        int null,
     numero_control  varchar(50) not null,
     programa        varchar(255) not null,
     generacion      varchar(255) null default '2021-2022',
@@ -79,14 +78,27 @@ CREATE TABLE IF NOT EXISTS estudiantes(
     updated_at      datetime,
 
     CONSTRAINT pk_estudiantes PRIMARY KEY(id),
-    CONSTRAINT fk_estudiantes_usuarios FOREIGN KEY(id_usuario) REFERENCES usuarios(id),
-    CONSTRAINT fk_estudiantes_docentes FOREIGN KEY(id_tutor) REFERENCES docentes(id)
+    CONSTRAINT fk_estudiantes_usuarios FOREIGN KEY(id_usuario) REFERENCES usuarios(id)
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS docentes_estudiantes(
+    id              int auto_increment not null,
+    id_docente      int not null,
+    id_estudiante   int not null,
+    created_at      datetime,
+    updated_at      datetime,
+
+    CONSTRAINT pk_docentes_estudiantes PRIMARY KEY(id),
+    CONSTRAINT fk_docentes_docentes FOREIGN KEY(id_docente) REFERENCES docentes(id),
+    CONSTRAINT fk_docentes_estudiantes FOREIGN KEY(id_estudiante) REFERENCES estudiantes(id)
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS lineas_docentes(
     id                      int auto_increment not null,
     id_linea_investigacion  int not null,
     id_docente              int not null,
+    created_at      datetime,
+    updated_at      datetime,
 
     CONSTRAINT pk_lineas_docentes PRIMARY KEY(id),
     CONSTRAINT fk_linea_lineas FOREIGN KEY(id_linea_investigacion) REFERENCES lineas_investigacion(id),
@@ -97,6 +109,8 @@ CREATE TABLE IF NOT EXISTS lineas_programas(
     id                      int auto_increment not null,
     id_linea_investigacion  int not null,
     id_programa             int not null,
+    created_at      datetime,
+    updated_at      datetime,
 
     CONSTRAINT pk_lineas_programas PRIMARY KEY(id),
     CONSTRAINT fk_linea_linea_investigacion FOREIGN KEY(id_linea_investigacion) REFERENCES lineas_investigacion(id),
