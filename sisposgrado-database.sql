@@ -69,11 +69,11 @@ CREATE TABLE IF NOT EXISTS estudiantes(
     id_usuario      int not null,
     numero_control  varchar(50) not null,
     programa        varchar(255) not null,
-    generacion      varchar(255) null default '2021-2022',
+    generacion      varchar(255) null,
     nivel_estudios  varchar(255) not null,
-    ruta_tesis      text null,
     ruta_articulo   text null,
     becario         enum('S','N') null default 'N',
+    cvu             varchar(255) null,
     created_at      datetime,
     updated_at      datetime,
 
@@ -115,6 +115,25 @@ CREATE TABLE IF NOT EXISTS lineas_programas(
     CONSTRAINT pk_lineas_programas PRIMARY KEY(id),
     CONSTRAINT fk_linea_linea_investigacion FOREIGN KEY(id_linea_investigacion) REFERENCES lineas_investigacion(id),
     CONSTRAINT fk_linea_programa FOREIGN KEY(id_programa) REFERENCES programas(id)
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS tesis(
+    id                      int auto_increment not null,
+    id_estudiante           int not null,
+    titulo                  varchar(255) not null,
+    director                int null,
+    director_externo        text null
+    codirector              int null,
+    secretario              int null,
+    vocal                   int null,
+    ruta_tesis              text,
+
+    CONSTRAINT pk_tesis PRIMARY KEY(id),
+    CONSTRAINT fk_tesis_estudiante FOREIGN KEY(id_estudiante) REFERENCES estudiantes(id),
+    CONSTRAINT fk_tesis_director FOREIGN KEY(director) REFERENCES usuarios(id),
+    CONSTRAINT fk_tesis_codirector FOREIGN KEY(codirector) REFERENCES usuarios(id),
+    CONSTRAINT fk_tesis_secretario FOREIGN KEY(secretario) REFERENCES usuarios(id),
+    CONSTRAINT fk_tesis_vocal FOREIGN KEY(vocal) REFERENCES usuarios(id)
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS infraestructura_servicios(
