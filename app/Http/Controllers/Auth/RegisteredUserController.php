@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmAccount;
+use App\Models\Docente;
+use App\Models\Estudiante;
 
 class RegisteredUserController extends Controller
 {
@@ -52,9 +54,25 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        // Si se registro un usuario estudiante
+        if($request->tipo_usuario == 'Estudiante') {
 
-        // Auth::login($user);
+            $estudiante = Estudiante::create([
+                'id_usuario' => $user->id,
+                'numero_control' => '000000',
+                'programa' => 'Maestría en',
+                'nivel_estudios' => 'Licenciatura'
+            ]);
+
+        } else if($request->tipo_usuario == 'Docente') {
+
+            $docente = Docente::create([
+                'id_usuario' => $user->id
+            ]);
+
+        }
+
+        event(new Registered($user));
 
         Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
 
