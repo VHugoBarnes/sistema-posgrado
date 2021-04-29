@@ -66,7 +66,9 @@ class RegisteredUserController extends Controller
 
             $estudiante->save();
 
-        } else if($request->tipo_usuario == 'Docente') {
+        } 
+        // Si se registro un usuario docente
+        else if($request->tipo_usuario == 'Docente') {
 
             $docente = new Docente;
             $docente->id_usuario = $user->id;
