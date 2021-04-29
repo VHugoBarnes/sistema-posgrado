@@ -17,6 +17,7 @@ class Estudiante extends Model
      * @var array
      */
     protected $fillable = [
+        'id_usuario',
         'numero_control',
         'programa',
         'generacion',

@@ -17,6 +17,7 @@ class Docente extends Model
      * @var array
      */
     protected $fillable = [
+        'id_usuario',
         'sni',
         'catedras',
         'tipo_investigador',

@@ -57,19 +57,21 @@ class RegisteredUserController extends Controller
         // Si se registro un usuario estudiante
         if($request->tipo_usuario == 'Estudiante') {
 
-            $estudiante = Estudiante::create([
-                'id_usuario' => $user->id,
-                'numero_control' => '000000',
-                'programa' => 'Maestría en',
-                'nivel_estudios' => 'Licenciatura'
-            ]);
+            $estudiante = new Estudiante;
+
+            $estudiante->id_usuario = $user->id;
+            $estudiante->numero_control = '0000000';
+            $estudiante->programa = 'Maestría';
+            $estudiante->nivel_estudios = 'Licenciatura';
+
+            $estudiante->save();
 
         } else if($request->tipo_usuario == 'Docente') {
 
-            $docente = Docente::create([
-                'id_usuario' => $user->id
-            ]);
+            $docente = new Docente;
+            $docente->id_usuario = $user->id;
 
+            $docente->save();
         }
 
         event(new Registered($user));
