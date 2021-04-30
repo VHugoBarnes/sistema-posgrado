@@ -22,19 +22,27 @@ class Estudiante extends Model
         'programa',
         'generacion',
         'nivel_estudios',
-        'tesis',
-        'articulo',
+        'ruta_articulo',
         'becario',
+        'cvu'
     ];
 
     // Relacion uno-uno
-    public function usuario() {
+    public function usuario() 
+    {
         // Nombre del modelo, llave foranea
         return $this->belongsTo(Usuario::class, 'id_usuario');
     }
 
     // Relacion muchos-muchos
-    public function docente() {
+    public function docente() 
+    {
+        // nombre tabla a la que se relaciona, nombre tabla intermedia
         return $this->belongsToMany(Docente::class, 'docentes_estudiantes');
+    }
+
+    public function tesis() 
+    {
+        return $this->hasOne(Tesis::class, 'id_estudiante');
     }
 }

@@ -67,10 +67,10 @@ CREATE TABLE IF NOT EXISTS programas(
 CREATE TABLE IF NOT EXISTS estudiantes(
     id              int auto_increment not null,
     id_usuario      int not null,
-    numero_control  varchar(50) not null,
-    programa        varchar(255) not null,
+    numero_control  varchar(50) null,
+    programa        varchar(255) null,
     generacion      varchar(255) null,
-    nivel_estudios  varchar(255) not null,
+    nivel_estudios  varchar(255),
     ruta_articulo   text null,
     becario         enum('S','N') null default 'N',
     cvu             varchar(255) null,
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS tesis(
     id_estudiante           int not null,
     titulo                  varchar(255) not null,
     director                int null,
-    director_externo        text null
+    director_externo        text null,
     codirector              int null,
     secretario              int null,
     vocal                   int null,

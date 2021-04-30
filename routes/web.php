@@ -23,4 +23,45 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/',);
+/**
+ *  Rutas Usuarios
+ * - Cambiar datos
+ * - Registrarte como director, codirector, secretario o vocal en una tesis
+ */
+
+/**
+ *  Rutas Estudiantes
+ * - Cambiar datos
+ * - Subir tesis (una sola vez)
+ * - Actualizar datos tesis (solo subir archivo)
+ * - Busqueda por filtros de estudiantes
+ */
+
+/**
+ * Rutas docentes
+ * - Cambiar datos
+ */
+
+/**
+ * Rutas de programas
+ * - Dar de alta programa
+ * - Actualizar datos del programa
+ * - Eliminar programa
+ * - Obtener programas
+ */
+
+/**
+ * Rutas de Líneas de investigación
+ * - Dar de alta línea de investigación
+ * - Actualizar datos de la línea
+ * - Eliminar línea
+ * - Obtener línea
+ */
+
+/**
+ * Rutas de infraestructura y servicios
+ * - Dar de alta infraestructura y servicios
+ * - Actualizar datos de la infraestructura
+ * - Eliminar infraestructura
+ * - Obtener infraestructura
+ */

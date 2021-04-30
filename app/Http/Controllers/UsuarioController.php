@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DocenteController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Messages:
@@ -23,6 +23,11 @@ class DocenteController extends Controller
     }
 
     public function update()
+    {
+
+    }
+
+    public function comiteTutorialRegister()
     {
 
     }

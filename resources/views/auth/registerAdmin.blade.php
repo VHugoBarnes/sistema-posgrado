@@ -9,11 +9,19 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <x-auth-session-status class="mb-4" :status="session('message')" />
+        <form method="POST" action="{{ route('register-admin') }}">
             @csrf
 
             <!-- Nombre -->
             <div>
+                <x-label for="adminPassword" :value="__('Contraseña Administrador')" />
+
+                <x-input id="adminPassword" class="block mt-1 w-full" type="text" name="adminPassword" :value="old('adminPassword')" required autofocus />
+            </div>
+
+            <!-- Nombre -->
+            <div class="mt-4">
                 <x-label for="nombre" :value="__('Nombre')" />
 
                 <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus />
@@ -31,20 +39,6 @@
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Tipo de Usuario -->
-            <div class="mt-4">
-                <x-label for="tipo_usuario" :value="__('Tipo de Usuario')" />
-
-                {{-- <x-input id="tipo_usuario" class="block mt-1 w-full" type="text" name="tipo_usuario" :value="old('tipo_usuario')" required /> --}}
-                <select id="tipo_usuario" name="tipo_usuario">
-                    <option value="Docente">Docente</option>
-                    <option value="Estudiante">Estudiante</option>
-                    <option value="Jefe Posgrado">Jefe Posgrado</option>
-                    <option value="Asistente Coordinador">Asistente Coordinador</option>
-                    <option value="Secretaria">Secretaria</option>
-                </select>
             </div>
 
             <!-- Password -->

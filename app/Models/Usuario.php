@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Models\Estudiante;
+use App\Models\Docente;
+use App\Models\Tesis;
+
 class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -51,6 +55,26 @@ class Usuario extends Authenticatable
     }
 
     public function estudiante() {
-        return $this->hasOne(Estudiante::class);
+        return $this->hasOne(Estudiante::class, 'id_usuario');
+    }
+
+    public function director()
+    {
+        return $this->hasMany(Tesis::class, 'director');
+    }
+
+    public function codirector()
+    {
+        return $this->hasMany(Tesis::class, 'codirector');
+    }
+
+    public function secretario()
+    {
+        return $this->hasMany(Tesis::class, 'secretario');
+    }
+
+    public function vocal()
+    {
+        return $this->hasMany(Tesis::class, 'vocal');
     }
 }
