@@ -5,6 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Usuario;
+use App\Models\Docente;
+use App\Models\Tesis;
+use App\Models\Programa;
+
 class Estudiante extends Model
 {
     use HasFactory;
@@ -17,9 +22,8 @@ class Estudiante extends Model
      * @var array
      */
     protected $fillable = [
-        'id_usuario',
+        'usuario_id',
         'numero_control',
-        'programa',
         'generacion',
         'nivel_estudios',
         'ruta_articulo',
@@ -31,18 +35,23 @@ class Estudiante extends Model
     public function usuario() 
     {
         // Nombre del modelo, llave foranea
-        return $this->belongsTo(Usuario::class, 'id_usuario');
+        return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
     // Relacion muchos-muchos
     public function docente() 
     {
         // nombre tabla a la que se relaciona, nombre tabla intermedia
-        return $this->belongsToMany(Docente::class, 'docentes_estudiantes');
+        return $this->belongsToMany(Docente::class, 'docente_estudiante', 'estudiante_id', 'docente_id');
     }
 
     public function tesis() 
     {
-        return $this->hasOne(Tesis::class, 'id_estudiante');
+        return $this->hasOne(Tesis::class, 'estudiante_id');
+    }
+
+    public function programa()
+    {
+        return $this->belongsToMany(Programa::class, 'estudiante_programa', 'estudiante_id', 'programa_id');
     }
 }

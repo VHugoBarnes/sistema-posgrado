@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Estudiante;
 use App\Models\Docente;
 use App\Models\Tesis;
+use App\Models\Role;
 
 class Usuario extends Authenticatable
 {
@@ -28,7 +29,6 @@ class Usuario extends Authenticatable
         'genero',
         'direccion',
         'telefono',
-        'tipo_usuario',
     ];
 
     /**
@@ -51,11 +51,11 @@ class Usuario extends Authenticatable
     ];
 
     public function docente() {
-        return $this->hasOne(Docente::class);
+        return $this->hasOne(Docente::class, 'usuario_id');
     }
 
     public function estudiante() {
-        return $this->hasOne(Estudiante::class, 'id_usuario');
+        return $this->hasOne(Estudiante::class, 'usuario_id');
     }
 
     public function director()
@@ -76,5 +76,10 @@ class Usuario extends Authenticatable
     public function vocal()
     {
         return $this->hasMany(Tesis::class, 'vocal');
+    }
+
+    public function role()
+    {
+        return $this->belongsToMany(Role::class, 'role_usuario', 'usuario_id', 'role_id');
     }
 }

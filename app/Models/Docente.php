@@ -31,16 +31,16 @@ class Docente extends Model
     // Relación uno-uno
     public function usuario() {
         // Nombre del modelo, llave foranea
-        return $this->belongsTo(Usuario::class, 'id_usuario');
+        return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
     // Relación muchos-muchos
     public function estudiante() {
-        return $this->belongsToMany(Estudiante::class, 'docentes_estudiantes', 'id_docente', 'id_estudiante');
+        return $this->belongsToMany(Estudiante::class, 'docentes_estudiantes', 'docente_id', 'estudiante_id');
     }
 
     // Las lineas de investigacion de un docente
     public function lineas_investigacion() {
-        return $this->belongsToMany(Linea_Investigacion::class, 'lineas_docentes', 'id_docente', 'id_linea_investigacion');
+        return $this->belongsToMany(Linea_Investigacion::class, 'lineas_docentes', 'docente_id', 'linea_investigacion_id');
     }
 }

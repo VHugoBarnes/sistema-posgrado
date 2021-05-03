@@ -20,18 +20,19 @@ class Tesis extends Model
      * @var array
      */
     protected $fillable = [
-        'id_estudiante',
+        'estudiante_id',
         'titulo',
         'director',
         'director_externo',
         'codirector',
         'secretario',
-        'vocal'
+        'vocal',
+        'ruta_tesis'
     ];
 
     public function estudiante()
     {
-        return $this->belongsTo(Estudiante::class, 'id_estudiante');
+        return $this->belongsTo(Estudiante::class, 'estudiante_id');
     }
 
     public function director()

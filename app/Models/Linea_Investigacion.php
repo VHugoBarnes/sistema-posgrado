@@ -23,10 +23,10 @@ class Linea_Investigacion extends Model
 
     // Los docentes registrados a una línea de investigacion
     public function docentes() {
-        return $this->belongsToMany(Docente::class, 'lineas_docentes', 'id_linea_investigacion', 'id_docente');
+        return $this->belongsToMany(Docente::class, 'lineas_docentes', 'linea_investigacion_id', 'docente_id');
     }
 
     public function programas() {
-        return $this->belongsToMany(Programa::class, 'lineas_programas', 'id_linea_investigacion', 'id_programa');
+        return $this->belongsToMany(Programa::class, 'lineas_programas', 'linea_investigacion_id', 'programa_id');
     }
 }
