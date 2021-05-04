@@ -12,7 +12,7 @@ use App\Models\Docente;
 use App\Models\Tesis;
 use App\Models\Role;
 
-class Usuario extends Authenticatable
+class Usuario extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
