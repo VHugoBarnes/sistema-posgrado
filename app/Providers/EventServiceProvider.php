@@ -18,8 +18,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            //SendEmailVerificationNotification::class,
-            ConfirmAccount::class // Enviamos en lugar del servicio por defecto el nuestro.
+            SendEmailVerificationNotification::class,
+            //ConfirmAccount::class // Enviamos en lugar del servicio por defecto el nuestro.
         ]
     ];
 

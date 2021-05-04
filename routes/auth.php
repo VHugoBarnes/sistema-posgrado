@@ -11,9 +11,9 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 /** Registrar administradores **/
-Route::get('/registo-admins', [RegisteredUserController::class, 'createAdmin'])
+Route::get('/registro-admins', [RegisteredUserController::class, 'createAdmin'])
                 ->middleware('guest')
-                ->name('register-admin');
+                ->name('registro-admin');
 
 Route::post('/registro-admins', [RegisteredUserController::class, 'storeAdmin'])
                 ->middleware('guest');

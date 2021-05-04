@@ -10,7 +10,7 @@
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <x-auth-session-status class="mb-4" :status="session('message')" />
-        <form method="POST" action="{{ route('register-admin') }}">
+        <form method="POST" action="{{ route('registro-admin') }}">
             @csrf
 
             <!-- Nombre -->

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmAccount;
 use App\Models\Docente;
 use App\Models\Estudiante;
+use App\Models\Role;
 
 class RegisteredUserController extends Controller {
 
@@ -57,7 +58,6 @@ class RegisteredUserController extends Controller {
             'nombre' => $request->nombre,
             'apellidos' => $request->apellidos,
             'email' => $request->email,
-            'tipo_usuario' => $request->tipo_usuario,
             'password' => Hash::make($request->password),
         ]);
 
@@ -65,7 +65,7 @@ class RegisteredUserController extends Controller {
         if ($request->tipo_usuario == 'Estudiante') {
             $estudiante = new Estudiante;
 
-            $estudiante->id_usuario = $user->id;
+            $estudiante->usuario_id = $user->id;
             $estudiante->numero_control = '0000000';
             $estudiante->programa = 'Maestría';
             $estudiante->nivel_estudios = 'Licenciatura';
@@ -73,14 +73,17 @@ class RegisteredUserController extends Controller {
             $estudiante->save();
         } else if ($request->tipo_usuario == 'Docente') { // Si se registro un usuario docente
             $docente = new Docente;
-            $docente->id_usuario = $user->id;
+            $docente->usuario_id = $user->id;
             $docente->save();
         }
 
-        event(new Registered($user));
-
+        // Ingresar en la tabla pivot los id's correspondientes
+        $role_id = Role::where('roles', 'like', $request->tipo_usuario)->first('id');        
+        $user->role()->attach($role_id);
+        
+        //event(new Registered($user));
         // Enviar email
-        Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
+        //Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
 
         return redirect()->route('home')->with(['message' => $this->messages['userCreated']]);
     }
@@ -99,20 +102,23 @@ class RegisteredUserController extends Controller {
         ]);
 
         if ($request->adminPassword != env('SIS_PASSWORD')) {
-            return redirect()->route('register-admin')->with(['message' => $this->messages['denyPermission']]);
+            return redirect()->route('register-admin')
+                ->with(['message' => $this->messages['denyPermission']]);
         }
 
         $user = Usuario::create([
             'nombre' => $request->nombre,
             'apellidos' => $request->nombre,
             'email' => $request->email,
-            'tipo_usuario' => 'Administrador',
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        // Ingresar en la tabla pivot los id's correspondientes
+        $role_id = Role::where('roles', 'like', 'Administrador')->first('id');        
+        $user->role()->attach($role_id);
 
-        Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
+        //event(new Registered($user));
+        //Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
 
         return redirect()->route('home')->with(['message' => $this->messages['adminCreated']]);
     }
