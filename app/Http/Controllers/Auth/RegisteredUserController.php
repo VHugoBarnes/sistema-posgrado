@@ -16,6 +16,8 @@ use App\Models\Docente;
 use App\Models\Estudiante;
 use App\Models\Role;
 
+use App\Events\SendMail;
+
 class RegisteredUserController extends Controller {
 
     /**
@@ -81,9 +83,8 @@ class RegisteredUserController extends Controller {
         $role_id = Role::where('roles', 'like', $request->tipo_usuario)->first('id');        
         $user->role()->attach($role_id);
         
-        //event(new Registered($user));
-        // Enviar email
-        //Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
+        //event(new SendMail($user, $request->password));
+        Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
 
         return redirect()->route('home')->with(['message' => $this->messages['userCreated']]);
     }
@@ -100,9 +101,13 @@ class RegisteredUserController extends Controller {
             'email' => 'required|string|email|max:255|unique:usuarios',
             'password' => 'required|string|confirmed|min:8',
         ]);
-
+        
+        $sis_password = env('SIS_PASSWORD');
+        echo "<pre> " , var_export($request->adminPassword) , " </pre>";
+        echo "<pre> " , var_export($sis_password) , " </pre>";
+        die();
         if ($request->adminPassword != env('SIS_PASSWORD')) {
-            return redirect()->route('register-admin')
+            return redirect()->route('registro-admin')
                 ->with(['message' => $this->messages['denyPermission']]);
         }
 
@@ -117,8 +122,8 @@ class RegisteredUserController extends Controller {
         $role_id = Role::where('roles', 'like', 'Administrador')->first('id');        
         $user->role()->attach($role_id);
 
-        //event(new Registered($user));
-        //Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
+        //event(new SendMail($user, $request->password));
+        Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
 
         return redirect()->route('home')->with(['message' => $this->messages['adminCreated']]);
     }

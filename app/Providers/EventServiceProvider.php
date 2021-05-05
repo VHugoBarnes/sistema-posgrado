@@ -8,6 +8,8 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 
 use App\Mail\ConfirmAccount;
+use App\Events\SendMail;
+use App\Listeners\SendMailFired;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,9 +19,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-            //ConfirmAccount::class // Enviamos en lugar del servicio por defecto el nuestro.
+        // Registered::class => [
+        //     SendEmailVerificationNotification::class,
+        //     //ConfirmAccount::class // Enviamos en lugar del servicio por defecto el nuestro.
+        // ]
+        SendMail::class => [
+            SendMailFired::class
         ]
     ];
 
