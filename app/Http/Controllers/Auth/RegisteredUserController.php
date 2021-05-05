@@ -101,11 +101,14 @@ class RegisteredUserController extends Controller {
             'email' => 'required|string|email|max:255|unique:usuarios',
             'password' => 'required|string|confirmed|min:8',
         ]);
+
+        // $sis_password = '';
+        // $sis_password = env('SIS_PASSWORD');
+        // echo "<pre> " , var_export($request->adminPassword) , " </pre>";
+        // echo "<pre> " , var_export($sis_password) , " </pre>";
+        // echo "<pre> " , var_export(env('SIS_PASSWORD')) , " </pre>";
+        // die();
         
-        $sis_password = env('SIS_PASSWORD');
-        echo "<pre> " , var_export($request->adminPassword) , " </pre>";
-        echo "<pre> " , var_export($sis_password) , " </pre>";
-        die();
         if ($request->adminPassword != env('SIS_PASSWORD')) {
             return redirect()->route('registro-admin')
                 ->with(['message' => $this->messages['denyPermission']]);
