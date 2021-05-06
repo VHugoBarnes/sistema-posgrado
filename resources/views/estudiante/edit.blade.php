@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('editar-docente') }}">
+        <form method="POST" action="{{ route('editar-estudiante') }}">
             @method('PUT')
             @csrf
 
@@ -62,60 +62,39 @@
                 <x-input id="telefono" class="block mt-1 w-full" type="tel" name="telefono" value="{{ Auth::user()->telefono }}" placeholder="868-123-4567" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
             </div>
 
-            <!-- SNI -->
+            <!-- Numero de control -->
             <div class="mt-4">
-                <x-label for="sni" :value="__('SNI')" />
+                <x-label for="numero_control" :value="__('Número de Control')" />
 
-                <input type="checkbox" name="sni" {{ $docente->sni == 'S' ? 'checked' : '' }}>
+                <x-input id="numero_control" class="block mt-1 w-full" type="text" name="numero_control" value="{{ $estudiante->numero_control }}" />
             </div>
 
-            <!-- Catedras -->
+            <!-- Generación -->
             <div class="mt-4">
-                <x-label for="catedras" :value="__('Catedras')" />
+                <x-label for="generacion" :value="__('Generación')" />
 
-                <input type="checkbox" name="catedras" {{ $docente->catedras == 'S' ? 'checked' : '' }}>
+                <x-input id="generacion" class="block mt-1 w-full" type="text" name="generacion" value="{{ $estudiante->generacion }}" />
             </div>
 
-            <!-- Tipo Investigador -->
+            <!-- Nivel de Estudios -->
             <div class="mt-4">
-                <x-label for="tipo_investigador" :value="__('Tipo de Investigador')" />
+                <x-label for="nivel_estudios" :value="__('Nivel de Estudios')" />
 
-                <x-input id="tipo_investigador" class="block mt-1 w-full" type="text" name="tipo_investigador" value="{{ $docente->tipo_investigador }}" />
+                <x-input id="nivel_estudios" class="block mt-1 w-full" type="text" name="nivel_estudios" value="{{ $estudiante->nivel_estudios }}" />
             </div>
 
-            <!-- Nivel Académico -->
+            <!-- BECARIO -->
             <div class="mt-4">
-                <x-label for="nivel_academico" :value="__('Nivel Académico')" />
+                <x-label for="becario" :value="__('Becario')" />
 
-                <x-input id="nivel_academico" class="block mt-1 w-full" type="text" name="nivel_academico" value="{{ $docente->nivel_academico }}" />
+                <input type="checkbox" name="becario" {{ $estudiante->becario == 'S' ? 'checked' : '' }}>
             </div>
 
-            <!-- Puesto -->
+            <!-- CVU -->
             <div class="mt-4">
-                <x-label for="puesto" :value="__('Puesto')" />
+                <x-label for="cvu" :value="__('CVU')" />
 
-                <x-input id="puesto" class="block mt-1 w-full" type="text" name="puesto" value="{{ $docente->puesto }}" />
-            </div>
-
-            <!-- Jornada -->
-            <div class="mt-4">
-                <x-label for="jornada" :value="__('Jornada')" />
-
-                <x-input id="jornada" class="block mt-1 w-full" type="text" name="jornada" value="{{ $docente->jornada }}" />
-            </div>
-
-            <!-- Publicaciones -->
-            <div class="mt-4">
-                <x-label for="publicaciones" :value="__('Publicaciones')" />
-
-                <x-input id="publicaciones" class="block mt-1 w-full" type="text" name="publicaciones" value="{{ $docente->publicaciones }}" />
-            </div>
-
-            <!-- Cursos -->
-            <div class="mt-4">
-                <x-label for="cursos" :value="__('Cursos')" />
-
-                <x-input id="cursos" class="block mt-1 w-full" type="text" name="cursos" value="{{ $docente->cursos }}" />
+                <x-input id="cvu" class="block mt-1 w-full" type="text" name="cvu" value="{{ $estudiante->cvu }}" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -123,6 +102,7 @@
                     {{ __('Actualizar datos') }}
                 </x-button>
             </div>
+
         </form>
     </x-auth-card>
 </x-guest-layout>

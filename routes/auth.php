@@ -20,11 +20,11 @@ Route::post('/registro-admins', [RegisteredUserController::class, 'storeAdmin'])
 
 /** Registrar usuarios **/
 Route::get('/registro', [RegisteredUserController::class, 'create'])
-                ->middleware(['auth', 'registerPermission'])
+                ->middleware(['auth', 'highPermission'])
                 ->name('register');
 
 Route::post('/registro', [RegisteredUserController::class, 'store'])
-                ->middleware(['auth', 'registerPermission']);
+                ->middleware(['auth', 'highPermission']);
 
 /** Login **/
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])

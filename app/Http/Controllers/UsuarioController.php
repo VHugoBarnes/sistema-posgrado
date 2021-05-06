@@ -75,6 +75,7 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
+        return redirect()->route('')->with([]);
     }
 
     public function comiteTutorialRegister()

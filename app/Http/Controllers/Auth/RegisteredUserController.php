@@ -66,21 +66,18 @@ class RegisteredUserController extends Controller {
         // Si se registro un usuario estudiante
         if ($request->tipo_usuario == 'Estudiante') {
             $estudiante = new Estudiante;
-
             $estudiante->usuario_id = $user->id;
-            $estudiante->numero_control = '0000000';
-            $estudiante->programa = 'Maestría';
-            $estudiante->nivel_estudios = 'Licenciatura';
-
             $estudiante->save();
-        } else if ($request->tipo_usuario == 'Docente') { // Si se registro un usuario docente
+
+        } 
+        else if ($request->tipo_usuario == 'Docente') { // Si se registro un usuario docente
             $docente = new Docente;
             $docente->usuario_id = $user->id;
             $docente->save();
         }
 
         // Ingresar en la tabla pivot los id's correspondientes
-        $role_id = Role::where('roles', 'like', $request->tipo_usuario)->first('id');        
+        $role_id = Role::where('roles', 'like', $request->tipo_usuario)->first('id');
         $user->role()->attach($role_id);
         
         event(new SendMail($user, $request->password));

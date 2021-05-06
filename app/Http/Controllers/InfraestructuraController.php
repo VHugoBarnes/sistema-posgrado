@@ -21,27 +21,33 @@ class InfraestructuraController extends Controller
     
     public function create()
     {
-        return view('');
+        return view('infraestructura.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'tipo' => 'string',
-            'caracteristicas' => 'string',
-            'observaciones' => 'string'
+            'tipo' => '',
+            'caracteristicas' => '',
+            'observaciones' => ''
         ]);
+
+        $nombre = $request->nombre;
+        $tipo = $request->tipo;
+        $caracteristicas = $request->caracteristicas;
+        $observaciones = $request->observaciones;
 
         $infraestructura = new Infraestructura_Servicio;
 
-        $infraestructura->nombre = $request->nombre;
-        $infraestructura->tipo = $request->tipo;
-        $infraestructura->caractetisticas = $request->caractetisticas;
-        $infraestructura->observaciones = $request->observaciones;
+        $nombre != Null ? $infraestructura->nombre = $nombre : Null;
+        $tipo != Null ? $infraestructura->tipo = $tipo : Null;
+        $caracteristicas != Null ? $infraestructura->caracteristicas = $caracteristicas : Null;
+        $observaciones != Null ? $infraestructura->observaciones = $observaciones : Null;
+
         $infraestructura->save();
 
-        return redirect()->route('')->with([]);
+        return redirect()->route('home')->with([]);
 
     }
 
@@ -50,33 +56,42 @@ class InfraestructuraController extends Controller
         $user = Auth::user();
         $infraestructura = Infraestructura_Servicio::find($id);
 
-        return redirect()->route('');
+        if($infraestructura == NULL) {
+            return redirect()->route('home');
+        }
+
+        return view('infraestructura.edit',[
+            'infraestructura' => $infraestructura
+        ]);
     }
 
     public function update(Request $request)
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'tipo' => 'string',
-            'caracteristicas' => 'string',
-            'observaciones' => 'string'
+            'tipo' => '',
+            'caracteristicas' => '',
+            'observaciones' => ''
         ]);
 
-        $id = $request->id;
         $nombre = $request->nombre;
         $tipo = $request->tipo;
         $caracteristicas = $request->caracteristicas;
         $observaciones = $request->observaciones;
-        
-        $infraestructura = Infraestructura_Servicio::find($id);
-        $infraestructura->nombre = $nombre;
-        $infraestructura->tipo = $tipo;
-        $infraestructura->caracteristicas = $caracteristicas;
-        $infraestructura->observaciones = $observaciones;
 
-        $infraestructura->update();
+        // Obtenemos la infraestructura a editar
+        $infraestructura_id = Infraestructura_Servicio::where('nombre', 'LIKE', $nombre)->first();
+        $infraestructura_id = $infraestructura_id->id;
+        $infraestructura = Infraestructura_Servicio::find($infraestructura_id);
 
-        return redirect()->route('')->with([]);
+        $nombre != Null ? $infraestructura->nombre = $nombre : Null;
+        $tipo != Null ? $infraestructura->tipo = $tipo : Null;
+        $caracteristicas != Null ? $infraestructura->caracteristicas = $caracteristicas : Null;
+        $observaciones != Null ? $infraestructura->observaciones = $observaciones : Null;
+
+        $infraestructura->save();
+
+        return redirect()->route('home')->with([]);
 
     }
 

@@ -9,7 +9,7 @@ class Infraestructura_Servicio extends Model
 {
     use HasFactory;
 
-    protected $table = 'infraestructura_servicios';
+    protected $table = 'infraestructura_servicio';
 
     /**
      * The attributes that are mass assignable.

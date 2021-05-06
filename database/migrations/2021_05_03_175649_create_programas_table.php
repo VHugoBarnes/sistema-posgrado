@@ -15,7 +15,7 @@ class CreateProgramasTable extends Migration
     {
         Schema::create('programas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->text('impacto')->nullable();
             $table->json('part_grupos_proyectos')->nullable();
             $table->json('servicios_prestados')->nullable();

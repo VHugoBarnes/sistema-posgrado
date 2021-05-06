@@ -15,7 +15,7 @@ class CreateInfraestructuraServicioTable extends Migration
     {
         Schema::create('infraestructura_servicio', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->string('tipo')->nullable();
             $table->text('caracteristicas')->nullable();
             $table->text('observaciones')->nullable();

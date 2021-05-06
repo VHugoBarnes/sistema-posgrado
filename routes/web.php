@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\InfraestructuraController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -34,11 +36,11 @@ require __DIR__.'/auth.php';
  * - Registrarte como director, codirector, secretario o vocal en una tesis
  */
 Route::get('/editar-usuario', [UsuarioController::class, 'edit'])
-    ->middleware(['auth'])
+    ->middleware(['auth','highPermission'])
     ->name('editar-usuario');
 
 Route::put('/editar-usuario', [UsuarioController::class, 'update'])
-    ->middleware(['auth']);
+    ->middleware(['auth', 'highPermission']);
 
 /**
  *  Rutas Estudiantes
@@ -47,17 +49,23 @@ Route::put('/editar-usuario', [UsuarioController::class, 'update'])
  * - Actualizar datos tesis (solo subir archivo)
  * - Busqueda por filtros de estudiantes
  */
+Route::get('/editar-estudiante', [EstudianteController::class, 'edit'])
+    ->middleware(['auth', 'estudiantePermission'])
+    ->name('editar-estudiante');
+
+Route::put('/editar-estudiante', [EstudianteController::class, 'update'])
+    ->middleware(['auth', 'estudiantePermission']);
 
 /**
  * Rutas docentes
  * - Cambiar datos
  */
 Route::get('/editar-docente', [DocenteController::class, 'edit'])
-    ->middleware(['auth'])
+    ->middleware(['auth','docentePermission'])
     ->name('editar-docente');
 
 Route::put('/editar-docente', [DocenteController::class, 'update'])
-    ->middleware(['auth']);
+    ->middleware(['auth','docentePermission']);
 
 /**
  * Rutas de programas
@@ -82,3 +90,17 @@ Route::put('/editar-docente', [DocenteController::class, 'update'])
  * - Eliminar infraestructura
  * - Obtener infraestructura
  */
+Route::get('/crear-infraestructura', [InfraestructuraController::class, 'create'])
+    ->middleware(['auth', 'highPermission'])
+    ->name('crear-infraestructura');
+
+Route::post('/crear-infraestructura', [InfraestructuraController::class, 'store'])
+    ->middleware(['auth', 'highPermission']);
+
+Route::get('/editar-infraestructura/{id}', [InfraestructuraController::class, 'edit'])
+    ->middleware(['auth', 'highPermission'])
+    ->name('editar-infraestructura');
+
+Route::put('/actualizar-infraestructura', [InfraestructuraController::class, 'update'])
+    ->middleware(['auth', 'highPermission'])
+    ->name('actualizar-infraestructura');

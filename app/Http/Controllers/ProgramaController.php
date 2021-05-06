@@ -27,12 +27,12 @@ class ProgramaController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'impacto' => 'string',
-            'part_grupos_proyectos' => 'string',
-            'servicios_prestados' => 'string',
-            'datos_relevantes' => 'string',
-            'orientacion' => 'required|boolval',
-            'justificacion_orientacion' => 'string',
+            'impacto' => '',
+            'part_grupos_proyectos' => '',
+            'servicios_prestados' => '',
+            'datos_relevantes' => '',
+            'orientacion' => '',
+            'justificacion_orientacion' => '',
             'lineas_investigacion' => 'integer'
         ]);
 

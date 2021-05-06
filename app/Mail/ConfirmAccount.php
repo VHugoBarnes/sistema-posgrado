@@ -43,7 +43,7 @@ class ConfirmAccount extends Mailable
         // echo "<pre> " , var_export($this->url) , " </pre>";
         // echo "<pre> " , var_export(env('APP_URL')) , " </pre>";
         // die();
-        // return $this->view('mail.cuenta.confirmacion');
-        return $this->view('mail.cuenta.test');
+        //return $this->view('mail.cuenta.test');
+        return $this->view('mail.cuenta.confirmacion');
     }
 }

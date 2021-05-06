@@ -104,8 +104,8 @@ class DocenteController extends Controller
         $telefono != Null ? $usuario->telefono = $telefono : Null;
 
         // Actualizar datos en la tabla docente
-        $sni != Null ? $docente->sni = 'S' : 'N';
-        $catedras != Null ? $docente->catedras = 'S' : 'N';
+        $docente->sni = $sni != Null ? 'S' : 'N';
+        $docente->catedras = $catedras != Null ? 'S' : 'N';
         $tipo_investigador != Null ? $docente->tipo_investigador = $tipo_investigador : Null;
         $nivel_academico != Null ? $docente->nivel_academico = $nivel_academico : Null;
         $puesto != Null ? $docente->puesto = $puesto : Null;
@@ -115,5 +115,7 @@ class DocenteController extends Controller
 
         $usuario->save();
         $docente->save();
+
+        return redirect()->route('')->with([]);
     }
 }

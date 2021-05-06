@@ -15,7 +15,7 @@ class CreateLineasInvestigacionTable extends Migration
     {
         Schema::create('lineas_investigacion', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->text('descripcion')->nullable();
             $table->timestamps();
         });

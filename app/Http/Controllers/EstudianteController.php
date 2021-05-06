@@ -34,8 +34,18 @@ class EstudianteController extends Controller
 
     public function edit()
     {
+        // Conseguir el usuario identificado
+        $user = Auth::user();
+        $id = $user->id;
+        $usuario = Usuario::find($id);
+
+        // Conseguir id del estudiante
+        $id_estudiante = $usuario->estudiante->id;
+        $estudiante = Estudiante::find($id_estudiante);
+
         return view('estudiante.edit', [
-            'generos' => $this->generos
+            'generos' => $this->generos,
+            'estudiante' => $estudiante
         ]);
     }
 
@@ -62,7 +72,7 @@ class EstudianteController extends Controller
             'numero_control' => 'required|max:20',
             'generacion' => 'required|max:20',
             'nivel_estudios' => 'max:255',
-            'becario' => 'in_array:options',
+            'becario' => '',
             'cvu' => 'required|max:100'
         ]);
 
@@ -73,7 +83,6 @@ class EstudianteController extends Controller
         $genero = $request->genero;
         $direccion = $request->direccion;
         $telefono = $request->telefono;
-
         // Propiedades estudiante
         $numero_control = $request->numero_control;
         $generacion = $request->generacion;
@@ -90,15 +99,16 @@ class EstudianteController extends Controller
         $telefono != Null ? $usuario->telefono = $telefono : Null;
 
         // Actualizar datos en la tabla estudiante
-        $estudiante->numero_control = $numero_control;
-        $usuario->generacion = $generacion;
+        $numero_control != Null ? $estudiante->numero_control = $numero_control : Null;
+        $generacion != Null ? $estudiante->generacion = $generacion : Null ;
         $nivel_estudios != Null ? $estudiante->nivel_estudios = $nivel_estudios : Null;
-        $becario != Null ? $estudiante->becario = $becario : Null;
-        $estudiante->cvu = $cvu;
+        $estudiante->becario = $becario != NULL ? 'S' : 'N';
+        $cvu != Null ? $estudiante->cvu = $cvu : Null;
 
         $usuario->save();
         $estudiante->save();
 
+        return redirect()->route('')->with([]);
     }
 
     public function createTesisSubject()
