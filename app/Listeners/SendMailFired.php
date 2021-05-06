@@ -31,6 +31,10 @@ class SendMailFired
      */
     public function handle(SendMail $event)
     {
-        Mail::to($event->datos->email)->send(new ConfirmAccount($event->datos, $event->password));
+        try {
+            Mail::to($event->datos->email)->send(new ConfirmAccount($event->datos, $event->password));
+        } catch (\Exception $e) {
+            return redirect()->route('home')->with(['message'=>'El correo no ha podido enviarse']);
+        }
     }
 }

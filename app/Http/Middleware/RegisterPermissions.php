@@ -19,15 +19,8 @@ class RegisterPermissions
      */
     public function handle(Request $request, Closure $next)
     {
-        $role_id = '';
         $user = Auth::user();
-
-        foreach($user->role as $rol) {
-            $role_id = $rol->pivot->role_id;
-        }
-
-        $role = Role::find($role_id);
-        $role = $role->roles;
+        $role = getUserRole($user);
 
         // Aquí se puede mejorar trayendo los datos de la base de datos
         if($role == 'Administrador' || 

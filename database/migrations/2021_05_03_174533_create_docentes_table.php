@@ -22,8 +22,8 @@ class CreateDocentesTable extends Migration
             $table->string('nivel_academico')->nullable();
             $table->string('puesto')->nullable();
             $table->string('jornada')->nullable();
-            $table->json('publicaciones')->nullable();
-            $table->json('cursos')->nullable();
+            $table->string('publicaciones')->nullable();
+            $table->string('cursos')->nullable();
             $table->timestamps();
 
             $table->foreign('usuario_id')->references('id')->on('usuarios');
