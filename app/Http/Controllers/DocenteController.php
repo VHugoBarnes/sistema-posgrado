@@ -64,8 +64,8 @@ class DocenteController extends Controller
             'apellidos' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:usuarios,email,'.$id,
             'genero' => new Genero,
-            'direccion' => 'required_if:exists:usuarios,direccion',
-            'telefono' => 'max:13',
+            'direccion' => '',
+            'telefono' => '',
 
             'sni' => '',
             'catedras' => '',

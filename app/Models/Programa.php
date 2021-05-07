@@ -30,7 +30,7 @@ class Programa extends Model
     ];
 
     public function lineas_investigacion() {
-        return $this->belongsToMany(Linea_Investigacion::class, 'lineas_programas', 'programa_id', 'linea_investigacion_id');
+        return $this->belongsToMany(Linea_Investigacion::class, 'linea_programa', 'programa_id', 'linea_investigacion_id');
     }
 
     public function estudiante()

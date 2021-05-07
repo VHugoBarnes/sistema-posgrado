@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Infraestructura_Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Null_;
 
 class InfraestructuraController extends Controller
 {
@@ -27,7 +28,7 @@ class InfraestructuraController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:infraestructura_servicio,nombre',
             'tipo' => '',
             'caracteristicas' => '',
             'observaciones' => ''
@@ -40,20 +41,19 @@ class InfraestructuraController extends Controller
 
         $infraestructura = new Infraestructura_Servicio;
 
-        $nombre != Null ? $infraestructura->nombre = $nombre : Null;
-        $tipo != Null ? $infraestructura->tipo = $tipo : Null;
-        $caracteristicas != Null ? $infraestructura->caracteristicas = $caracteristicas : Null;
-        $observaciones != Null ? $infraestructura->observaciones = $observaciones : Null;
+        $infraestructura->nombre = $nombre;
+        $infraestructura->tipo = $tipo != Null ? $tipo : '';
+        $infraestructura->caracteristicas = $caracteristicas != Null ? $caracteristicas : '';
+        $infraestructura->observaciones = $observaciones != Null ? $observaciones : '';
 
         $infraestructura->save();
 
-        return redirect()->route('home')->with([]);
+        return redirect()->route('home')->with(['message'=>'Infraestructura creada correctamente']);
 
     }
 
     public function edit($id)
     {
-        $user = Auth::user();
         $infraestructura = Infraestructura_Servicio::find($id);
 
         if($infraestructura == NULL) {
@@ -67,8 +67,11 @@ class InfraestructuraController extends Controller
 
     public function update(Request $request)
     {
+
+        $id = $request->id;
+
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:infraestructura_servicio,nombre,'.$id,
             'tipo' => '',
             'caracteristicas' => '',
             'observaciones' => ''
@@ -80,27 +83,29 @@ class InfraestructuraController extends Controller
         $observaciones = $request->observaciones;
 
         // Obtenemos la infraestructura a editar
-        $infraestructura_id = Infraestructura_Servicio::where('nombre', 'LIKE', $nombre)->first();
-        $infraestructura_id = $infraestructura_id->id;
-        $infraestructura = Infraestructura_Servicio::find($infraestructura_id);
+        $infraestructura = Infraestructura_Servicio::find($id);
 
-        $nombre != Null ? $infraestructura->nombre = $nombre : Null;
-        $tipo != Null ? $infraestructura->tipo = $tipo : Null;
-        $caracteristicas != Null ? $infraestructura->caracteristicas = $caracteristicas : Null;
-        $observaciones != Null ? $infraestructura->observaciones = $observaciones : Null;
+        $infraestructura->nombre = $nombre;
+        $infraestructura->tipo = $tipo != Null ? $tipo : '';
+        $infraestructura->caracteristicas = $caracteristicas != Null ? $caracteristicas : '';
+        $infraestructura->observaciones = $observaciones != Null ? $observaciones : '';
 
         $infraestructura->save();
 
-        return redirect()->route('home')->with([]);
+        return redirect()->route('home')->with(['message'=>'La infraestructura ha sido actualizada correctamente']);
 
     }
 
     public function delete($id)
     {
         $infraestructura = Infraestructura_Servicio::find($id);
-        $infraestructura->delete();
+        
+        if($infraestructura == Null) {
+            return redirect()->route('home')->with(['message'=>'La infraestructura que quieres eliminar no existe']);
+        }
 
-        return redirect()->route('')->with([]);
+        $infraestructura->delete();
+        return redirect()->route('home')->with(['message'=>'La infraestructura ha sido eliminada correctamente']);
     }
 
 }

@@ -17,9 +17,9 @@ class CreateProgramasTable extends Migration
             $table->id();
             $table->string('nombre')->unique();
             $table->text('impacto')->nullable();
-            $table->json('part_grupos_proyectos')->nullable();
-            $table->json('servicios_prestados')->nullable();
-            $table->json('datos_relevantes')->nullable();
+            $table->text('part_grupos_proyectos')->nullable();
+            $table->text('servicios_prestados')->nullable();
+            $table->text('datos_relevantes')->nullable();
             $table->enum('orientacion', ['S','N']);
             $table->text('justificacion_orientacion')->nullable();
             $table->timestamps();

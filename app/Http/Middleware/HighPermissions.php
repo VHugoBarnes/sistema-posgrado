@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Role;
 
-class RegisterPermissions
+class HighPermissions
 {
     /**
      * Handle an incoming request.

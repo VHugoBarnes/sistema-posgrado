@@ -46,7 +46,7 @@
                     </svg>
                 </div>
 
-                <x-auth-session-status class="mb-4" :status="session('message')" />
+                <x-auth-session-status class="mb-4 text-blue-600" :status="session('message')" />
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">

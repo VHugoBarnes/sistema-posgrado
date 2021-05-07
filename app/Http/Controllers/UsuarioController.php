@@ -55,8 +55,8 @@ class UsuarioController extends Controller
             'apellidos' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:usuarios,email,'.$id,
             'genero' => new Genero,
-            'direccion' => 'required_if:exists:usuarios,direccion',
-            'telefono' => 'max:13'
+            'direccion' => '',
+            'telefono' => ''
         ]);
 
         $nombre = $request->nombre;
@@ -70,12 +70,12 @@ class UsuarioController extends Controller
         $usuario->apellidos = $apellidos;
         $usuario->email = $email;
         $genero != 'none' ? $usuario->genero = $genero : Null;
-        $direccion != Null ? $usuario->direccion = $direccion : Null;
-        $telefono != Null ? $usuario->telefono = $telefono : Null;
+        $usuario->direccion = $direccion != Null ? $direccion : '';
+        $usuario->telefono = $telefono != Null ? $telefono : '';
 
         $usuario->save();
 
-        return redirect()->route('')->with([]);
+        return redirect()->route('home')->with([]);
     }
 
     public function comiteTutorialRegister()

@@ -13,7 +13,7 @@
             @method('PUT')
             @csrf
 
-            {{-- <input type="hidden" name="id" value="{{ $infraestructura }}"> --}}
+            <input type="hidden" name="id" value="{{ $infraestructura->id }}">
 
             <!-- Nombre -->
             <div>

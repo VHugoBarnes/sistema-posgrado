@@ -36,11 +36,11 @@ class Docente extends Model
 
     // Relación muchos-muchos
     public function estudiante() {
-        return $this->belongsToMany(Estudiante::class, 'docentes_estudiantes', 'docente_id', 'estudiante_id');
+        return $this->belongsToMany(Estudiante::class, 'docente_estudiante', 'docente_id', 'estudiante_id');
     }
 
     // Las lineas de investigacion de un docente
     public function lineas_investigacion() {
-        return $this->belongsToMany(Linea_Investigacion::class, 'lineas_docentes', 'docente_id', 'linea_investigacion_id');
+        return $this->belongsToMany(Linea_Investigacion::class, 'docente_linea', 'docente_id', 'linea_investigacion_id');
     }
 }

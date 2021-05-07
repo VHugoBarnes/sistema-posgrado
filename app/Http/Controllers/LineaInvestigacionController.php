@@ -26,7 +26,7 @@ class LineaInvestigacionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:lineas_investigacion,nombre',
             'descripcion' => ''
         ]);
 
@@ -39,43 +39,42 @@ class LineaInvestigacionController extends Controller
         $descripcion != Null ? $linea->descripcion = $descripcion : Null;
         $linea->save();
 
-        return redirect()->route('home')->with([]);
+        return redirect()->route('home')->with(['message'=>'Linea de investigación creada correctamente']);
     }
 
     public function edit($id)
     {
-        $user = Auth::user();
         $linea = Linea_Investigacion::find($id);
 
         if($linea == NULL) {
             return redirect()->route('home');
         }
 
-        return redirect()->route('linea.edit', [
+        return view('linea.edit', [
             'linea' => $linea
         ]);
     }
 
     public function update(Request $request)
     {
+        $id = $request->id;
+
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'descripcion' => 'string'
+            'nombre' => 'required|string|max:255|unique:lineas_investigacion,nombre,'.$id,
+            'descripcion' => ''
         ]);
 
         $nombre = $request->nombre;
         $descripcion = $request->descripcion;
 
-        $linea_id = Linea_Investigacion::where('nombre', 'LIKE', $nombre)->first();
-        $linea_id = $linea_id->id;
-        $linea = Linea_Investigacion::find($linea_id);
+        $linea = Linea_Investigacion::find($id);
 
         $linea->nombre = $nombre;
-        $linea->descripcion = $descripcion;
+        $linea->descripcion = $descripcion != Null ? $descripcion : '';
 
         $linea->save();
 
-        return redirect()->route('home')->with([]);
+        return redirect()->route('home')->with(['message'=>'Linea de investigación actualizada correctamente']);
     }
 
     public function delete($id)
