@@ -15,7 +15,11 @@ class LineaInvestigacionController extends Controller
 
     public function getAll()
     {
-        
+        $lineas = Linea_Investigacion::all();
+
+        return view('linea.view',[
+            'lineas' => $lineas
+        ]);
     }
 
     public function create()
@@ -76,12 +80,5 @@ class LineaInvestigacionController extends Controller
 
         return redirect()->route('home')->with(['message'=>'Linea de investigación actualizada correctamente']);
     }
-
-    public function delete($id)
-    {
-        $linea = Linea_Investigacion::find($id);
-        $linea->delete();
-
-        return redirect()->route('')->with([]);
-    }
+    
 }

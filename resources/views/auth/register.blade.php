@@ -42,6 +42,7 @@
                     <option value="Docente">Docente</option>
                     <option value="Estudiante">Estudiante</option>
                     <option value="Jefe Posgrado">Jefe Posgrado</option>
+                    <option value="Coordinador">Coordinador</option>
                     <option value="Asistente Coordinador">Asistente Coordinador</option>
                     <option value="Secretaria">Secretaria</option>
                 </select>

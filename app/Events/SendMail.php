@@ -37,7 +37,6 @@ class SendMail
      */
     public function broadcastOn()
     {
-        //return new PrivateChannel('channel-name');
-        return [];
+        return new PrivateChannel('channel-name');
     }
 }

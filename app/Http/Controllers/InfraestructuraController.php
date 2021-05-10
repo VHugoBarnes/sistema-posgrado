@@ -17,7 +17,11 @@ class InfraestructuraController extends Controller
 
     public function getAll()
     {
-        
+        $infraestructura = Infraestructura_Servicio::all();
+
+        return view('infraestructura.view',[
+            'infraestructura' => $infraestructura
+        ]);
     }
     
     public function create()

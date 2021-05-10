@@ -108,17 +108,7 @@ class EstudianteController extends Controller
         $usuario->save();
         $estudiante->save();
 
-        return redirect()->route('')->with([]);
-    }
-
-    public function createTesisSubject()
-    {
-
-    }
-
-    public function uploadTesisFile()
-    {
-
+        return redirect()->route('home')->with(['message'=>'Estudiante actualizado correctamente']);
     }
 
     public function searchByFilter($filter)

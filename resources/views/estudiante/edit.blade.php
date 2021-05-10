@@ -17,7 +17,7 @@
             <div>
                 <x-label for="nombre" :value="__('Nombre')" />
 
-                <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" value="{{ Auth::user()->nombre }}"  autofocus />
+                <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" value="{{ Auth::user()->nombre }}" required  autofocus />
             </div>
 
             <!-- Apellidos -->

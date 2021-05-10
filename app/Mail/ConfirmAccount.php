@@ -22,11 +22,11 @@ class ConfirmAccount extends Mailable
      *
      * @return void
      */
-    //public function __construct(Usuario $datos, string $password)
-    public function __construct()
+    public function __construct(Usuario $datos, string $password)
+    //public function __construct()
     {
-        // $this->datos = $datos;
-        // $this->password = $password;
+        $this->datos = $datos;
+        $this->password = $password;
     }
 
     /**
@@ -44,6 +44,6 @@ class ConfirmAccount extends Mailable
         // echo "<pre> " , var_export(env('APP_URL')) , " </pre>";
         // die();
         //return $this->view('mail.cuenta.test');
-        return $this->view('mail.cuenta.confirmacion');
+        return $this->subject('Confirmar cuenta')->view('mail.cuenta.confirmacion');
     }
 }

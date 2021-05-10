@@ -16,7 +16,11 @@ class ProgramaController extends Controller
 
     public function getAll()
     {
+        $programas = Programa::all();
         
+        return view('programa.view',[
+            'programas' => $programas
+        ]);
     }
 
     public function create()
@@ -51,7 +55,7 @@ class ProgramaController extends Controller
         $justificacion_orientacion = $request->justificacion_orientacion;
         $lineas_investigacion = $request->lineas_investigacion;
 
-        $programa->nombre = $request->nombre;
+        $programa->nombre = $nombre;
         $programa->impacto = $impacto != Null ? $impacto : '';
         $programa->part_grupos_proyectos = $part_grupos_proyectos != null ? $part_grupos_proyectos : '';
         $programa->servicios_prestados = $servicios_prestados != null ? $servicios_prestados : '';
@@ -75,11 +79,12 @@ class ProgramaController extends Controller
     {
         $lineas = Linea_Investigacion::all();
 
-        if($lineas == null) {
+        $programa = Programa::find($id);
+
+        if($programa == null) {
             return redirect()->route('home');
         }
 
-        $programa = Programa::find($id);
         $id_linea_programa = 0;
         foreach($programa->lineas_investigacion as $linea) {
             $id_linea_programa = $linea->pivot->linea_investigacion_id;
@@ -96,12 +101,12 @@ class ProgramaController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'impacto' => 'string',
-            'part_grupos_proyectos' => 'string',
-            'servicios_prestados' => 'string',
-            'datos_relevantes' => 'string',
-            'orientacion' => 'required|boolval',
-            'justificacion_orientacion' => 'string',
+            'impacto' => '',
+            'part_grupos_proyectos' => '',
+            'servicios_prestados' => '',
+            'datos_relevantes' => '',
+            'orientacion' => '',
+            'justificacion_orientacion' => '',
             'lineas_investigacion' => 'integer'
         ]);
 
@@ -110,27 +115,31 @@ class ProgramaController extends Controller
         $impacto = $request->impacto;
         $part_grupos_proyectos = $request->part_grupos_proyectos;
         $servicios_prestados = $request->servicios_prestados;
+        $datos_relevantes = $request->datos_relevantes;
         $orientacion = $request->orientacion;
         $justificacion_orientacion = $request->justificacion_orientacion;
+        $lineas_investigacion = $request->lineas_investigacion;
 
         $programa = Programa::find($id);
         $programa->nombre = $nombre;
-        $programa->impacto = $impacto;
-        $programa->part_grupos_proyectos = $part_grupos_proyectos;
-        $programa->servicios_prestados = $servicios_prestados;
-        $programa->orientacion = $orientacion;
-        $programa->justificacion_orientacion = $justificacion_orientacion;
+        $programa->impacto = $impacto != Null ? $impacto : '';
+        $programa->part_grupos_proyectos = $part_grupos_proyectos != null ? $part_grupos_proyectos : '';
+        $programa->servicios_prestados = $servicios_prestados != null ? $servicios_prestados : '';
+        $programa->datos_relevantes = $datos_relevantes != null ? $datos_relevantes : '';
+        $programa->orientacion = $orientacion != null ? 'S' : 'N';
+        $programa->justificacion_orientacion = $justificacion_orientacion != null ? $justificacion_orientacion : '';
+        $programa->save();
 
-        $programa->update();
+        $linea_id = Linea_Investigacion::find($lineas_investigacion);
+
+        if($linea_id == NULL) {
+            $programa->lineas_investigacion()->attach(1);
+        } else {
+            $programa->lineas_investigacion()->detach();
+            $programa->lineas_investigacion()->attach($linea_id);
+        }
 
         return redirect()->route('home')->with(['message'=>'Programa actualizado correctamente']);
     }
-
-    public function delete($id)
-    {
-        $programa = Programa::find($id);
-        $programa->delete();
-
-        return redirect()->route('')->with([]);
-    }
+    
 }

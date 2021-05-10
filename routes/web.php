@@ -5,6 +5,7 @@ use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\InfraestructuraController;
 use App\Http\Controllers\LineaInvestigacionController;
 use App\Http\Controllers\ProgramaController;
+use App\Http\Controllers\TesisController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', [TestController::class, 'sendEmail']);
+// Route::get('/test', [TestController::class, 'sendEmail']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,7 +36,6 @@ require __DIR__.'/auth.php';
 /**
  *  Rutas Usuarios
  * - Cambiar datos
- * - Registrarte como director, codirector, secretario o vocal en una tesis
  */
 Route::get('/editar-usuario', [UsuarioController::class, 'edit'])
     ->middleware(['auth','highPermission'])
@@ -47,8 +47,6 @@ Route::put('/editar-usuario', [UsuarioController::class, 'update'])
 /**
  *  Rutas Estudiantes
  * - Cambiar datos
- * - Subir tesis (una sola vez)
- * - Actualizar datos tesis (solo subir archivo)
  * - Busqueda por filtros de estudiantes
  */
 Route::get('/editar-estudiante', [EstudianteController::class, 'edit'])
@@ -57,6 +55,42 @@ Route::get('/editar-estudiante', [EstudianteController::class, 'edit'])
 
 Route::put('/editar-estudiante', [EstudianteController::class, 'update'])
     ->middleware(['auth', 'estudiantePermission']);
+
+
+/**
+ * Rutas Tesis
+ * - Ver tesis
+ * - Ver detalle de tesis (Aquí habrá botones para registrarte como director, codirector, etc)
+ * - Subir tesis (una sola vez)
+ * - Actualizar datos tesis (solo subir archivo)
+ * - Registrarte como director, codirector, secretario o vocal en una tesis
+ */
+
+Route::get('/tesis', [TesisController::class, 'getAll'])
+    ->name('tesis');
+
+Route::get('/tesis/{id}', [TesisController::class, 'getOne'])
+    ->name('tesis-detalle')
+    ->where(['id'=>'[0-9]+']);
+
+Route::get('/tesis/{id}/{tipo}', [TesisController::class, 'registerAs'])
+    ->middleware(['auth', 'registerInTesisPermission'])
+    ->where(['id'=>'[0-9]+', 'tipo'=>'[a-z]+'])
+    ->name('tesis-registro');
+
+Route::get('/alta-tesis', [TesisController::class, 'createTesisSubject'])
+    ->middleware(['auth', 'estudiantePermission', 'tesisUploaded'])
+    ->name('alta-tesis');
+
+Route::post('/alta-tesis', [TesisController::class, 'storeTesisSubject'])
+    ->middleware(['auth', 'estudiantePermission', 'tesisUploaded'])
+    ->name('guardar-tesis');
+
+Route::get('/tesis-archivo', [TesisController::class, 'uploadTesisFile'])
+    ->middleware(['auth', 'estudiantePermission', 'tesisUploaded']);
+
+Route::post('/tesis-archivo', [TesisController::class, 'saveTesisFile'])
+    ->middleware(['auth', 'estudiantePermission', 'tesisUploaded']);
 
 /**
  * Rutas docentes
@@ -85,6 +119,7 @@ Route::post('/crear-programa', [ProgramaController::class, 'store'])
 
 Route::get('/editar-programa/{id}', [ProgramaController::class, 'edit'])
     ->middleware(['auth', 'highPermission'])
+    ->where(['id'=>'[0-9]+'])
     ->name('editar-programa');
 
 Route::put('/actualizar-programa', [ProgramaController::class, 'update'])
@@ -107,6 +142,7 @@ Route::post('/crear-linea', [LineaInvestigacionController::class, 'store'])
 
 Route::get('/editar-linea/{id}', [LineaInvestigacionController::class, 'edit'])
     ->middleware(['auth', 'highPermission'])
+    ->where(['id'=>'[0-9]+'])
     ->name('editar-linea');
 
 Route::put('/actualizar-linea', [LineaInvestigacionController::class, 'update'])
@@ -129,8 +165,14 @@ Route::post('/crear-infraestructura', [InfraestructuraController::class, 'store'
 
 Route::get('/editar-infraestructura/{id}', [InfraestructuraController::class, 'edit'])
     ->middleware(['auth', 'highPermission'])
+    ->where(['id'=>'[0-9]+'])
     ->name('editar-infraestructura');
 
 Route::put('/actualizar-infraestructura', [InfraestructuraController::class, 'update'])
     ->middleware(['auth', 'highPermission'])
     ->name('actualizar-infraestructura');
+
+Route::delete('/eliminar-infraestructura/{id}', [InfraestructuraController::class, 'delete'])
+    ->middleware(['auth', 'highPermission'])
+    ->where(['id'=>'[0-9]+'])
+    ->name('eliminar-infraestructura');

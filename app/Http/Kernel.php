@@ -66,5 +66,7 @@ class Kernel extends HttpKernel
         'highPermission' => \App\Http\Middleware\HighPermissions::class,
         'docentePermission' => \App\Http\Middleware\DocentePermissions::class,
         'estudiantePermission' => \App\Http\Middleware\EstudiantePermissions::class,
+        'tesisUploaded' => \App\Http\Middleware\TesisUploaded::class,
+        'registerInTesisPermission' => \App\Http\Middleware\RegisterInTesisPermission::class,
     ];
 }
