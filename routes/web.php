@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuscadorController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\InfraestructuraController;
@@ -55,6 +56,9 @@ Route::get('/editar-estudiante', [EstudianteController::class, 'edit'])
 
 Route::put('/editar-estudiante', [EstudianteController::class, 'update'])
     ->middleware(['auth', 'estudiantePermission']);
+
+Route::get('/buscar', [BuscadorController::class, 'searchByFilter'])
+    ->name('buscar-estudiante');
 
 
 /**

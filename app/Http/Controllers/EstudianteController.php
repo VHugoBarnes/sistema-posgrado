@@ -111,8 +111,4 @@ class EstudianteController extends Controller
         return redirect()->route('home')->with(['message'=>'Estudiante actualizado correctamente']);
     }
 
-    public function searchByFilter($filter)
-    {
-        
-    }
 }
