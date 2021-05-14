@@ -17,6 +17,8 @@ class CreateTesisTable extends Migration
             $table->id();
             $table->unsignedBigInteger('estudiante_id');
             $table->string('titulo');
+            $table->text('objetivo_general')->nullable();
+            $table->text('objetivo_especifico')->nullable();
             $table->unsignedBigInteger('director')->nullable();
             $table->unsignedBigInteger('codirector')->nullable();
             $table->unsignedBigInteger('secretario')->nullable();

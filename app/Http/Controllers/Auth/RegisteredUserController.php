@@ -80,7 +80,7 @@ class RegisteredUserController extends Controller {
         $role_id = Role::where('roles', 'like', $request->tipo_usuario)->first('id');
         $user->role()->attach($role_id);
         
-        event(new SendMail($user, $request->password));
+        //event(new SendMail($user, $request->password));
         //Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
 
         return redirect()->route('home')->with(['message' => $this->messages['userCreated']]);
@@ -122,7 +122,7 @@ class RegisteredUserController extends Controller {
         $role_id = Role::where('roles', 'like', 'Administrador')->first('id');        
         $user->role()->attach($role_id);
 
-        event(new SendMail($user, $request->password));
+        //event(new SendMail($user, $request->password));
         //Mail::to($request->email)->send(new ConfirmAccount($user, $request->password));
 
         return redirect()->route('home')->with(['message' => $this->messages['adminCreated']]);

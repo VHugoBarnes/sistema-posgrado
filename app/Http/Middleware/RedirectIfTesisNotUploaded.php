@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TesisUploaded
+class RedirectIfTesisNotUploaded
 {
     /**
      * Handle an incoming request.
@@ -24,10 +24,9 @@ class TesisUploaded
         $tesis = Tesis::where('estudiante_id', $estudiante_id)->first();
 
         if($tesis == NULL) {
-            return $next($request);
-        } else {
             return redirect()->route('home');
+        } else {
+            return $next($request);
         }
-        
     }
 }

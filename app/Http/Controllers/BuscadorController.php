@@ -90,6 +90,8 @@ class BuscadorController extends Controller {
         if(empty($estudiante) || empty($tesis)) {
             return redirect()->back();
         } else {
+            echo "<pre> " , var_export($tesis) , " </pre>";
+            die();
             return view('', [
                 'tesis' => $tesis,
                 'estudiante' => $estudiante

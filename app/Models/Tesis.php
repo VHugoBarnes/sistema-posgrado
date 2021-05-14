@@ -55,4 +55,9 @@ class Tesis extends Model
         return $this->belongsTo(Usuario::class, 'vocal');
     }
 
+    public function solicitud()
+    {
+        return $this->hasMany(Solicitud_Cambio::class, 'tesis_id');
+    }
+
 }

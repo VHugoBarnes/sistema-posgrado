@@ -22,10 +22,8 @@ class RegisterInTesisPermission
         $role = getUserRole($user);
 
         // Aquí se puede mejorar trayendo los datos de la base de datos
-        if($role == 'Administrador' || 
-           $role == 'Jefe Posgrado' || 
-           $role == 'Coordinador' ||
-           $role == 'Docente') 
+        if($role == 'Jefe Posgrado' || 
+           $role == 'Coordinador') 
         {
             return $next($request);
         } else {
