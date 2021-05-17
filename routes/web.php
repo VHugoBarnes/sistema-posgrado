@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/test', [TestController::class, 'sendEmail']);
 
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');

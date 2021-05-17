@@ -47,7 +47,9 @@ class TesisController extends Controller
     {
         // Validación del formulario
         $validate = $this->validate($request, [
-            'titulo' => 'required|string|max:255'
+            'titulo' => 'required|string|max:255',
+            'objetivo_general' => 'required|string',
+            'objetivo_especifico' => 'required|string'
         ]);
 
         $usuario = Auth::user();
@@ -61,6 +63,8 @@ class TesisController extends Controller
         $tesis = new Tesis;
         $tesis->estudiante_id = $estudiante->id;
         $tesis->titulo = $request->titulo;
+        $tesis->objetivo_general = $request->objetivo_general;
+        $tesis->objetivo_especifico = $request->objetivo_especifico;
         $tesis->save();
 
         return redirect()->route('home')->with(['message'=>'Tesis creada correctamente']);
@@ -89,7 +93,7 @@ class TesisController extends Controller
                 break;
 
             default:
-                # code...
+                return redirect()->back();
                 break;
         }
 

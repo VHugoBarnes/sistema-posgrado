@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SolicitudesController;
 use App\Http\Controllers\TesisController;
 
 /**
@@ -42,12 +43,15 @@ Route::post('/tesis-archivo', [TesisController::class, 'saveTesisFile'])
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/modificar-tesis', [TesisController::class, 'editTesis'])
+Route::get('/modificar-tesis', [SolicitudesController::class, 'editTesis'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded'])
     ->name('modificar-tesis');
 
-Route::post('/modificar-tesis', [TesisController::class, 'updateTesis'])
+Route::post('/modificar-tesis', [SolicitudesController::class, 'updateTesis'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded']);
 
-Route::post('/enviar-modificacion-tesis', [TesisController::class, 'sendModification'])
+Route::post('/enviar-modificacion-tesis', [SolicitudesController::class, 'sendModification'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded']);
+
+Route::get('/test-solicitud', [SolicitudesController::class, 'test'])
+    ->middleware(['auth']);

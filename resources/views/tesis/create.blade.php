@@ -19,6 +19,20 @@
                 <x-input id="titulo" class="block mt-1 w-full" type="text" name="titulo" :value="old('titulo')"  autofocus required />
             </div>
 
+            <!-- Objetivo General -->
+            <div>
+                <x-label for="titulo" :value="__('Título de la tesis')" />
+
+                <x-input id="titulo" class="block mt-1 w-full" type="text" name="objetivo_general" :value="old('titulo')"  autofocus required />
+            </div>
+
+            <!-- Objetivo Especifico -->
+            <div>
+                <x-label for="titulo" :value="__('Título de la tesis')" />
+
+                <x-input id="titulo" class="block mt-1 w-full" type="text" name="objetivo_especifico" :value="old('titulo')"  autofocus required />
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <x-button class="ml-4">
                     {{ __('Registrar tesis') }}
