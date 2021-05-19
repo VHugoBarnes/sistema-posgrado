@@ -35,22 +35,22 @@ class Tesis extends Model
         return $this->belongsTo(Estudiante::class, 'estudiante_id');
     }
 
-    public function director()
+    public function director_usuario()
     {
         return $this->belongsTo(Usuario::class, 'director');
     }
 
-    public function codirector()
+    public function codirector_usuario()
     {
         return $this->belongsTo(Usuario::class, 'codirector');
     }
 
-    public function secretario()
+    public function secretario_usuario()
     {
         return $this->belongsTo(Usuario::class, 'secretario');
     }
 
-    public function vocal()
+    public function vocal_usuario()
     {
         return $this->belongsTo(Usuario::class, 'vocal');
     }

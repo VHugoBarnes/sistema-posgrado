@@ -16,7 +16,7 @@ class CreateSolicitudesCambiosTable extends Migration
         Schema::create('solicitudes_cambios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tesis_id');
-            $table->text('ruta_documento');
+            $table->text('ruta_documento')->nullable();
             $table->string('asunto');
             $table->string('estatus');
             $table->string('titulo_nuevo');

@@ -26,6 +26,11 @@ class Linea_Investigacion extends Model
         return $this->belongsToMany(Docente::class, 'docente_linea', 'linea_investigacion_id', 'docente_id');
     }
 
+    public function estudiantes()
+    {
+        return $this->belongsToMany(Estudiante::class, 'estudiante_linea', 'linea_investigacion_id', 'estudiante_id');
+    }
+
     public function programas() {
         return $this->belongsToMany(Programa::class, 'linea_programa', 'linea_investigacion_id', 'programa_id');
     }

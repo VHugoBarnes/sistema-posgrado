@@ -54,4 +54,9 @@ class Estudiante extends Model
     {
         return $this->belongsToMany(Programa::class, 'estudiante_programa', 'estudiante_id', 'programa_id');
     }
+
+    public function lineas()
+    {
+        return $this->belongsToMany(Linea_Investigacion::class, 'estudiante_linea', 'estudiante_id', 'linea_investigacion_id');
+    }
 }
