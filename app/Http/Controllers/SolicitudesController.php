@@ -27,7 +27,8 @@ class SolicitudesController extends Controller {
         $tesis = Tesis::where('estudiante_id', $estudiante_id)->first();
 
         return view('solicitud.crear', [
-            'tesis' => $tesis
+            'tesis' => $tesis,
+            'asunto' => $request->asunto
         ]);
     }
 
@@ -60,10 +61,14 @@ class SolicitudesController extends Controller {
             
             // Crear nueva solicitud
 
-            $solicitud_nueva = new Solicitud_Cambio;
+            // $solicitud_nueva = new Solicitud_Cambio;
 
-            $solicitud_nueva->tesis_id = $tesis->id;
-            // $solicitud_nueva->asunto = 
+            // $solicitud_nueva->tesis_id = $tesis->id;
+            // $solicitud_nueva->asunto = $request->asunto;
+
+            return view('solicitud.formato', [
+                'tesis' => $tesis
+            ]);
             
         } else { // Ya tiene alguna solicitud hecha
 
@@ -79,7 +84,7 @@ class SolicitudesController extends Controller {
 
     public function test() {
         
-        $pdf = \PDF::loadView('test');
-        return $pdf->stream();
+        // $pdf = \PDF::loadView('test');
+        // return $pdf->stream();
     }
 }
