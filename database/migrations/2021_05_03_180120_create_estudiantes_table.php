@@ -16,7 +16,7 @@ class CreateEstudiantesTable extends Migration
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('usuario_id');
-            $table->string('numero_control', 50)->nullable();
+            $table->string('numero_control', 50)->unique();
             $table->string('generacion')->nullable();
             $table->string('nivel_estudios')->nullable();
             $table->string('ruta_articulo')->nullable();

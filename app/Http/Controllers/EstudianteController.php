@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
+use App\Models\Role;
 use App\Models\Usuario;
 
 use App\Rules\Genero;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class EstudianteController extends Controller
 {
@@ -30,6 +33,50 @@ class EstudianteController extends Controller
     public function __construct()
     {
         
+    }
+
+    public function create()
+    {
+        return view('estudiante.create', [
+            'generos' => $this->generos
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:usuarios',
+            'numero_control' => 'required',
+            'generacion' => 'required',
+            'cvu' => 'required'
+        ]);
+
+        $user = Usuario::create([
+            'nombre' => $request->nombre,
+            'apellidos' => $request->apellidos,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
+        $estudiante = Estudiante::create([
+            'usuario_id' => $user->id,
+            'numero_control' => $request->numero_control,
+            'generacion' => $request->generacion,
+            'cvu' => $request->cvu
+        ]);
+
+        // Ingresar en la tabla pivot los id's correspondientes
+        $role_id = Role::where('roles', 'like', 'Estudiante')->first('id');
+        $user->role()->attach($role_id);
+
+        // Crear carpeta con su numero de control
+        Storage::makeDirectory('estudiantes/'.$request->numero_control);
+        Storage::makeDirectory('estudiantes/'.$request->numero_control.'/solicitudes');
+        Storage::makeDirectory('estudiantes/'.$request->numero_control.'/tesis');
+
+        return redirect()->route('home')->with(['message'=>'Estudiante creado correctamente']);
     }
 
     public function edit()

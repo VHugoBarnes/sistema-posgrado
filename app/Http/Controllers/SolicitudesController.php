@@ -42,6 +42,8 @@ class SolicitudesController extends Controller {
         aceptado o denegado, si es el caso darle permiso de hacer otra solicitud.
     */
     public function updateTesis(Request $request) {
+
+        // Redireccionar si el asunto no es el correcto
         if (!($request->asunto == 'tema' || $request->asunto == 'titulo')) {
             return redirect()->back();
         }
@@ -53,7 +55,6 @@ class SolicitudesController extends Controller {
             'justificacion' => 'required|string',
             'asunto' => 'required|string'
         ]);
-
         $titulo_nuevo = $request->titulo_nuevo;
         $objetivo_general_nuevo = $request->objetivo_general_nuevo;
         $objetivo_especifico_nuevo = $request->objetivo_especifico_nuevo;
@@ -73,11 +74,9 @@ class SolicitudesController extends Controller {
         // Verificar si existe alguna solicitud de la tesis
         $solicitud = Solicitud_Cambio::where('tesis_id', $tesis->id)->get();
 
-        if (
-            count($solicitud) == 0 ||
+        if (count($solicitud) == 0 ||
             end($solicitud)[0]->estatus == 'Aprobado' ||
-            end($solicitud)[0]->estatus == 'Denegado'
-        ) { // No hay ninguna solicitud hecha de la tesis
+            end($solicitud)[0]->estatus == 'Denegado') { // No hay ninguna solicitud hecha de la tesis
 
             // Crear nueva solicitud
             $solicitud_nueva = new Solicitud_Cambio;
@@ -91,7 +90,6 @@ class SolicitudesController extends Controller {
             $solicitud_nueva->objetivoe_nuevo = $objetivo_especifico_nuevo;
             $solicitud_nueva->objetivoe_anterior = $tesis->objetivo_especifico;
             $solicitud_nueva->justificacion = $justificacion;
-
             $solicitud_nueva->save();
 
             $pdf = \PDF::loadView('solicitud.formato', [
@@ -103,6 +101,8 @@ class SolicitudesController extends Controller {
                 'justificacion' => $justificacion,
                 'asunto' => $asunto
             ]);
+            $pdf->save(storage_path('app/estudiantes/'.$tesis->estudiante->numero_control.'/solicitudes'.'/solicitud.pdf' ));
+
             return $pdf->stream();
             //return $pdf->download('solicitud.pdf');
 

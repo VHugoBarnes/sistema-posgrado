@@ -42,16 +42,9 @@ return [
             'visibility' => 'public',
         ],
 
-        'tesis' => [
+        'estudiantes' => [
             'driver' => 'local',
-            'root' => storage_path('app/tesis'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
-
-        'solicitudes' => [
-            'driver' => 'local',
-            'root' => storage_path('app/solicitudes'),
+            'root' => storage_path('app/estudiantes'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

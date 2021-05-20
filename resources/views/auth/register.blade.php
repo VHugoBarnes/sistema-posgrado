@@ -40,7 +40,6 @@
                 {{-- <x-input id="tipo_usuario" class="block mt-1 w-full" type="text" name="tipo_usuario" :value="old('tipo_usuario')" required /> --}}
                 <select id="tipo_usuario" name="tipo_usuario">
                     <option value="Docente">Docente</option>
-                    <option value="Estudiante">Estudiante</option>
                     <option value="Jefe Posgrado">Jefe Posgrado</option>
                     <option value="Coordinador">Coordinador</option>
                     <option value="Asistente Coordinador">Asistente Coordinador</option>

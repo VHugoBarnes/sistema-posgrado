@@ -52,6 +52,15 @@ Route::put('/editar-usuario', [UsuarioController::class, 'update'])
  * - Cambiar datos
  * - Busqueda por filtros de estudiantes
  */
+
+ /** Registrar usuarios **/
+Route::get('/registro-estudiante', [EstudianteController::class, 'create'])
+->middleware(['auth', 'highPermission'])
+->name('registrar-estudiante');
+
+Route::post('/registro-estudiante', [EstudianteController::class, 'store'])
+->middleware(['auth', 'highPermission']);
+
 Route::get('/editar-estudiante', [EstudianteController::class, 'edit'])
     ->middleware(['auth', 'estudiantePermission'])
     ->name('editar-estudiante');

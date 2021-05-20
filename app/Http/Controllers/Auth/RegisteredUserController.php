@@ -63,14 +63,7 @@ class RegisteredUserController extends Controller {
             'password' => Hash::make($request->password),
         ]);
 
-        // Si se registro un usuario estudiante
-        if ($request->tipo_usuario == 'Estudiante') {
-            $estudiante = new Estudiante;
-            $estudiante->usuario_id = $user->id;
-            $estudiante->save();
-
-        } 
-        else if ($request->tipo_usuario == 'Docente') { // Si se registro un usuario docente
+        if ($request->tipo_usuario == 'Docente') { // Si se registro un usuario docente
             $docente = new Docente;
             $docente->usuario_id = $user->id;
             $docente->save();
