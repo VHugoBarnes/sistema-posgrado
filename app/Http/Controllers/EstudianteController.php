@@ -72,6 +72,7 @@ class EstudianteController extends Controller
         $user->role()->attach($role_id);
 
         // Crear carpeta con su numero de control
+        Storage::makeDirectory('estudiantes/');
         Storage::makeDirectory('estudiantes/'.$request->numero_control);
         Storage::makeDirectory('estudiantes/'.$request->numero_control.'/solicitudes');
         Storage::makeDirectory('estudiantes/'.$request->numero_control.'/tesis');

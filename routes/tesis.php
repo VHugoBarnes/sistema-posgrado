@@ -44,14 +44,18 @@ Route::post('/tesis-archivo', [TesisController::class, 'saveTesisFile'])
 ////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/modificar-tesis', [SolicitudesController::class, 'editTesis'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded'])
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending'])
     ->name('modificar-tesis');
 
 Route::post('/modificar-tesis', [SolicitudesController::class, 'updateTesis'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded']);
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending']);
+
+Route::get('/enviar-modificacion-tesis', [SolicitudesController::class, 'uploadModification'])
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade']);
 
 Route::post('/enviar-modificacion-tesis', [SolicitudesController::class, 'sendModification'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded']);
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade']);
 
-Route::get('/test-solicitud', [SolicitudesController::class, 'test'])
-    ->middleware(['auth']);
+Route::get('/obtener-solicitud', [SolicitudesController::class, 'sendPDF'])
+->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'])
+->name('obtener-solicitud');

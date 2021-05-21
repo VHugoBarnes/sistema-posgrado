@@ -18,7 +18,7 @@ class TesisController extends Controller
 
     public function getAll()
     {
-        $tesis = Tesis::with(['estudiante','director', 'codirector', 'secretario', 'vocal'])->get();
+        $tesis = Tesis::with(['estudiante','director_usuario', 'codirector_usuario', 'secretario_usuario', 'vocal_usuario'])->get();
 
         return view('tesis.viewAll',[
             'tesis' => $tesis
