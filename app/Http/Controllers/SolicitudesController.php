@@ -8,6 +8,8 @@ use App\Models\Tesis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class SolicitudesController extends Controller {
 
@@ -20,7 +22,7 @@ class SolicitudesController extends Controller {
      *      O
      *      - Tu última solicitud NO tiene estatus 'Pendiente', 'En Revision' o 'Preparando'
      */
-    public function editTesis(Request $request) {
+    public function create(Request $request) {
 
         if (!($request->asunto == 'tema' || $request->asunto == 'titulo')) {
             return redirect()->back();
@@ -44,7 +46,7 @@ class SolicitudesController extends Controller {
      *      O
      *      - Tu última solicitud NO tiene estatus 'Pendiente', 'En Revision' o 'Preparando'
      */
-    public function updateTesis(Request $request) {
+    public function store(Request $request) {
 
         // Redireccionar si el asunto no es el correcto
         if (!($request->asunto == 'tema' || $request->asunto == 'titulo')) {
@@ -104,6 +106,7 @@ class SolicitudesController extends Controller {
         // Guarda la vista en el file system
         $pdf->save(storage_path('app/estudiantes/' . $tesis->estudiante->numero_control . '/solicitudes' . '/') . 'solicitud.pdf');
 
+        // Devolvemos el pdf en el navegador
         return $pdf->stream();
     }
 
@@ -113,6 +116,7 @@ class SolicitudesController extends Controller {
      */
     public function uploadModification() {
         // Vista para subir el archivo de la solicitud con la firma
+        return view('solicitud.subir');
     }
 
     /**
@@ -120,10 +124,33 @@ class SolicitudesController extends Controller {
      *      - Tienes una solicitud con el estatus 'Preparando'
      */
     public function sendModification(Request $request) {
-        // Recibimos la solicitud con firma
+        
         // Verificamos que el archivo sea un PDF
-        // Cambiamos el estatus de la solicitud a Pendiente
+        $validate = $this->validate($request, [
+            'archivo' => 'required|mimes:pdf'
+        ]);
+        
+        /*************** Recibimos la solicitud con firma ***************/
+        $archivo = $request->file('archivo');
+
+        /******* Cambiamos el estatus de la solicitud a Pendiente *******/
+        // Obtener el id del estudiante autenticado
+        $estudiante_id = Auth::user()->id;
+        $estudiante = Estudiante::where('usuario_id', $estudiante_id)->first();
+        $estudiante_id = $estudiante->id;
+        $tesis = Tesis::where('estudiante_id', $estudiante_id)->first();
+
+        /*************** Reemplazar pdf antiguo con nuevo ***************/
+        Storage::disk('estudiantes')->delete($estudiante->numero_control . '/solicitudes/solicitud.pdf');
+        Storage::disk('estudiantes')->put($estudiante->numero_control . '/solicitudes/solicitud.pdf', File::get($archivo));
+
+        $solicitud_id = Solicitud_Cambio::where('tesis_id', $tesis->id)->pluck('id');
+        $solicitud = Solicitud_Cambio::find($solicitud_id)->first();
+        $solicitud->estatus = 'Pendiente';
+        $solicitud->save();
+
         // Devolvemos un mensaje de que se ha enviado el documento
+        return redirect()->route('home')->with(['message'=>'Se ha enviado tu solicitud al departamento de coordinación']);
     }
 
     /**
@@ -137,4 +164,20 @@ class SolicitudesController extends Controller {
 
         return response()->file(storage_path('app/estudiantes/' . $numero_control . '/solicitudes' . '/') . 'solicitud.pdf');
     }
+
+    public function viewRequests()
+    {
+        $solicitudes = Solicitud_Cambio::where('estatus', '!=' ,'Preparando')->get();
+
+        return view('solicitud.lista', [
+            'solicitudes' => $solicitudes
+        ]);
+
+    }
+
+    public function getSolicitudByNumber(Request $request, $numero)
+    {
+        return response()->file(storage_path('app/estudiantes/' . $numero . '/solicitudes' . '/') . 'solicitud.pdf');
+    }
+
 }

@@ -43,15 +43,16 @@ Route::post('/tesis-archivo', [TesisController::class, 'saveTesisFile'])
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/modificar-tesis', [SolicitudesController::class, 'editTesis'])
+Route::get('/modificar-tesis', [SolicitudesController::class, 'create'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending'])
     ->name('modificar-tesis');
 
-Route::post('/modificar-tesis', [SolicitudesController::class, 'updateTesis'])
+Route::post('/modificar-tesis', [SolicitudesController::class, 'store'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending']);
 
 Route::get('/enviar-modificacion-tesis', [SolicitudesController::class, 'uploadModification'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade']);
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'])
+    ->name('modificacion-tesis');
 
 Route::post('/enviar-modificacion-tesis', [SolicitudesController::class, 'sendModification'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade']);
@@ -59,3 +60,13 @@ Route::post('/enviar-modificacion-tesis', [SolicitudesController::class, 'sendMo
 Route::get('/obtener-solicitud', [SolicitudesController::class, 'sendPDF'])
 ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'])
 ->name('obtener-solicitud');
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/solicitudes', [SolicitudesController::class, 'viewRequests'])
+    ->middleware(['auth', 'cordinadorPermission']);
+
+Route::get('/solicitud/{numero}', [SolicitudesController::class, 'getSolicitudByNumber'])
+    ->middleware(['auth', 'cordinadorPermission'])
+    ->where(['numero' => '[0-9]+'])
+    ->name('solicitud-numero');
