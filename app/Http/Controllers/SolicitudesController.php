@@ -16,6 +16,11 @@ class SolicitudesController extends Controller {
     public function __construct() {
     }
 
+    public function test()
+    {
+        return view('solicitud.test');
+    }
+
     /**
      * Al entrar a este controlador se asume:
      *      - NO tienes ninguna solicitud hecha
@@ -178,6 +183,34 @@ class SolicitudesController extends Controller {
     public function getSolicitudByNumber(Request $request, $numero)
     {
         return response()->file(storage_path('app/estudiantes/' . $numero . '/solicitudes' . '/') . 'solicitud.pdf');
+    }
+
+    public function changeStatus(Request $request, $id, $estatus)
+    {
+        // Verificar si el id de la solicitud existe
+        $solicitud = Solicitud_Cambio::find($id);
+        if($solicitud == null) {
+            return redirect()->back();
+        }
+
+        // Verificar que haya llegado en el estatus "aprobar" o "rechazar"
+        switch ($estatus) {
+            case 'aprobar':
+                $solicitud->estatus = "Aprobado";
+                $solicitud->save();
+                return redirect()->back();
+                break;
+
+            case 'rechazar':
+                $solicitud->estatus = "Rechazado";
+                $solicitud->save();
+                return redirect()->back();
+                break;
+            
+            default:
+                return redirect()->back();
+        }
+
     }
 
 }
