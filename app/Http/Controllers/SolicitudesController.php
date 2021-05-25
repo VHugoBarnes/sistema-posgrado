@@ -18,7 +18,8 @@ class SolicitudesController extends Controller {
 
     public function test()
     {
-        return view('solicitud.test');
+        // return view('solicitud.test');
+        return \PDF::loadView('solicitud.test')->stream();
     }
 
     /**
