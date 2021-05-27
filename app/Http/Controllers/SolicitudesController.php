@@ -72,7 +72,7 @@ class SolicitudesController extends Controller {
         $objetivo_general_nuevo = $request->objetivo_general_nuevo;
         $objetivo_especifico_nuevo = $request->objetivo_especifico_nuevo;
         $justificacion = $request->justificacion;
-        $asunto = $request->asunto;
+        $asunto = $request->asunto == 'tema' ? 'SOLICITUD DE CAMBIO DE TEMA DE TESIS' : 'SOLICITUD DE MODIFICACIÓN DE TÍTULO Y/U OBJETIVOS DEL TEMA DE TESIS';
 
         // Obtener string con la fecha en formato dia/mes/año
         setlocale(LC_TIME, 'es_MX.UTF-8');
@@ -113,7 +113,7 @@ class SolicitudesController extends Controller {
         $pdf->save(storage_path('app/estudiantes/' . $tesis->estudiante->numero_control . '/solicitudes' . '/') . 'solicitud.pdf');
 
         // Devolvemos el pdf en el navegador
-        return $pdf->stream();
+        return response()->file(storage_path('app/estudiantes/' . $tesis->estudiante->numero_control . '/solicitudes' . '/') . 'solicitud.pdf');
     }
 
     /**
@@ -212,6 +212,20 @@ class SolicitudesController extends Controller {
                 return redirect()->back();
         }
 
+    }
+
+    public function deleteModification()
+    {
+        // Recoger id del estudiante autenticado
+        $estudiante_id = Auth::user()->id;
+        // Recoger id de la tesis.
+        $tesis_id = Tesis::where('estudiante_id', $estudiante_id)->pluck('id');
+        // Recoger id de la solicitud
+        $solicitud_id = Solicitud_Cambio::where('tesis_id', $tesis_id)->pluck('id');
+        $solicitud = Solicitud_Cambio::find($solicitud_id);
+        $solicitud->delete();
+
+        return redirect()->back()->with(['message'=>'Solicitud eliminada correctamente']);
     }
 
 }
