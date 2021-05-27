@@ -28,10 +28,10 @@
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                         <a class="text-sm text-gray-700">Hola {{ Auth::user()->nombre }}!</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Entrar</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Registrarse</a>
                         @endif
                     @endauth
                 </div>
