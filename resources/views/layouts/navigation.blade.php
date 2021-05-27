@@ -29,6 +29,24 @@
                     </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('alta-tesis')" :active="request()->routeIs('alta-tesis')">
+                        {{ __('Tesis') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('crear-programa')" :active="request()->routeIs('crear-programa')">
+                        {{ __('Programa') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('crear-linea')" :active="request()->routeIs('crear-linea')">
+                        {{ __('Linea') }}
+                    </x-nav-link>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -47,6 +65,9 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('editar-usuario')" :active="request()->routeIs('editar-usuario')">
+                            {{ __('Mi perfil') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -97,6 +118,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('editar-usuario')" :active="request()->routeIs('editar-usuario')">
+                    {{ __('Mi perfil') }}
+                </x-responsive-nav-link>
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
