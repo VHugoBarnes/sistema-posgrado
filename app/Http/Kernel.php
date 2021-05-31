@@ -73,5 +73,7 @@ class Kernel extends HttpKernel
         'registerInTesisPermission' => \App\Http\Middleware\RegisterInTesisPermission::class,
         'redirectIfChangeRequestNotMade' => \App\Http\Middleware\RedirectIfChangeRequestNotMade::class,
         'redirectIfChangeRequestPending' => \App\Http\Middleware\RedirectIfChangeRequestPending::class,
+        'requestSubjectIsTema' => \App\Http\Middleware\RequestSubjectIsTema::class,
+        'requestSubjectIsTitulo' => \App\Http\Middleware\RequestSubjectIsTitulo::class,
     ];
 }

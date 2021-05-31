@@ -180,8 +180,7 @@
             <p><b>PRESENTE</p>
         </div>
         <div id="saludo">
-            <p>Por medio de la presente, se solicita el cambio de tema de tesis. Se anexo el protocolo de investigación
-                del nuevo tema de tesis propuesto.</p>
+            <p>{{ $saludo }}p>
         </div>
         <div id="tabla">
             <table>

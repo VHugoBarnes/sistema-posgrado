@@ -41,25 +41,21 @@ Route::get('/tesis-archivo', [TesisController::class, 'uploadTesisFile'])
 Route::post('/tesis-archivo', [TesisController::class, 'saveTesisFile'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded']);
 
-////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/modificar-tesis', [SolicitudesController::class, 'create'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending'])
-    ->name('modificar-tesis');
+// Route::get('/modificar-tesis', [SolicitudesController::class, 'create'])
+//     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending'])
+//     ->name('modificar-tesis');
 
-Route::post('/modificar-tesis', [SolicitudesController::class, 'store'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending']);
+// Route::post('/modificar-tesis', [SolicitudesController::class, 'store'])
+//     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending']);
 
-Route::get('/enviar-modificacion-tesis', [SolicitudesController::class, 'uploadModification'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'])
-    ->name('modificacion-tesis');
+// Route::get('/enviar-modificacion-tesis', [SolicitudesController::class, 'uploadModification'])
+//     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'])
+//     ->name('modificacion-tesis');
 
-Route::post('/enviar-modificacion-tesis', [SolicitudesController::class, 'sendModification'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade']);
-
-Route::get('/obtener-solicitud', [SolicitudesController::class, 'sendPDF'])
-->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'])
-->name('obtener-solicitud');
+// Route::post('/enviar-modificacion-tesis', [SolicitudesController::class, 'sendModification'])
+//     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade']);
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -76,4 +72,4 @@ Route::get('/solicitud/{id}/{estatus}', [SolicitudesController::class, 'changeSt
     ->where(['id'=>'[0-9]+', 'estatus'=>'[a-z]+'])
     ->name('cambiar-estatus');
 
-Route::get('/solicitud-test', [SolicitudesController::class, 'test']);
+// Route::get('/solicitud-test', [SolicitudesController::class, 'test']);

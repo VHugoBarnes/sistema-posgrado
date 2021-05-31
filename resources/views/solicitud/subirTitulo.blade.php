@@ -14,9 +14,9 @@
 
             <!-- Archivo firmado -->
             <div>
-                <x-label for="archivo" :value="__('Sube aquí tu archivo firmado')" />
+                <x-label for="archivo_solicitud" :value="__('Sube aquí tu archivo firmado')" />
 
-                <x-input id="archivo" class="block mt-1 w-full disabled:opacity-50" type="file" name="archivo" :value="old('archivo')"  autofocus required/>
+                <x-input id="archivo_solicitud" class="block mt-1 w-full disabled:opacity-50" type="file" name="archivo" :value="old('archivo')"  autofocus required/>
             </div>
 
             <div class="flex items-center justify-end mt-4">

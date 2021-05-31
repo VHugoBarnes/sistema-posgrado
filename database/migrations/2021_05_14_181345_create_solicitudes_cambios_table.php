@@ -26,6 +26,7 @@ class CreateSolicitudesCambiosTable extends Migration
             $table->text('objetivoe_nuevo');
             $table->text('objetivoe_anterior');
             $table->text('justificacion');
+            $table->text('comentarios')->nullable();
             $table->timestamps();
 
             $table->foreign('tesis_id')->references('id')->on('tesis');
