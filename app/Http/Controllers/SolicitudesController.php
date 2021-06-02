@@ -75,12 +75,20 @@ class SolicitudesController extends Controller {
     public function deleteModification()
     {
         // Recoger id del estudiante autenticado
-        $estudiante_id = Auth::user()->id;
+        $user_id = Auth::user()->id;
+        $estudiante_id = Estudiante::where('usuario_id', $user_id)->pluck('id');
+        $estudiante = Estudiante::find($estudiante_id);
         // Recoger id de la tesis.
-        $tesis_id = Tesis::where('estudiante_id', $estudiante_id)->pluck('id');
+        $tesis_id = Tesis::where('estudiante_id', $user_id)->pluck('id');
         // Recoger id de la solicitud
         $solicitud_id = Solicitud_Cambio::where('tesis_id', $tesis_id)->pluck('id');
         $solicitud = Solicitud_Cambio::find($solicitud_id);
+
+        if(Storage::exists('estudiantes/'.$estudiante->numero_control.'/solicitudes/protocolo.pdf')){
+            Storage::disk('estudiantes')->delete($estudiante->numero_control . '/solicitudes/protocolo.pdf');
+        }
+        Storage::disk('estudiantes')->delete($estudiante->numero_control . '/solicitudes/solicitud.pdf');
+
         $solicitud->delete();
 
         return redirect()->back()->with(['message'=>'Solicitud eliminada correctamente']);

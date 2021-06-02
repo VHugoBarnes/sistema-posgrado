@@ -28,6 +28,7 @@ class Solicitud_Cambio extends Model
         'objetivoe_nuevo',
         'objetivoe_anterior',
         'justificacion',
+        'comentarios'
     ];
 
     public function tesis()

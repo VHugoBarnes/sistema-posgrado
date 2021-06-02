@@ -10,23 +10,26 @@ use App\Models\Solicitud_Cambio;
 
 /******************************** GENERAL ********************************/
 Route::get('/obtener-solicitud', [SolicitudesController::class, 'sendPDF'])
-->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'])
-->name('obtener-solicitud');
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'])
+    ->name('obtener-solicitud');
+
+Route::delete('/solicitud', [SolicitudesController::class, 'deleteModification'])
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade', 'redirectIfChangeRequestNotPending']);
 
 /******************************** CAMBIO DE TEMA ********************************/
 Route::get('/cambio-tesis/tema', [CambioTemaController::class, 'create'])
-->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending'])
-->name('cambio-tema');
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending'])
+    ->name('cambio-tema');
 
 Route::post('/cambio-tesis/tema', [CambioTemaController::class, 'store'])
-->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending']);
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestPending']);
 
 Route::get('/enviar-modificacion/tema', [CambioTemaController::class, 'uploadModification'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'. 'requestSubjectIsTema'])
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade' . 'requestSubjectIsTema'])
     ->name('enviar-modificacion-tema');
 
 Route::post('/enviar-modificacion/tema', [CambioTemaController::class, 'sendModification'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'. 'requestSubjectIsTema']);
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade' . 'requestSubjectIsTema']);
 
 /******************************** CAMBIO DE TITULO ********************************/
 Route::get('/cambio-tesis/titulo', [CambioTituloController::class, 'create'])
@@ -38,8 +41,8 @@ Route::post('/cambio-tesis/titulo', [CambioTituloController::class, 'store'])
     ->name('cambio-titulo');
 
 Route::get('/enviar-modificacion/titulo', [CambioTituloController::class, 'uploadModification'])
-->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'. 'requestSubjectIsTitulo'])
-->name('enviar-modificacion-titulo');
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade' . 'requestSubjectIsTitulo'])
+    ->name('enviar-modificacion-titulo');
 
 Route::post('/enviar-modificacion/titulo', [CambioTituloController::class, 'sendModification'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'. 'requestSubjectIsTitulo']);
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade' . 'requestSubjectIsTitulo']);
