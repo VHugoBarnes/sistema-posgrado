@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Docente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,13 +29,18 @@ class TesisController extends Controller
     public function getOne($id)
     {
         $tesis = Tesis::find($id);
+        $user_role = getUserRole(Auth::user());
 
         if($tesis == NULL) {
             return redirect()->route('home');
         }
 
+        $docentes = Docente::all();
+
         return view('tesis.viewOne',[
-            'tesis' => $tesis
+            'tesis' => $tesis,
+            'tipo_usuario' => $user_role,
+            'docentes' => $docentes
         ]);
     }
 
@@ -70,26 +76,27 @@ class TesisController extends Controller
         return redirect()->route('home')->with(['message'=>'Tesis creada correctamente']);
     }
 
-    public function registerAs($id, $tipo)
+    public function registerAs(Request $request, $id, $tipo)
     {
         $user = Auth::user();
+        $usuario_id = $request->usuario_docente;
         $tesis = Tesis::find($id);
 
         switch ($tipo) {
             case 'director':
-                $tesis->director = $user->id;
+                $tesis->director = $usuario_id;
                 break;
             
             case 'codirector':
-                $tesis->codirector = $user->id;
+                $tesis->codirector = $usuario_id;
                 break;
 
             case 'secretario':
-                $tesis->secretario = $user->id;
+                $tesis->secretario = $usuario_id;
                 break;
 
             case 'vocal':
-                $tesis->vocal = $user->id;
+                $tesis->vocal = $usuario_id;
                 break;
 
             default:

@@ -7,13 +7,28 @@
         @if ($tesis->director_usuario != null)
             <h2 class="text-blue-400 p-2">Director: {{ $tesis->director_usuario()->first()->nombre }}</h2>
         @else
-            <h2 class="text-red-300 p-2">Director: No hay director - <a href="{{ route('tesis-registro', ['id'=>$tesis->id, 'tipo'=>'director']) }}" class="text-blue-400">Ser director</a></h2>
+            <h2 class="text-red-300 p-2">Director: No hay director -
+                {{-- SELECCIONAR UN DIRECTOR --}}
+                @if ($tipo_usuario == 'Coordinador' || $tipo_usuario == 'Jefe Posgrado')
+                <form action="{{ route('tesis-registro', ['id'=>$tesis->id, 'tipo'=>'director']) }}" method="POST">
+                    @csrf
+                    <select name="usuario_docente" id="">
+                        @foreach ($docentes as $key => $docente)
+                            <option value="{{ $docente->usuario->id }}" {{ $docente->usuario->id == $tesis->director ? 'selected="selected"' : '' }}>{{ $docente->usuario->nombre }} {{ $docente->usuario->apellidos }}</option>
+                        @endforeach
+                        <input type="submit" value="Seleccionar como director">
+                    </select>
+                </form>
+                @endif
+                {{-- SELECCIONAR UN DIRECTOR --}}
+            </h2>
         @endif
 
         @if ($tesis->codirector_usuario != null)
             <h2 class="text-blue-400 p-2">Codirector: {{ $tesis->codirector_usuario()->first()->nombre }}</h2>
         @else
-            <h2 class="text-red-300 p-2">Codirector: No hay codirector - <a href="{{ route('tesis-registro', ['id'=>$tesis->id, 'tipo'=>'codirector']) }}" class="text-blue-400">Ser codirector</a></h2>
+            <h2 class="text-red-300 p-2">Codirector: No hay codirector -
+            </h2>
         @endif
 
         @if ($tesis->secretario_usuario != null)

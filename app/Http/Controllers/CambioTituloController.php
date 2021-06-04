@@ -71,7 +71,8 @@ class CambioTituloController extends Controller
             'objetivo_general_nuevo' => $objetivo_general_nuevo,
             'objetivo_especifico_nuevo' => $objetivo_especifico_nuevo,
             'justificacion' => $justificacion,
-            'asunto' => 'Por medio de la presente, se solicita la modificación del título y/o de objetivos del tema de tesis.'
+            'asunto' => 'Cambio de titulo',
+            'saludo' => 'Por medio de la presente, se solicita la modificación del título y/o de objetivos del tema de tesis.'
         ]);
 
         // Guarda la vista en el file system

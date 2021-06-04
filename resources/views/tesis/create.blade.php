@@ -24,16 +24,16 @@
 
                         <!-- Objetivo General -->
                         <div>
-                            <x-label for="titulo" :value="__('Título de la tesis')" />
+                            <x-label for="titulo" :value="__('Objetivo general')" />
 
-                            <x-input id="titulo" class="block mt-1 w-full" type="text" name="objetivo_general" :value="old('titulo')"  autofocus required />
+                            <textarea id="titulo" class="block mt-1 w-full" name="objetivo_general" :value="old('titulo')"  autofocus required ></textarea>
                         </div>
 
                         <!-- Objetivo Especifico -->
                         <div>
-                            <x-label for="titulo" :value="__('Título de la tesis')" />
+                            <x-label for="titulo" :value="__('Objetivo específico')" />
 
-                            <x-input id="titulo" class="block mt-1 w-full" type="text" name="objetivo_especifico" :value="old('titulo')"  autofocus required />
+                            <textarea id="titulo" class="block mt-1 w-full" name="objetivo_especifico" :value="old('titulo')"  autofocus required ></textarea>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">

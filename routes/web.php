@@ -31,6 +31,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 require __DIR__.'/tesis.php';
+require __DIR__.'/solicitudes.php';
 require __DIR__.'/dominio.php';
 
 /**
