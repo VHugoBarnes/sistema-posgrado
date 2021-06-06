@@ -13,8 +13,24 @@ Route::get('/obtener-solicitud', [SolicitudesController::class, 'sendPDF'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'])
     ->name('obtener-solicitud');
 
+Route::get('/solicitud-estatus', [SolicitudesController::class, 'viewStatus'])
+    ->middleware(['auth', 'docenteEstudiantePermission']);
+
 Route::delete('/solicitud', [SolicitudesController::class, 'deleteModification'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade', 'redirectIfChangeRequestNotPending']);
+
+Route::get('/solicitudes', [SolicitudesController::class, 'viewRequests'])
+    ->middleware(['auth', 'cordinadorPermission']);
+
+Route::get('/solicitud/{numero}', [SolicitudesController::class, 'getSolicitudByNumber'])
+    ->middleware(['auth', 'cordinadorPermission'])
+    ->where(['numero' => '[0-9]+'])
+    ->name('solicitud-numero');
+
+Route::post('/solicitud/{id}/{estatus}', [SolicitudesController::class, 'changeStatus'])
+    ->middleware(['auth', 'cordinadorPermission'])
+    ->where(['id'=>'[0-9]+', 'estatus'=>'[a-z]+'])
+    ->name('cambiar-estatus');
 
 /******************************** CAMBIO DE TEMA ********************************/
 Route::get('/cambio-tesis/tema', [CambioTemaController::class, 'create'])

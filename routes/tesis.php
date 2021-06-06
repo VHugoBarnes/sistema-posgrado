@@ -42,17 +42,6 @@ Route::post('/tesis-archivo', [TesisController::class, 'saveTesisFile'])
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/solicitudes', [SolicitudesController::class, 'viewRequests'])
-    ->middleware(['auth', 'cordinadorPermission']);
 
-Route::get('/solicitud/{numero}', [SolicitudesController::class, 'getSolicitudByNumber'])
-    ->middleware(['auth', 'cordinadorPermission'])
-    ->where(['numero' => '[0-9]+'])
-    ->name('solicitud-numero');
-
-Route::get('/solicitud/{id}/{estatus}', [SolicitudesController::class, 'changeStatus'])
-    ->middleware(['auth', 'cordinadorPermission'])
-    ->where(['id'=>'[0-9]+', 'estatus'=>'[a-z]+'])
-    ->name('cambiar-estatus');
 
 // Route::get('/solicitud-test', [SolicitudesController::class, 'test']);

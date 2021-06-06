@@ -76,5 +76,6 @@ class Kernel extends HttpKernel
         'requestSubjectIsTema' => \App\Http\Middleware\RequestSubjectIsTema::class,
         'requestSubjectIsTitulo' => \App\Http\Middleware\RequestSubjectIsTitulo::class,
         'redirectIfChangeRequestNotPending' => \App\Http\Middleware\RedirectIfChangeRequestNotPending::class,
+        'docenteEstudiantePermission' => \App\Http\Middleware\DocenteEstudiantePermission::class
     ];
 }
