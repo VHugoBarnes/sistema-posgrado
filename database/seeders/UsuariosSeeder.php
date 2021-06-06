@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UsuariosSeeder extends Seeder
 {
@@ -109,6 +110,11 @@ class UsuariosSeeder extends Seeder
             'objetivo_especifico' => 'Etiquetar las enfermedades a sus respectivas plantas. Implementar el reconocimiento de imágenes supervisada mediante el procesamiento de los datos.',
         ]);
 
+        Storage::makeDirectory('estudiantes/');
+        Storage::makeDirectory('estudiantes/17260620');
+        Storage::makeDirectory('estudiantes/17260620/solicitudes');
+        Storage::makeDirectory('estudiantes/17260620/tesis');
+
         /////////////////////////////////////////////////////////////// ESTUDIANTE 2
         
         // Crear usuario
@@ -152,6 +158,11 @@ class UsuariosSeeder extends Seeder
             'objetivo_general' => 'Detectar enfermedades en imágenes de plantas verdes en la región a través de reconocimiento de patrones en una aplicación.',
             'objetivo_especifico' => 'Etiquetar las enfermedades a sus respectivas plantas. Implementar el reconocimiento de imágenes supervisada mediante el procesamiento de los datos.',
         ]);
+
+        Storage::makeDirectory('estudiantes/');
+        Storage::makeDirectory('estudiantes/17260621');
+        Storage::makeDirectory('estudiantes/17260621/solicitudes');
+        Storage::makeDirectory('estudiantes/17260621/tesis');
 
         /////////////////////////////////////////////////////////////// ESTUDIANTE 3
         
@@ -197,6 +208,11 @@ class UsuariosSeeder extends Seeder
             'objetivo_especifico' => 'Etiquetar las enfermedades a sus respectivas plantas. Implementar el reconocimiento de imágenes supervisada mediante el procesamiento de los datos.',
         ]);
 
+        Storage::makeDirectory('estudiantes/');
+        Storage::makeDirectory('estudiantes/17260622');
+        Storage::makeDirectory('estudiantes/17260622/solicitudes');
+        Storage::makeDirectory('estudiantes/17260622/tesis');
+
         /////////////////////////////////////////////////////////////// ESTUDIANTE 4
         
         // Crear usuario
@@ -240,6 +256,11 @@ class UsuariosSeeder extends Seeder
             'objetivo_general' => 'Detectar enfermedades en imágenes de plantas verdes en la región a través de reconocimiento de patrones en una aplicación.',
             'objetivo_especifico' => 'Etiquetar las enfermedades a sus respectivas plantas. Implementar el reconocimiento de imágenes supervisada mediante el procesamiento de los datos.',
         ]);
+
+        Storage::makeDirectory('estudiantes/');
+        Storage::makeDirectory('estudiantes/17260623');
+        Storage::makeDirectory('estudiantes/17260623/solicitudes');
+        Storage::makeDirectory('estudiantes/17260623/tesis');
 
         /////////////////////////////////////////////////////////////// ESTUDIANTE 5
         
@@ -285,6 +306,11 @@ class UsuariosSeeder extends Seeder
             'objetivo_especifico' => 'Etiquetar las enfermedades a sus respectivas plantas. Implementar el reconocimiento de imágenes supervisada mediante el procesamiento de los datos.',
         ]);
 
+        Storage::makeDirectory('estudiantes/');
+        Storage::makeDirectory('estudiantes/17260625');
+        Storage::makeDirectory('estudiantes/17260625/solicitudes');
+        Storage::makeDirectory('estudiantes/17260625/tesis');
+
         /////////////////////////////////////////////////////////////// ESTUDIANTE 6
         
         // Crear usuario
@@ -328,6 +354,11 @@ class UsuariosSeeder extends Seeder
             'objetivo_general' => 'Detectar enfermedades en imágenes de plantas verdes en la región a través de reconocimiento de patrones en una aplicación.',
             'objetivo_especifico' => 'Etiquetar las enfermedades a sus respectivas plantas. Implementar el reconocimiento de imágenes supervisada mediante el procesamiento de los datos.',
         ]);
+
+        Storage::makeDirectory('estudiantes/');
+        Storage::makeDirectory('estudiantes/17260626');
+        Storage::makeDirectory('estudiantes/17260626/solicitudes');
+        Storage::makeDirectory('estudiantes/17260626/tesis');
 
         /////////////////////////////////////////////////////////////// COORDINADOR
         

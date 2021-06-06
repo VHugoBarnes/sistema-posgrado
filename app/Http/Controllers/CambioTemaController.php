@@ -71,7 +71,8 @@ class CambioTemaController extends Controller
             'objetivo_general_nuevo' => $objetivo_general_nuevo,
             'objetivo_especifico_nuevo' => $objetivo_especifico_nuevo,
             'justificacion' => $justificacion,
-            'asunto' => 'Por medio de la presente, se solicita el cambio de tema de tesis. Se anexo el protocolo de investigación del nuevo tema de tesis propuesto.'
+            'asunto' => 'SOLICITUD DE CAMBIO DE TEMA DE TESIS',
+            'saludo' => 'Por medio de la presente, se solicita el cambio de tema de tesis. Se anexo el protocolo de investigación del nuevo tema de tesis propuesto.'
         ]);
 
         // Guarda la vista en el file system

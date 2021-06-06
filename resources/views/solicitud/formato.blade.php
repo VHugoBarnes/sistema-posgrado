@@ -180,7 +180,7 @@
             <p><b>PRESENTE</p>
         </div>
         <div id="saludo">
-            <p>{{ $saludo }}p>
+            <p>{{ $saludo }} </p>
         </div>
         <div id="tabla">
             <table>
