@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Estadia;
 
+use App\Models\Estadia_Tecnica;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CoordinadorPermission
+class EstadiaStamped
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,14 @@ class CoordinadorPermission
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = Auth::user();
-        $role = getUserRole($user);
+        $estadia_id = $request->id;
+        $estadia = Estadia_Tecnica::find($estadia_id);
 
-        // Aquí se puede mejorar trayendo los datos de la base de datos
-        if($role == 'Coordinador') {
+        if($estadia == null) {
+            return redirect()->back();
+        }
+
+        if($estadia->estatus == 'Sellado') {
             return $next($request);
         } else {
             return redirect()->back();

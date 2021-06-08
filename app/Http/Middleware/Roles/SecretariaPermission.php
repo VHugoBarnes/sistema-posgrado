@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Roles;
 
-use App\Models\Tesis;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfTesisNotUploaded
+class SecretariaPermission
 {
     /**
      * Handle an incoming request.
@@ -19,14 +18,13 @@ class RedirectIfTesisNotUploaded
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        $estudiante_id = $user->estudiante->id;
-        
-        $tesis = Tesis::where('estudiante_id', $estudiante_id)->first();
+        $role = getUserRole($user);
 
-        if($tesis == NULL) {
-            return redirect()->route('home');
-        } else {
+        // Aquí se puede mejorar trayendo los datos de la base de datos
+        if($role == 'Secretaria') {
             return $next($request);
+        } else {
+            return redirect()->back();
         }
     }
 }

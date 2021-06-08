@@ -63,19 +63,31 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         
-        'highPermission' => \App\Http\Middleware\HighPermissions::class,
-        'docentePermission' => \App\Http\Middleware\DocentePermissions::class,
-        'estudiantePermission' => \App\Http\Middleware\EstudiantePermissions::class,
-        'cordinadorPermission' => \App\Http\Middleware\CoordinadorPermission::class,
-        'tesisUploaded' => \App\Http\Middleware\TesisUploaded::class,
-        'redirectIfTesisUploaded' => \App\Http\Middleware\RedirectIfTesisUploaded::class,
-        'redirectIfTesisNotUploaded' => \App\Http\Middleware\RedirectIfTesisNotUploaded::class,
-        'registerInTesisPermission' => \App\Http\Middleware\RegisterInTesisPermission::class,
-        'redirectIfChangeRequestNotMade' => \App\Http\Middleware\RedirectIfChangeRequestNotMade::class,
-        'redirectIfChangeRequestPending' => \App\Http\Middleware\RedirectIfChangeRequestPending::class,
-        'requestSubjectIsTema' => \App\Http\Middleware\RequestSubjectIsTema::class,
-        'requestSubjectIsTitulo' => \App\Http\Middleware\RequestSubjectIsTitulo::class,
-        'redirectIfChangeRequestNotPending' => \App\Http\Middleware\RedirectIfChangeRequestNotPending::class,
-        'docenteEstudiantePermission' => \App\Http\Middleware\DocenteEstudiantePermission::class
+        //////////////////// ROLES
+        'highPermission' => \App\Http\Middleware\Roles\HighPermissions::class,
+        'docentePermission' => \App\Http\Middleware\Roles\DocentePermissions::class,
+        'estudiantePermission' => \App\Http\Middleware\Roles\EstudiantePermissions::class,
+        'cordinadorPermission' => \App\Http\Middleware\Roles\CoordinadorPermission::class,
+        'docenteEstudiantePermission' => \App\Http\Middleware\Roles\DocenteEstudiantePermission::class,
+        'secretariaPermission' => \App\Http\Middleware\Roles\SecretariaPermission::class,
+
+        //////////////////// TESIS
+        'tesisUploaded' => \App\Http\Middleware\Tesis\TesisUploaded::class,
+        'redirectIfTesisUploaded' => \App\Http\Middleware\Tesis\RedirectIfTesisUploaded::class,
+        'redirectIfTesisNotUploaded' => \App\Http\Middleware\Tesis\RedirectIfTesisNotUploaded::class,
+        'registerInTesisPermission' => \App\Http\Middleware\Tesis\RegisterInTesisPermission::class,
+        'redirectIfChangeRequestNotMade' => \App\Http\Middleware\Tesis\RedirectIfChangeRequestNotMade::class,
+        'redirectIfChangeRequestPending' => \App\Http\Middleware\Tesis\RedirectIfChangeRequestPending::class,
+        'requestSubjectIsTema' => \App\Http\Middleware\Tesis\RequestSubjectIsTema::class,
+        'requestSubjectIsTitulo' => \App\Http\Middleware\Tesis\RequestSubjectIsTitulo::class,
+        'redirectIfChangeRequestNotPending' => \App\Http\Middleware\Tesis\RedirectIfChangeRequestNotPending::class,
+
+        //////////////////// ESTADIA TECNICA
+        'estadiaApproved' => \App\Http\Middleware\Estadia\EstadiaApproved::class,
+        'estadiaIsNotRegistered' => \App\Http\Middleware\Estadia\EstadiaIsNotRegistered::class,
+        'estadiaIsRegistered' => \App\Http\Middleware\Estadia\EstadiaIsRegistered::class,
+        'estadiaModifiable' => \App\Http\Middleware\Estadia\EstadiaModifiable::class,
+        'estadiaPending' => \App\Http\Middleware\Estadia\EstadiaPending::class,
+        'estadiaStamped' => \App\Http\Middleware\Estadia\EstadiaStamped::class,
     ];
 }

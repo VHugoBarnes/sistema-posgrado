@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Tesis;
 
 use Closure;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 
-class DocenteEstudiantePermission
+class RegisterInTesisPermission
 {
     /**
      * Handle an incoming request.
@@ -21,7 +22,8 @@ class DocenteEstudiantePermission
         $role = getUserRole($user);
 
         // Aquí se puede mejorar trayendo los datos de la base de datos
-        if($role == 'Estudiante' || $role == 'Docente' || $role == 'Coordinador')
+        if($role == 'Jefe Posgrado' || 
+           $role == 'Coordinador') 
         {
             return $next($request);
         } else {

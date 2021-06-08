@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Roles;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DocentePermissions
+class CoordinadorPermission
 {
     /**
      * Handle an incoming request.
@@ -21,11 +21,10 @@ class DocentePermissions
         $role = getUserRole($user);
 
         // Aquí se puede mejorar trayendo los datos de la base de datos
-        if($role == 'Docente') 
-        {
+        if($role == 'Coordinador') {
             return $next($request);
         } else {
-            return redirect('dashboard');
+            return redirect()->back();
         }
     }
 }

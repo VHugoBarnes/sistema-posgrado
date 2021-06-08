@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Tesis;
 
 use App\Models\Estudiante;
 use App\Models\Solicitud_Cambio;
@@ -9,7 +9,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RequestSubjectIsTitulo
+class RequestSubjectIsTema
 {
     /**
      * Handle an incoming request.
@@ -29,7 +29,7 @@ class RequestSubjectIsTitulo
         $solicitud = Solicitud_Cambio::where('tesis_id', $tesis->id)[0]->id;
         $solicitud = Solicitud_Cambio::find($solicitud);
 
-        if($solicitud->asunto == 'titulo') {
+        if($solicitud->asunto == 'tema') {
             return $next($request);
         } else {
             return redirect()->back();

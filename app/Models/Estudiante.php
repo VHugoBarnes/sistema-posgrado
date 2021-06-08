@@ -59,4 +59,9 @@ class Estudiante extends Model
     {
         return $this->belongsToMany(Linea_Investigacion::class, 'estudiante_linea', 'estudiante_id', 'linea_investigacion_id');
     }
+
+    public function estadia_tecnica()
+    {
+        return $this->hasOne(Estadia_Tecnica::class, 'estudiante_id');
+    }
 }

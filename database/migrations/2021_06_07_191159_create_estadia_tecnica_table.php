@@ -13,10 +13,10 @@ class CreateEstadiaTecnicaTable extends Migration
      */
     public function up()
     {
-        Schema::table('estadia_tecnica', function (Blueprint $table) {
+        Schema::create('estadia_tecnica', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('estudiante_id');
-            $table->string('estatus');
+            $table->enum('estatus', ['Preparando', 'Pendiente', 'Aprovada', 'Rechazada', 'Sellado', 'Firmado', 'En Curso', 'Finalizado']);
             $table->string('nombre_empresa');
             $table->string('asesor');
             $table->string('area');
@@ -24,6 +24,9 @@ class CreateEstadiaTecnicaTable extends Migration
             $table->date('desde');
             $table->date('hasta');
             $table->string('observaciones')->nullable();
+            $table->text('ruta_oficio_presentacion');
+            $table->text('ruta_informe_tecnico')->nullable();
+            $table->text('ruta_oficio_terminacion')->nullable();
             $table->timestamps();
 
             $table->foreign('estudiante_id')->references('id')->on('estudiantes');

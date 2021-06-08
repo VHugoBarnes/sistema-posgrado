@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Tesis;
 
 use App\Models\Estudiante;
 use App\Models\Solicitud_Cambio;
@@ -9,14 +9,10 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfChangeRequestPending
+class RedirectIfChangeRequestNotPending
 {
     /**
-     * Verifica si ya existe una o más solicitudes.
-     * Siempre revisa la última solicitud hecha, ya que es la más actual.
-     * Si la solicitud actual tiene estatus de pendiente, en revisión o preparando.
-     * 
-     * Usado en controladores para crear una nueva solicitud de cambio.
+     * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -33,14 +29,10 @@ class RedirectIfChangeRequestPending
         // Verificar si tiene una solicitud hecha
         $solicitud = Solicitud_Cambio::where('tesis_id', $tesis->id)->get();
 
-        if(count($solicitud) >= 1 && (
-        end($solicitud)[0]->estatus == 'Pendiente' ||
-        end($solicitud)[0]->estatus == 'En Revision' ||
-        end($solicitud)[0]->estatus == 'Preparando')) {
-            return redirect()->route('obtener-solicitud');
-        } else {
+        if(count($solicitud) >= 1 && end($solicitud)[0]->estatus == 'Preparando') {
             return $next($request);
+        } else {
+            return redirect()->back();
         }
-        
     }
 }

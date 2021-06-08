@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Tesis;
 
+use App\Models\Tesis;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EstudiantePermissions
+class TesisUploaded
 {
     /**
      * Handle an incoming request.
@@ -18,14 +19,15 @@ class EstudiantePermissions
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        $role = getUserRole($user);
+        $estudiante_id = $user->estudiante->id;
+        
+        $tesis = Tesis::where('estudiante_id', $estudiante_id)->first();
 
-        // Aquí se puede mejorar trayendo los datos de la base de datos
-        if($role == 'Estudiante') 
-        {
+        if($tesis == NULL) {
             return $next($request);
         } else {
-            return redirect('dashboard');
+            return redirect()->route('home');
         }
+        
     }
 }
