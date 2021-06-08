@@ -12,11 +12,10 @@ use App\Models\Usuario;
 
 class TesisController extends Controller
 {
-    public function __construct()
-    {
-        
-    }
 
+    /**
+     * Retorna una vista con todas las tesis registradas.
+     */
     public function getAll()
     {
         $tesis = Tesis::with(['estudiante','director_usuario', 'codirector_usuario', 'secretario_usuario', 'vocal_usuario'])->get();
@@ -26,6 +25,9 @@ class TesisController extends Controller
         ]);
     }
 
+    /**
+     * Retorna una vista con una sola tesis.
+     */
     public function getOne($id)
     {
         $tesis = Tesis::find($id);
@@ -44,11 +46,18 @@ class TesisController extends Controller
         ]);
     }
 
+    /**
+     * Retorna una vista con un formulario para que el estudiante
+     * guarde su tema de tesis.
+     */
     public function createTesisSubject()
     {
         return view('tesis.create');
     }
 
+    /**
+     * Valida y guarda los datos del formulario que retorna el método `createTesisSubject`.
+     */
     public function storeTesisSubject(Request $request)
     {
         // Validación del formulario
@@ -76,6 +85,10 @@ class TesisController extends Controller
         return redirect()->route('home')->with(['message'=>'Tesis creada correctamente']);
     }
 
+    /**
+     * Éste método es accedido por coordinadores para asignar el comité tutorial
+     * a la tesis de un estudiante.
+     */
     public function registerAs(Request $request, $id, $tipo)
     {
         $user = Auth::user();
@@ -109,11 +122,18 @@ class TesisController extends Controller
         return redirect()->route('tesis');
     }
 
+    /**
+     * Retorna un formulario para que el estudiante pueda guardar el 
+     * archivo de su tesis.
+     */
     public function uploadTesisFile()
     {
 
     }
 
+    /**
+     * Valida y guarda el documento en el filesystem.
+     */
     public function saveTesisFile()
     {
 

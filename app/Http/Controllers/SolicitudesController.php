@@ -14,9 +14,18 @@ use Illuminate\Support\Facades\Storage;
 class SolicitudesController extends Controller {
 
     /**
-     * Sirve para enviar el documento a personas con el estatus Preparando
+     * Retorna una vista con los links e información acerca de la
+     * modificación de la tesis.
      */
-    public function sendPDF() {
+    public function index()
+    {
+        return view('solicitud.index');
+    }
+
+    /**
+     * Método para devolver el documento de solicitud al estudiante.
+     */
+    public function sendSolicitud() {
         // Recoger id del estudiante autenticado
         $estudiante_id = Auth::user()->id;
         // Recoger el numero de control
@@ -25,6 +34,22 @@ class SolicitudesController extends Controller {
         return response()->file(storage_path('app/estudiantes/' . $numero_control . '/solicitudes' . '/') . 'solicitud.pdf');
     }
 
+    /**
+     * Método para devolver el documento de protocolo al estudiante.
+     */
+    public function sendProtocolo() {
+        // Recoger id del estudiante autenticado
+        $estudiante_id = Auth::user()->id;
+        // Recoger el numero de control
+        $numero_control = Estudiante::where('usuario_id', $estudiante_id)->pluck('numero_control')[0];
+
+        return response()->file(storage_path('app/estudiantes/' . $numero_control . '/solicitudes' . '/') . 'protocolo.pdf');
+    }
+
+    /**
+     * Método para ver las solicitudes como coordinador.
+     * Se muestran todas las solicitudes menos las que tengan estatus "Preparando"
+     */
     public function viewRequests()
     {
         $solicitudes = Solicitud_Cambio::where('estatus', '!=' ,'Preparando')->get();
@@ -34,16 +59,29 @@ class SolicitudesController extends Controller {
         ]);
     }
 
+    /**
+     * Obtiene el documento de solicitud por número de control.
+     * Éste método sólo puede ser accedido por coordinadores.
+     */
     public function getSolicitudByNumber(Request $request, $numero)
     {
         return response()->file(storage_path('app/estudiantes/' . $numero . '/solicitudes' . '/') . 'solicitud.pdf');
     }
 
+    /**
+     * Obtiene el documento de protocolo por número de control.
+     * Éste método sólo puede ser accedido por coordinadores.
+     */
     public function getProtocoloByNumber(Request $request, $numero)
     {
         return response()->file(storage_path('app/estudiantes/' . $numero . '/solicitudes' . '/') . 'protocolo.pdf');
     }
 
+    /**
+     * Cambia el estatus de la solicitud, se pueden aceptar o rechazar los cambios,
+     * además de poder mandar un comentario adjunto.
+     * Éste método sólo puede ser accedido por coordinadores.
+     */
     public function changeStatus(Request $request, $id, $estatus)
     {
         // Verificar si el id de la solicitud existe
@@ -77,6 +115,10 @@ class SolicitudesController extends Controller {
 
     }
 
+    /**
+     * Elimina una solicitud que tenga el estatus "Preparando".
+     * Método sólo accedido por estudiantes.
+     */
     public function deleteModification()
     {
         // Recoger id del estudiante autenticado
@@ -99,6 +141,10 @@ class SolicitudesController extends Controller {
         return redirect()->back()->with(['message'=>'Solicitud eliminada correctamente']);
     }
 
+    /**
+     * Retorna vista con el estatus actual de su última solicitud.
+     * Accedido por estudiantes y sus directores de tesis.
+     */
     public function viewStatus()
     {
         $usuario = Auth::user();
@@ -112,6 +158,8 @@ class SolicitudesController extends Controller {
             $tesis_id = Tesis::where('estudiante_id', $estudiante_id)->pluck('id')[0];
             $solicitud = Solicitud_Cambio::where('tesis_id', $tesis_id)->pluck('id')[0];
             $solicitud = Solicitud_Cambio::find($solicitud);
+            // Devolvemos la última solicitud
+            $solicitud = end($solicitud)[0];
 
             return view('solicitud.status', [
                 'solicitd' => $solicitud
@@ -130,7 +178,7 @@ class SolicitudesController extends Controller {
                 // Recoger todas las tesis que tengan solicitud
                 $solicitudes = Solicitud_Cambio::whereIn('tesis_id', $tesis)->get();
 
-                return $solicitudes;
+                // return $solicitudes;
                 return view('solicitud.status', [
                     'solicitudes' => $solicitudes
                 ]);

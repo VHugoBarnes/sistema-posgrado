@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Storage;
 
 class CambioTituloController extends Controller
 {
+    /**
+     * Retorna vista con formulario para cambiar el titulo de su tesis.
+     * Esta vista solo puede ser accedida por Estudiantes
+     */
     public function create()
     {
         // Recoger id del estudiante autenticado
@@ -25,6 +29,13 @@ class CambioTituloController extends Controller
         ]);
     }
 
+    /**
+     * Este método valida datos del método `create`, crea un nuevo
+     * registro en la base de datos y renderiza un PDF con la información
+     * necesaria, además guarda el pdf en el filesystem.
+     * 
+     * El estatus de su solicitud empieza con "Preparando".
+     */
     public function store(Request $request)
     {
         $validate = $this->validate($request, [
@@ -82,12 +93,20 @@ class CambioTituloController extends Controller
         return response()->file(storage_path('app/estudiantes/' . $tesis->estudiante->numero_control . '/solicitudes' . '/') . 'solicitud.pdf');
     }
 
+    /**
+     * Retorna un formulario para que el estudiante pueda cargar su documento
+     * firmado.
+     */
     public function uploadModification()
     {
         // Vista para subir el archivo de la solicitud con la firma
         return view('solicitud.subirTitulo');
     }
 
+    /**
+     * Valida los datos que se enviaron del formulario retornado por `uploadModification`.
+     * Al mandarlo el estatus de su solicitud pasa a "Pendiente".
+     */
     public function sendModification(Request $request)
     {
         // Verificamos que el archivo sea un PDF

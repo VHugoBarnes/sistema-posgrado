@@ -9,8 +9,16 @@ use App\Http\Controllers\SolicitudesController;
 use App\Models\Solicitud_Cambio;
 
 /******************************** GENERAL ********************************/
-Route::get('/obtener-solicitud', [SolicitudesController::class, 'sendPDF'])
+Route::get('/cambio-tesis', [SolicitudesController::class, 'index'])
+    ->middleware(['auth', 'estudiantePermission'])
+    ->name('solicitudes-index');
+
+Route::get('/obtener-solicitud/solicitud', [SolicitudesController::class, 'sendSolicitud'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade'])
+    ->name('obtener-solicitud');
+
+Route::get('/obtener-solicitud/protocolo', [SolicitudesController::class, 'sendProtocolo'])
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade', 'requestSubjectIsTema'])
     ->name('obtener-solicitud');
 
 Route::get('/solicitud-estatus', [SolicitudesController::class, 'viewStatus'])

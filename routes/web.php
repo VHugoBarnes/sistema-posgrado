@@ -3,10 +3,6 @@
 use App\Http\Controllers\BuscadorController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
-use App\Http\Controllers\InfraestructuraController;
-use App\Http\Controllers\LineaInvestigacionController;
-use App\Http\Controllers\ProgramaController;
-use App\Http\Controllers\TestController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +29,7 @@ require __DIR__.'/auth.php';
 require __DIR__.'/tesis.php';
 require __DIR__.'/solicitudes.php';
 require __DIR__.'/dominio.php';
+require __DIR__.'/estadia-tecnica.php';
 
 /**
  *  Rutas Usuarios

@@ -75,11 +75,6 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return redirect()->route('home')->with([]);
-    }
-
-    public function comiteTutorialRegister()
-    {
-
+        return redirect()->route('home')->with(['message'=>'Datos actualizados correctamente']);
     }
 }
