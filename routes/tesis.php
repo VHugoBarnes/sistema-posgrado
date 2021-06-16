@@ -44,4 +44,4 @@ Route::post('/tesis-archivo', [TesisController::class, 'saveTesisFile'])
 
 
 
-Route::get('/solicitud-test', [SolicitudesController::class, 'test']);
+// Route::get('/solicitud-test', [SolicitudesController::class, 'test']);

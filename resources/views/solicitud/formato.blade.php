@@ -129,10 +129,20 @@
             flex-direction: column;
         } */
 
+        .firma-tabla, .firma {
+            border: none;
+        }
+
         .firma {
             text-align: center;
             padding-top: 50px;
             line-height: 5px;
+        }
+
+        #asunto {
+            padding-left: 270px;
+            text-align: right;
+            line-height: 16px;
         }
 
         /*************************** CONTENT ***************************/
@@ -172,7 +182,7 @@
     <main>
         <div id="lugar-fecha" align="right">
             <p>H. Matamoros, Tam., {{ $fecha }}</p>
-            <p><b>ASUNTO:</b> {{ $asunto }}</p>
+            <p id="asunto"><b>ASUNTO:</b> {{ $asunto }}</p>
         </div>
         <div id="destinatario">
             <p><b>C. IRMA LETICIA GARCÍA TREVIÑO</b></p>
@@ -237,9 +247,9 @@
             </table>
         </div>
         <div id="pie">
-            <h4>ATENTAMENTE</h4>
+            <h4>A T E N T A M E N T E</h4>
             <div id="firmas">
-                <table>
+                <table class="firma-tabla">
                     <tr>
                         <td class="firma">
                             <p>________________________</p>

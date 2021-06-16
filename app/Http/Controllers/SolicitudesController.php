@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Storage;
 
 class SolicitudesController extends Controller {
 
+    public function test()
+    {
+        $pdf = \PDF::loadView('solicitud.test');
+
+        return $pdf->stream();
+    }
+
     /**
      * Retorna una vista con los links e información acerca de la
      * modificación de la tesis.
