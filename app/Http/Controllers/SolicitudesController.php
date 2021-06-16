@@ -52,7 +52,7 @@ class SolicitudesController extends Controller {
      */
     public function viewRequests()
     {
-        $solicitudes = Solicitud_Cambio::where('estatus', '!=' ,'Preparando')->get();
+        $solicitudes = Solicitud_Cambio::where('estatus' , 'Aprobado Director')->get();
 
         return view('solicitud.lista', [
             'solicitudes' => $solicitudes
@@ -98,7 +98,7 @@ class SolicitudesController extends Controller {
         // Verificar que haya llegado en el estatus "aprobar" o "rechazar"
         switch ($estatus) {
             case 'aprobar':
-                $solicitud->estatus = "Aprobado";
+                $solicitud->estatus = "Aprobado Coordinador";
                 $solicitud->save();
                 return redirect()->back();
                 break;

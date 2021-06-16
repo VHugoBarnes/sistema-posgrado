@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Middleware\Estadia;
+namespace App\Http\Middleware;
 
-use App\Models\Estadia_Tecnica;
+use App\Models\Tesis;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class EstadiaApproved
+class DirectorPermission
 {
     /**
      * Handle an incoming request.
@@ -17,14 +18,10 @@ class EstadiaApproved
      */
     public function handle(Request $request, Closure $next)
     {
-        $estadia_id = $request->id;
-        $estadia = Estadia_Tecnica::find($estadia_id);
+        $user_id = Auth::user()->id;
+        $director = Tesis::where('director', $user_id)->get();
 
-        if($estadia_id == null) {
-            return redirect()->back();
-        }
-
-        if($estadia->estatus == 'Aprovada') {
+        if(count($director) >= 1) {
             return $next($request);
         } else {
             return redirect()->back();

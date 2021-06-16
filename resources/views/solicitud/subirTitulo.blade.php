@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('modificacion-tesis') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('enviar-modificacion-titulo') }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Archivo firmado -->

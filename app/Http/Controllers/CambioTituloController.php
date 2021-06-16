@@ -111,11 +111,11 @@ class CambioTituloController extends Controller
     {
         // Verificamos que el archivo sea un PDF
         $validate = $this->validate($request, [
-            'archivo_solicitud' => 'required|mimes:pdf'
+            'archivo' => 'required|file|mimes:pdf'
         ]);
 
         /*************** Recibimos la solicitud con firma ***************/
-        $archivo = $request->file('archivo_solicitud');
+        $archivo = $request->file('archivo');
 
         /******* Cambiamos el estatus de la solicitud a Pendiente *******/
         // Obtener el id del estudiante autenticado

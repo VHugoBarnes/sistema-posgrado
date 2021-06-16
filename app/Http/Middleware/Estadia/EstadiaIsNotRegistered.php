@@ -24,7 +24,7 @@ class EstadiaIsNotRegistered
 
         $estadia_id = Estadia_Tecnica::where('estudiante_id', $estudiante_id)->pluck('id');
 
-        if($estadia_id == null) {
+        if(count($estadia_id) == 0) {
             return $next($request);
         } else {
             return redirect()->back();

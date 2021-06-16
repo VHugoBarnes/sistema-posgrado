@@ -20,11 +20,12 @@ class EstadiaIsRegistered
     public function handle(Request $request, Closure $next)
     {
         $usuario_id = Auth::user()->id;
-        $estudiante_id = Estudiante::where('usuario_id', $usuario_id)->pluck('id');
+        $estudiante_id = Estudiante::where('usuario_id', $usuario_id)->pluck('id')[0];
 
         $estadia_id = Estadia_Tecnica::where('estudiante_id', $estudiante_id)->pluck('id');
+        
 
-        if($estadia_id == null) {
+        if(count($estadia_id) == 0) {
             return redirect()->back();
         } else {
             return $next($request);

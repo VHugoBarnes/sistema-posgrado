@@ -4,11 +4,13 @@
     <a href="{{ route('solicitud-numero', ['numero' => $solicitud->tesis->estudiante->numero_control]) }}">Ver documento de solicitud</a>
 
     {{-- HACER FORMULARIO EN LUGAR DE LINK, METHOD="POST" --}}
-    <form method="post" action="{{ route('cambiar-estatus', ['id'=>$solicitud->id, 'estatus'=>'aprobar']) }}">
+    <form method="post" action="{{ route('cambiar-status-director', ['id'=>$solicitud->id, 'estatus'=>'aprobar']) }}" enctype="multipart/form-data">
         @csrf
+        <label for="archivo_firmado">Subir documento firmado</label>
+        <input type="file" name="archivo_firmado" id="">
         <input type="submit" value="Aprobar solicitud">
     </form>
-    <form method="post" action="{{ route('cambiar-estatus', ['id'=>$solicitud->id, 'estatus'=>'rechazar']) }}">
+    <form method="post" action="{{ route('cambiar-status-director', ['id'=>$solicitud->id, 'estatus'=>'rechazar']) }}">
         @csrf
         <input type="submit" value="Rechazar solicitud">
     </form>

@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
         'cordinadorPermission' => \App\Http\Middleware\Roles\CoordinadorPermission::class,
         'docenteEstudiantePermission' => \App\Http\Middleware\Roles\DocenteEstudiantePermission::class,
         'secretariaPermission' => \App\Http\Middleware\Roles\SecretariaPermission::class,
+        'jefePermission' => \App\Http\Middleware\Roles\JefePermission::class,
 
         //////////////////// TESIS
         'tesisUploaded' => \App\Http\Middleware\Tesis\TesisUploaded::class,
@@ -81,6 +82,8 @@ class Kernel extends HttpKernel
         'requestSubjectIsTema' => \App\Http\Middleware\Tesis\RequestSubjectIsTema::class,
         'requestSubjectIsTitulo' => \App\Http\Middleware\Tesis\RequestSubjectIsTitulo::class,
         'redirectIfChangeRequestNotPending' => \App\Http\Middleware\Tesis\RedirectIfChangeRequestNotPending::class,
+        'hasDirector' => \App\Http\Middleware\HasDirector::class,
+        'directorPermission' => \App\Http\Middleware\DirectorPermission::class,
 
         //////////////////// ESTADIA TECNICA
         'estadiaApproved' => \App\Http\Middleware\Estadia\EstadiaApproved::class,

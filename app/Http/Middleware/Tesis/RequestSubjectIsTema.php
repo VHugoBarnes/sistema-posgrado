@@ -26,9 +26,10 @@ class RequestSubjectIsTema
         // Recoger la tesis del estudiante
         $tesis = Tesis::where('estudiante_id', $estudiante_id)->first();
         // Recoger el id de la solicitud
-        $solicitud = Solicitud_Cambio::where('tesis_id', $tesis->id)[0]->id;
+        $solicitud = Solicitud_Cambio::where('tesis_id', $tesis->id)->pluck('id');
         $solicitud = Solicitud_Cambio::find($solicitud);
-
+        $solicitud = end($solicitud)[0];
+    
         if($solicitud->asunto == 'tema') {
             return $next($request);
         } else {

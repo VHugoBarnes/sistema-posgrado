@@ -514,5 +514,20 @@ class UsuariosSeeder extends Seeder
             'usuario_id' => 14, // Cambiar
         ]);
 
+        /////////////////////////////////////////////////////////////// SECRETARIA
+        // Crear usuario
+        DB::table('usuarios')->insert([
+            'id' => 15, // Cambiar
+            'nombre' => 'Secretaria', // Cambiar
+            'apellidos' => 'Secretaria', // Cambiar
+            'email' => 'secretaria@mail.com', // Cambiar
+            'password' => Hash::make('12345678')
+        ]);
+        // Asignar role
+        DB::table('role_usuario')->insert([
+            'id' => 15, // Cambiar
+            'role_id' => 7,
+            'usuario_id' => 15 // Cambiar
+        ]);
     }
 }

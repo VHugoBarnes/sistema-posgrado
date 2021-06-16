@@ -18,7 +18,7 @@ class CreateSolicitudesCambiosTable extends Migration
             $table->unsignedBigInteger('tesis_id');
             $table->text('ruta_documento')->nullable();
             $table->string('asunto');
-            $table->enum('estatus', ['Preparando', 'Pendiente', 'Aprovado', 'Rechazado']);
+            $table->enum('estatus', ['Preparando', 'Pendiente', 'Aprobado Director', 'Aprobado Coordinador', 'Rechazado']);
             $table->string('titulo_nuevo');
             $table->string('titulo_anterior');
             $table->text('objetivog_nuevo');

@@ -9,14 +9,14 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('modificacion-tesis') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('enviar-modificacion-titulo') }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Archivo firmado -->
             <div>
                 <x-label for="archivo_solicitud" :value="__('Sube aquí tu archivo firmado')" />
 
-                <x-input id="archivo_solicitud" class="block mt-1 w-full disabled:opacity-50" type="file" name="archivo" :value="old('archivo')"  autofocus required/>
+                <x-input id="archivo_solicitud" class="block mt-1 w-full disabled:opacity-50" type="file" name="archivo_solicitud" :value="old('archivo')"  autofocus required/>
             </div>
 
             <!-- Protocolo -->

@@ -19,6 +19,7 @@ class CreateEstadiaTecnicaTable extends Migration
             $table->enum('estatus', ['Preparando', 'Pendiente', 'Aprovada', 'Rechazada', 'Sellado', 'Firmado', 'En Curso', 'Finalizado']);
             $table->string('nombre_empresa');
             $table->string('asesor');
+            $table->string('puesto_asesor');
             $table->string('area');
             $table->string('nombre_proyecto');
             $table->date('desde');
