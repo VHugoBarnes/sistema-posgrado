@@ -25,7 +25,7 @@
                 </div>
                 @endif
 
-                @if(getUserRole(Auth::user()) == "Administrador")
+                @if(getUserRole(Auth::user()) == "Administrador" || (getUserRole(Auth::user()) == "Coordinador"))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('registrar-estudiante')" :active="request()->routeIs('registrar-estudiante')">
                         {{ __('Estudiante') }}
@@ -41,7 +41,7 @@
                 </div>
                 @endif
                 
-                @if(getUserRole(Auth::user()) == "Administrador")
+                @if(getUserRole(Auth::user()) == "Administrador" || (getUserRole(Auth::user()) == "Coordinador"))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('crear-programa')" :active="request()->routeIs('crear-programa')">
                         {{ __('Programa') }}
@@ -49,7 +49,7 @@
                 </div>
                 @endif
 
-                @if(getUserRole(Auth::user()) == "Administrador")
+                @if(getUserRole(Auth::user()) == "Administrador" || (getUserRole(Auth::user()) == "Coordinador"))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('crear-linea')" :active="request()->routeIs('crear-linea')">
                         {{ __('Linea') }}
