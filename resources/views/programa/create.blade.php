@@ -17,58 +17,51 @@
 
                         <!-- Nombre -->
                         <div>
-                            <x-label for="nombre" :value="__('Nombre')" />
-
-                            <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus />
+                            <x-label for="nombre" class="text-gray-600 font-light" :value="__('Nombre')" />
+                            <x-input id="nombre" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="nombre" :value="old('nombre')" required autofocus />
                         </div>
 
                         <!-- Impacto -->
                         <div>
-                            <x-label for="impacto" :value="__('Impacto')" />
-
-                            <textarea name="impacto" class="block font-medium text-sm text-gray-700"></textarea>
+                            <x-label for="impacto" class="text-gray-600 font-light" :value="__('Impacto')" />
+                            <textarea name="impacto" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea>
                         </div>
 
                         <!-- Parte Grupo Proyectos -->
                         <div>
-                            <x-label for="part_grupos_proyectos" :value="__('Parte Grupo Proyectos')" />
-
-                            <textarea name="part_grupos_proyectos" class="block font-medium text-sm text-gray-700"></textarea>
+                            <x-label for="part_grupos_proyectos" class="text-gray-600 font-light" :value="__('Parte Grupo Proyectos')" />
+                            <textarea name="part_grupos_proyectos" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"></textarea>
                         </div>
 
                         <!-- Servicios prestados -->
                         <div>
-                            <x-label for="servicios_prestados" :value="__('Servicios prestados')" />
-
-                            <textarea name="servicios_prestados" class="block font-medium text-sm text-gray-700"></textarea>
+                            <x-label for="servicios_prestados" class="text-gray-600 font-light" :value="__('Servicios prestados')" />
+                            <textarea name="servicios_prestados" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"></textarea>
                         </div>
 
                         <!-- Datos relevantes -->
                         <div>
-                            <x-label for="datos_relevantes" :value="__('Datos relevantes')" />
-
-                            <textarea name="datos_relevantes" class="block font-medium text-sm text-gray-700"></textarea>
+                            <x-label for="datos_relevantes" class="text-gray-600 font-light" :value="__('Datos relevantes')" />
+                            <textarea name="datos_relevantes" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"></textarea>
                         </div>
 
                         <!-- ORIENTACIÓN -->
-                        <div class="mt-4">
-                            <x-label for="orientacion" :value="__('Orientación')" />
-
-                            <input type="checkbox" name="orientacion" />
+                        <div class="flex items-center mb-4 mt-2">
+                            <input type="checkbox" class="h-6 w-6 text-gray-700 border rounded mr-2" name="orientacion" />
+                            <x-label for="orientacion" class="text-gray-600 font-light" :value="__('Orientación')" />
                         </div>
 
                         <!-- Justificación Orientación -->
                         <div>
-                            <x-label for="justificacion_orientacion" :value="__('Justificación Orientación')" />
-
-                            <textarea name="justificacion_orientacion" class="block font-medium text-sm text-gray-700"></textarea>
+                            <x-label for="justificacion_orientacion" class="text-gray-600 font-light" :value="__('Justificación Orientación')" />
+                            <textarea name="justificacion_orientacion" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"></textarea>
                         </div>
 
                         <!-- Linea de investigación -->
                         <div class="mt-4">
-                            <x-label for="lineas_investigacion" :value="__('Linea de investigación')" />
+                            <x-label for="lineas_investigacion" class="text-gray-600 font-light" :value="__('Linea de investigación')" />
 
-                            <select id="lineas_investigacion" name="lineas_investigacion" class="block font-medium text-sm text-gray-700">
+                            <select id="lineas_investigacion" name="lineas_investigacion" class="w-full mt-2 mb-2 border bg-white rounded px-3 py-2 outline-none">
                                 @foreach ($lineas as $key => $linea)
                                     <option value="{{ $linea->id }}" >
                                         {{ $linea->nombre }}
@@ -78,7 +71,7 @@
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <x-button class="ml-4">
+                            <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
                                 {{ __('Crear') }}
                             </x-button>
                         </div>

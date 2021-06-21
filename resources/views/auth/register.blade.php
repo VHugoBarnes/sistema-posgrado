@@ -17,31 +17,31 @@
 
                         <!-- Nombre -->
                         <div>
-                            <x-label for="nombre" :value="__('Nombre')" />
+                            <x-label for="nombre" class="text-gray-600 font-light" :value="__('Nombre')" />
 
-                            <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus />
+                            <x-input id="nombre" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="nombre" :value="old('nombre')" required autofocus />
                         </div>
 
                         <!-- Apellidos -->
                         <div class="mt-4">
-                            <x-label for="apellidos" :value="__('Apellidos')" />
+                            <x-label for="apellidos" class="text-gray-600 font-light" :value="__('Apellidos')" />
 
-                            <x-input id="apellidos" class="block mt-1 w-full" type="text" name="apellidos" :value="old('apellidos')" required autofocus />
+                            <x-input id="apellidos" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="apellidos" :value="old('apellidos')" required autofocus />
                         </div>
 
                         <!-- Email Address -->
                         <div class="mt-4">
-                            <x-label for="email" :value="__('Email')" />
+                            <x-label for="email" class="text-gray-600 font-light" :value="__('Email')" />
 
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                            <x-input id="email" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="email" name="email" :value="old('email')" required />
                         </div>
 
                         <!-- Tipo de Usuario -->
                         <div class="mt-4">
-                            <x-label for="tipo_usuario" :value="__('Tipo de Usuario')" />
+                            <x-label for="tipo_usuario" class="text-gray-600 font-light" :value="__('Tipo de Usuario')" />
 
-                            {{-- <x-input id="tipo_usuario" class="block mt-1 w-full" type="text" name="tipo_usuario" :value="old('tipo_usuario')" required /> --}}
-                            <select id="tipo_usuario" name="tipo_usuario">
+                            {{-- <x-input id="tipo_usuario" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="tipo_usuario" :value="old('tipo_usuario')" required /> --}}
+                            <select id="tipo_usuario" class="w-full mt-2 mb-2 border bg-white rounded px-3 py-2 outline-none" name="tipo_usuario">
                                 <option value="Docente">Docente</option>
                                 <option value="Jefe Posgrado">Jefe Posgrado</option>
                                 <option value="Coordinador">Coordinador</option>
@@ -52,7 +52,7 @@
 
                         {{-- <!-- Password -->
                         <div class="mt-4">
-                            <x-label for="password" :value="__('Password')" />
+                            <x-label for="password" class="text-gray-600 font-light" :value="__('Password')" />
 
                             <x-input id="password" class="block mt-1 w-full"
                                             type="password"
@@ -62,7 +62,7 @@
 
                         <!-- Confirm Password -->
                         <div class="mt-4">
-                            <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                            <x-label for="password_confirmation" class="text-gray-600 font-light" :value="__('Confirm Password')" />
 
                             <x-input id="password_confirmation" class="block mt-1 w-full"
                                             type="password"
@@ -70,11 +70,7 @@
                         </div> --}}
 
                         <div class="flex items-center justify-end mt-4">
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                                {{ __('Ya se encuentra registrado?') }}
-                            </a>
-
-                            <x-button class="ml-4">
+                            <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
                                 {{ __('Registrar') }}
                             </x-button>
                         </div>

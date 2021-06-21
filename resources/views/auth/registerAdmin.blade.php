@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img src="{{ asset('/assets')}}/tecnm.svg" alt="cabecera" width="200" id="img1">
             </a>
         </x-slot>
 
@@ -15,22 +15,19 @@
 
             <!-- Nombre -->
             <div>
-                <x-label for="adminPassword" :value="__('Contraseña Administrador')" />
-
+                <x-label for="adminPassword" :value="__('Contraseña administrador')" />
                 <x-input id="adminPassword" class="block mt-1 w-full" type="text" name="adminPassword" :value="old('adminPassword')" required autofocus />
             </div>
 
             <!-- Nombre -->
             <div class="mt-4">
                 <x-label for="nombre" :value="__('Nombre')" />
-
                 <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus />
             </div>
 
             <!-- Apellidos -->
             <div class="mt-4">
                 <x-label for="apellidos" :value="__('Apellidos')" />
-
                 <x-input id="apellidos" class="block mt-1 w-full" type="text" name="apellidos" :value="old('apellidos')" required autofocus />
             </div>
 
@@ -62,11 +59,11 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('Ya estás registrado?') }}
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Registrar') }}
                 </x-button>
             </div>
         </form>

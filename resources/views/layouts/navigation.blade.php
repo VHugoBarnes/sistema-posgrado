@@ -17,35 +17,45 @@
                     </x-nav-link>
                 </div>
 
+                @if((getUserRole(Auth::user()) == "Administrador") || (getUserRole(Auth::user()) == "Coordinador"))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
                         {{ __('Personal') }}
                     </x-nav-link>
                 </div>
+                @endif
 
+                @if(getUserRole(Auth::user()) == "Administrador")
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('registrar-estudiante')" :active="request()->routeIs('registrar-estudiante')">
                         {{ __('Estudiante') }}
                     </x-nav-link>
                 </div>
+                @endif
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                @if(getUserRole(Auth::user()) == "Estudiante")
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('alta-tesis')" :active="request()->routeIs('alta-tesis')">
                         {{ __('Tesis') }}
                     </x-nav-link>
                 </div>
-
+                @endif
+                
+                @if(getUserRole(Auth::user()) == "Administrador")
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('crear-programa')" :active="request()->routeIs('crear-programa')">
                         {{ __('Programa') }}
                     </x-nav-link>
                 </div>
+                @endif
 
+                @if(getUserRole(Auth::user()) == "Administrador")
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('crear-linea')" :active="request()->routeIs('crear-linea')">
                         {{ __('Linea') }}
                     </x-nav-link>
                 </div>
+                @endif
 
             </div>
 

@@ -18,30 +18,30 @@
 
                         <!-- Nombre -->
                         <div>
-                            <x-label for="nombre" :value="__('Nombre')" />
+                            <x-label for="nombre" class="text-gray-600 font-light" :value="__('Nombre')" />
 
-                            <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" value="{{ Auth::user()->nombre }}"  autofocus />
+                            <x-input id="nombre" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="nombre" value="{{ Auth::user()->nombre }}"  autofocus />
                         </div>
 
                         <!-- Apellidos -->
                         <div class="mt-4">
-                            <x-label for="apellidos" :value="__('Apellidos')" />
+                            <x-label for="apellidos" class="text-gray-600 font-light" :value="__('Apellidos')" />
 
-                            <x-input id="apellidos" class="block mt-1 w-full" type="text" name="apellidos" value="{{ Auth::user()->apellidos }}" required autofocus />
+                            <x-input id="apellidos" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="apellidos" value="{{ Auth::user()->apellidos }}" required autofocus />
                         </div>
 
                         <!-- Email Address -->
                         <div class="mt-4">
-                            <x-label for="email" :value="__('Email')" />
+                            <x-label for="email" class="text-gray-600 font-light" :value="__('Email')" />
 
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ Auth::user()->email }}" required />
+                            <x-input id="email" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="email" name="email" value="{{ Auth::user()->email }}" required />
                         </div>
 
                         <!-- Genero -->
                         <div class="mt-4">
-                            <x-label for="genero" :value="__('Genero')" />
+                            <x-label for="genero" class="text-gray-600 font-light" :value="__('Genero')" />
 
-                            <select id="genero" name="genero" class="block font-medium text-sm text-gray-700">
+                            <select id="genero" name="genero" class="w-full mt-2 mb-2 border bg-white rounded px-3 py-2 outline-none">
                                 @foreach ($generos as $key => $genero)
                                     <option value="{{ $key }}" 
                                     {{ Auth::user()->genero == $key ? 'selected="selected"' : '' }} >
@@ -53,20 +53,20 @@
 
                         <!-- Direccion -->
                         <div class="mt-4">
-                            <x-label for="direccion" :value="__('Dirección')" />
+                            <x-label for="direccion" class="text-gray-600 font-light" :value="__('Dirección')" />
 
-                            <x-input id="direccion" class="block mt-1 w-full" type="text" name="direccion" value="{{ Auth::user()->direccion }}" />
+                            <x-input id="direccion" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="direccion" value="{{ Auth::user()->direccion }}" />
                         </div>
 
                         <!-- Teléfono -->
                         <div class="mt-4">
-                            <x-label for="telefono" :value="__('Teléfono')" />
+                            <x-label for="telefono" class="text-gray-600 font-light" :value="__('Teléfono')" />
 
-                            <x-input id="telefono" class="block mt-1 w-full" type="tel" name="telefono" value="{{ Auth::user()->telefono }}" placeholder="868-123-4567" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+                            <x-input id="telefono" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="tel" name="telefono" value="{{ Auth::user()->telefono }}" placeholder="868-123-4567" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <x-button class="ml-4">
+                            <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
                                 {{ __('Actualizar datos') }}
                             </x-button>
                         </div>

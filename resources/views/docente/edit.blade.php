@@ -18,28 +18,25 @@
 
                         <!-- Nombre -->
                         <div>
-                            <x-label for="nombre" :value="__('Nombre')" />
-
-                            <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" value="{{ Auth::user()->nombre }}"  autofocus />
+                            <x-label for="nombre" class="text-gray-600 font-light" :value="__('Nombre')" />
+                            <x-input id="nombre" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="nombre" value="{{ Auth::user()->nombre }}"  autofocus />
                         </div>
 
                         <!-- Apellidos -->
-                        <div class="mt-4">
-                            <x-label for="apellidos" :value="__('Apellidos')" />
-
-                            <x-input id="apellidos" class="block mt-1 w-full" type="text" name="apellidos" value="{{ Auth::user()->apellidos }}" required autofocus />
+                        <div>
+                            <x-label for="apellidos" class="text-gray-600 font-light" :value="__('Apellidos')" />
+                            <x-input id="apellidos" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="apellidos" value="{{ Auth::user()->apellidos }}" required autofocus />
                         </div>
 
                         <!-- Email Address -->
-                        <div class="mt-4">
-                            <x-label for="email" :value="__('Email')" />
-
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ Auth::user()->email }}" required />
+                        <div>
+                            <x-label for="email" class="text-gray-600 font-light" :value="__('Email')" />
+                            <x-input id="email" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="email" name="email" value="{{ Auth::user()->email }}" required />
                         </div>
 
                         <!-- Genero -->
-                        <div class="mt-4">
-                            <x-label for="genero" :value="__('Genero')" />
+                        <div>
+                            <x-label for="genero" class="text-gray-600 font-light" :value="__('Genero')" />
 
                             <select id="genero" name="genero" class="block font-medium text-sm text-gray-700">
                                 @foreach ($generos as $key => $genero)
@@ -52,77 +49,67 @@
                         </div>
 
                         <!-- Direccion -->
-                        <div class="mt-4">
-                            <x-label for="direccion" :value="__('Dirección')" />
-
-                            <x-input id="direccion" class="block mt-1 w-full" type="text" name="direccion" value="{{ Auth::user()->direccion }}" />
+                        <div>
+                            <x-label for="direccion" class="text-gray-600 font-light" :value="__('Dirección')" />
+                            <x-input id="direccion" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="direccion" value="{{ Auth::user()->direccion }}" />
                         </div>
 
                         <!-- Teléfono -->
-                        <div class="mt-4">
-                            <x-label for="telefono" :value="__('Teléfono')" />
-
-                            <x-input id="telefono" class="block mt-1 w-full" type="tel" name="telefono" value="{{ Auth::user()->telefono }}" placeholder="868-123-4567" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+                        <div>
+                            <x-label for="telefono" class="text-gray-600 font-light" :value="__('Teléfono')" />
+                            <x-input id="telefono" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="tel" name="telefono" value="{{ Auth::user()->telefono }}" placeholder="868-123-4567" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
                         </div>
 
                         <!-- SNI -->
-                        <div class="mt-4">
-                            <x-label for="sni" :value="__('SNI')" />
-
-                            <input type="checkbox" name="sni" {{ $docente->sni == 'S' ? 'checked' : '' }}>
+                        <div class="flex items-center mb-4 mt-2">
+                            <input type="checkbox" class="h-6 w-6 text-gray-700 border rounded mr-2" name="sni" {{ $docente->sni == 'S' ? 'checked' : '' }}>
+                            <x-label for="sni" class="text-gray-600 font-light" :value="__('SNI')" />
                         </div>
 
                         <!-- Catedras -->
-                        <div class="mt-4">
-                            <x-label for="catedras" :value="__('Catedras')" />
-
-                            <input type="checkbox" name="catedras" {{ $docente->catedras == 'S' ? 'checked' : '' }}>
+                        <div class="flex items-center mb-4 mt-2">
+                            <input type="checkbox" class="h-6 w-6 text-gray-700 border rounded mr-2" name="catedras" {{ $docente->catedras == 'S' ? 'checked' : '' }}>
+                            <x-label for="catedras" class="text-gray-600 font-light" :value="__('Catedras')" />
                         </div>
 
                         <!-- Tipo Investigador -->
-                        <div class="mt-4">
-                            <x-label for="tipo_investigador" :value="__('Tipo de Investigador')" />
-
-                            <x-input id="tipo_investigador" class="block mt-1 w-full" type="text" name="tipo_investigador" value="{{ $docente->tipo_investigador }}" />
+                        <div>
+                            <x-label for="tipo_investigador" class="text-gray-600 font-light" :value="__('Tipo de Investigador')" />
+                            <x-input id="tipo_investigador" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="tipo_investigador" value="{{ $docente->tipo_investigador }}" />
                         </div>
 
                         <!-- Nivel Académico -->
-                        <div class="mt-4">
-                            <x-label for="nivel_academico" :value="__('Nivel Académico')" />
-
-                            <x-input id="nivel_academico" class="block mt-1 w-full" type="text" name="nivel_academico" value="{{ $docente->nivel_academico }}" />
+                        <div>
+                            <x-label for="nivel_academico" class="text-gray-600 font-light" :value="__('Nivel Académico')" />
+                            <x-input id="nivel_academico" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="nivel_academico" value="{{ $docente->nivel_academico }}" />
                         </div>
 
                         <!-- Puesto -->
-                        <div class="mt-4">
-                            <x-label for="puesto" :value="__('Puesto')" />
-
-                            <x-input id="puesto" class="block mt-1 w-full" type="text" name="puesto" value="{{ $docente->puesto }}" />
+                        <div>
+                            <x-label for="puesto" class="text-gray-600 font-light" :value="__('Puesto')" />
+                            <x-input id="puesto" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="puesto" value="{{ $docente->puesto }}" />
                         </div>
 
                         <!-- Jornada -->
-                        <div class="mt-4">
-                            <x-label for="jornada" :value="__('Jornada')" />
-
-                            <x-input id="jornada" class="block mt-1 w-full" type="text" name="jornada" value="{{ $docente->jornada }}" />
+                        <div>
+                            <x-label for="jornada" class="text-gray-600 font-light" :value="__('Jornada')" />
+                            <x-input id="jornada" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="jornada" value="{{ $docente->jornada }}" />
                         </div>
 
                         <!-- Publicaciones -->
-                        <div class="mt-4">
-                            <x-label for="publicaciones" :value="__('Publicaciones')" />
-
-                            <x-input id="publicaciones" class="block mt-1 w-full" type="text" name="publicaciones" value="{{ $docente->publicaciones }}" />
+                        <div>
+                            <x-label for="publicaciones" class="text-gray-600 font-light" :value="__('Publicaciones')" />
+                            <x-input id="publicaciones" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="publicaciones" value="{{ $docente->publicaciones }}" />
                         </div>
 
                         <!-- Cursos -->
-                        <div class="mt-4">
-                            <x-label for="cursos" :value="__('Cursos')" />
-
-                            <x-input id="cursos" class="block mt-1 w-full" type="text" name="cursos" value="{{ $docente->cursos }}" />
+                        <div>
+                            <x-label for="cursos" class="text-gray-600 font-light" :value="__('Cursos')" />
+                            <x-input id="cursos" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="cursos" value="{{ $docente->cursos }}" />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <x-button class="ml-4">
+                            <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
                                 {{ __('Actualizar datos') }}
                             </x-button>
                         </div>

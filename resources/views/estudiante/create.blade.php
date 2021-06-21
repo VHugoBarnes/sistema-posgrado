@@ -17,48 +17,48 @@
 
                         <!-- Nombre -->
                         <div>
-                            <x-label for="nombre" :value="__('Nombre')" />
+                            <x-label for="nombre" class="text-gray-600 font-light" :value="__('Nombre')" />
 
-                            <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required  autofocus />
+                            <x-input id="nombre" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="nombre" :value="old('nombre')" required  autofocus />
                         </div>
 
                         <!-- Apellidos -->
                         <div class="mt-4">
-                            <x-label for="apellidos" :value="__('Apellidos')" />
+                            <x-label for="apellidos" class="text-gray-600 font-light" :value="__('Apellidos')" />
 
-                            <x-input id="apellidos" class="block mt-1 w-full" type="text" name="apellidos" :value="old('apellidos')" required autofocus />
+                            <x-input id="apellidos" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="apellidos" :value="old('apellidos')" required autofocus />
                         </div>
 
                         <!-- Email Address -->
                         <div class="mt-4">
-                            <x-label for="email" :value="__('Email')" />
+                            <x-label for="email" class="text-gray-600 font-light" :value="__('Email')" />
 
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                            <x-input id="email" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="email" name="email" :value="old('email')" required />
                         </div>
 
                         <!-- Numero de control -->
                         <div class="mt-4">
-                            <x-label for="numero_control" :value="__('Número de Control')" />
+                            <x-label for="numero_control" class="text-gray-600 font-light" :value="__('Número de Control')" />
 
-                            <x-input id="numero_control" class="block mt-1 w-full" type="text" name="numero_control" :value="old('numero_control')" />
+                            <x-input id="numero_control" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="numero_control" :value="old('numero_control')" />
                         </div>
 
                         <!-- Generación -->
                         <div class="mt-4">
-                            <x-label for="generacion" :value="__('Generación')" />
+                            <x-label for="generacion" class="text-gray-600 font-light" :value="__('Generación')" />
 
-                            <x-input id="generacion" class="block mt-1 w-full" type="text" name="generacion" :value="old('generacion')" />
+                            <x-input id="generacion" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="generacion" :value="old('generacion')" />
                         </div>
 
                         <!-- CVU -->
                         <div class="mt-4">
-                            <x-label for="cvu" :value="__('CVU')" />
+                            <x-label for="cvu" class="text-gray-600 font-light" :value="__('CVU')" />
 
-                            <x-input id="cvu" class="block mt-1 w-full" type="text" name="cvu" :value="old('cvu')" />
+                            <x-input id="cvu" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="cvu" :value="old('cvu')" />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <x-button class="ml-4">
+                            <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
                                 {{ __('Registrar') }}
                             </x-button>
                         </div>
