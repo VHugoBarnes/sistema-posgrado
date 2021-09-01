@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Laravel</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Nunito', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="antialiased">
+        <!-- component -->
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <div class="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
+            <div x-data="{ open: false }" class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+                <div class="p-4 flex flex-row items-center justify-between">
+                    <a href="#" class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">SISTEMA DE POSGRADO</a>
+                    <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
+                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                        <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+
+
+                
+
+
+                <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+                    @if (Route::has('login'))
+                        <div>
+                            @auth
+                                <a href="{{ url('/dashboard') }}" class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Dashboard</a>
+                                <a class="text-sm text-gray-700">Hola {{ Auth::user()->nombre }}!</a>
+                            @else
+                                <a href="{{ route('login') }}" class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Entrar</a>
+
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Registrarse</a>
+                                @endif
+                            @endauth
+                        </div>
+                    @endif
+                </nav>
+
+
+                <div class="py-8"> <!-- ESPACIO PARA QUE SE PUEDA VER EL TITULO -->
+                <nav x-data="{ open: false }" class="fixed top-0 h-16 inset-x-0 bg-white border-b border-gray-100">
+                    <!-- Primary Navigation Menu -->
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex justify-between h-16">
+                            <div class="flex">
+                                <!-- Logo -->
+                                <div class="flex-shrink-0 flex items-center">
+                                    <a href="{{ route('dashboard') }}">
+                                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                                    </a>
+                                </div>
+
+                                <!-- Navigation Links -->
+                                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                        {{ __('Inicio') }}
+                                    </x-nav-link>
+                                </div>
+                            </div>
+
+                            <!-- Hamburger -->
+                            <div class="-mr-2 flex items-center sm:hidden">
+                                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            </div>
+        </div>
+
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+            
+
+            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                <x-auth-session-status class="mb-4 text-blue-600" :status="session('message')" />
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-gray-100">
+            <div class="max-w-6xl m-auto text-gray-800 flex flex-wrap justify-center">
+                <div class="p-5 w-48 ">
+                    <div class="text-xs uppercase text-gray-500 font-medium">Inicio</div>
+                    <a class="my-3 block" href="/#">Services <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">Products <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">About Us <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">Pricing <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">Partners <span class="text-teal-600 text-xs p-1">New</span></a> 
+                </div>
+                <div class="p-5 w-48 ">
+                    <div class="text-xs uppercase text-gray-500 font-medium">Personal</div>
+                    <a class="my-3 block" href="/#">Sign in <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">New Account <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">Demo <span class="text-teal-600 text-xs p-1">New</span></a><a class="my-3 block" href="/#">Career <span class="text-teal-600 text-xs p-1">We're hiring</span></a><a class="my-3 block" href="/#">Surveys <span class="text-teal-600 text-xs p-1">New</span></a> 
+                </div>
+                <div class="p-5 w-48 ">
+                    <div class="text-xs uppercase text-gray-500 font-medium">Estudiantes</div>
+                    <a class="my-3 block" href="/#">Documentation <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">Tutorials <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">Support <span class="text-teal-600 text-xs p-1">New</span></a> 
+                </div>
+                <div class="p-5 w-48 ">
+                    <div class="text-xs uppercase text-gray-500 font-medium">Product</div>
+                    <a class="my-3 block" href="/#">Our Products <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">Great Deals <span class="text-teal-600 text-xs p-1">New</span></a><a class="my-3 block" href="/#">Analytics <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">Mobile <span class="text-teal-600 text-xs p-1"></span></a> 
+                </div>
+                <div class="p-5 w-48 ">
+                    <div class="text-xs uppercase text-gray-500 font-medium">Soporte</div>
+                    <a class="my-3 block" href="/#">Help Center <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">Privacy Policy <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">Conditions <span class="text-teal-600 text-xs p-1"></span></a> 
+                </div>
+                <div class="p-5 w-48 ">
+                    <div class="text-xs uppercase text-gray-500 font-medium">Contactános</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-100 pt-2 ">
+            <div class="flex pb-5 px-3 m-auto pt-5 border-t text-gray-800 text-sm flex-col
+                md:flex-row max-w-6xl">
+                <div class="mt-2">Instituto Tecnológico de Matamoros © Copyright 2021.</div>
+                <div class="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
+                    <a href="https://www.facebook.com/tecnmcampusmatamoros" class="w-6 mx-1">
+                        <svg class="fill-current cursor-pointer text-gray-500 hover:text-gray-400" width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
+                        <path id="Facebook" d="M24,12c0,6.627 -5.373,12 -12,12c-6.627,0 -12,-5.373 -12,-12c0,-6.627
+                            5.373,-12 12,-12c6.627,0 12,5.373
+                            12,12Zm-11.278,0l1.294,0l0.172,-1.617l-1.466,0l0.002,-0.808c0,-0.422
+                            0.04,-0.648 0.646,-0.648l0.809,0l0,-1.616l-1.295,0c-1.555,0 -2.103,0.784
+                            -2.103,2.102l0,0.97l-0.969,0l0,1.617l0.969,0l0,4.689l1.941,0l0,-4.689Z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
