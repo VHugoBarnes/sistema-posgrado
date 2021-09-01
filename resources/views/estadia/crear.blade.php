@@ -17,37 +17,37 @@
 
                         <div>
                             <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('Nombre empresa')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required disabled/>
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>
                         </div>
 
                         <div>
                             <x-label for="asesor" class="text-gray-600 font-light" :value="__('Nombre asesor')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="asesor" :value="old('asesor')" autofocus required disabled/>
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="asesor" :value="old('asesor')" autofocus required/>
                         </div>
 
                         <div>
                             <x-label for="puesto_asesor" class="text-gray-600 font-light" :value="__('Puesto asesor')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="puesto_asesor" :value="old('puesto_asesor')" autofocus required disabled/>
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="puesto_asesor" :value="old('puesto_asesor')" autofocus required/>
                         </div>
 
                         <div>
                             <x-label for="area" class="text-gray-600 font-light" :value="__('Área')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="area" :value="old('area')" autofocus required disabled/>
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="area" :value="old('area')" autofocus required/>
                         </div>
 
                         <div>
                             <x-label for="nombre_proyecto" class="text-gray-600 font-light" :value="__('Nombre del proyecto')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="nombre_proyecto" :value="old('nombre_proyecto')" autofocus required disabled/>
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="nombre_proyecto" :value="old('nombre_proyecto')" autofocus required/>
                         </div>
 
                         <div>
                             <x-label for="desde" class="text-gray-600 font-light" :value="__('Fecha de inicio')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="date" name="desde" :value="old('desde')" autofocus required disabled/>
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="date" name="desde" :value="old('desde')" autofocus required/>
                         </div>
 
                         <div>
                             <x-label for="hasta" class="text-gray-600 font-light" :value="__('Fecha de finalización')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="date" name="hasta" :value="old('hasta')" autofocus required disabled/>
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="date" name="hasta" :value="old('hasta')" autofocus required/>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
