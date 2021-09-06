@@ -11,7 +11,7 @@ use App\Models\Tesis;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class BuscadorController extends Controller {
+class BuscadorController extends Controller { 
     public function __construct() {
     }
 
