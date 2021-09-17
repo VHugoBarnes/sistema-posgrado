@@ -4,6 +4,7 @@ use App\Http\Controllers\BuscadorController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\EgresoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,7 @@ require __DIR__.'/tesis.php';
 require __DIR__.'/solicitudes.php';
 require __DIR__.'/dominio.php';
 require __DIR__.'/estadia-tecnica.php';
+require __DIR__.'/egreso.php';
 
 /**
  *  Rutas Usuarios
@@ -77,3 +79,12 @@ Route::get('/editar-docente', [DocenteController::class, 'edit'])
 Route::put('/editar-docente', [DocenteController::class, 'update'])
     ->middleware(['auth','docentePermission']);
 
+/**
+ * Rutas egreso
+ * - Cambiar datos
+ */
+
+ /**
+ * Ejemplos
+ * - experimento
+ */
