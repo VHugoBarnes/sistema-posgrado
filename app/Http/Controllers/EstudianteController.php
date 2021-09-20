@@ -1,5 +1,5 @@
 <?php
-
+//test Nicole rdz glz
 namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
@@ -71,6 +71,7 @@ class EstudianteController extends Controller
         $role_id = Role::where('roles', 'like', 'Estudiante')->first('id');
         $user->role()->attach($role_id);
 
+        // Test victor
         // Crear carpeta con su numero de control
         Storage::makeDirectory('estudiantes/');
         Storage::makeDirectory('estudiantes/'.$request->numero_control);

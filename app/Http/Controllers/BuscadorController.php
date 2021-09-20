@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//comentario de prueba
 use Illuminate\Http\Request;
 
 use App\Models\Estudiante;
@@ -11,7 +11,7 @@ use App\Models\Tesis;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class BuscadorController extends Controller {
+class BuscadorController extends Controller { 
     public function __construct() {
     }
 
