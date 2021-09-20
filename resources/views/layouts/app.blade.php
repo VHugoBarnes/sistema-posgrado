@@ -54,13 +54,13 @@
                     <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">TESIS</h2>
                     <nav class="list-none mb-10">
                     <li>
-                        <a class="text-gray-600 hover:text-gray-800" href="{{ url('/tesis') }}">Tesis</a>
+                        <a class="text-gray-600 hover:text-gray-800" href="{{ route('tesis') }}">Tesis</a>
                     </li>
                     <li>
-                        <a class="text-gray-600 hover:text-gray-800" href="{{ url('/cambio-tema') }}">Cambio de Tema</a>
+                        <a class="text-gray-600 hover:text-gray-800" href="{{ route('cambio-tema') }}">Cambio de Tema</a>
                     </li>
                     <li>
-                        <a class="text-gray-600 hover:text-gray-800" href="{{ url('/cambio-titulo') }}">Modificación de título</a>
+                        <a class="text-gray-600 hover:text-gray-800" href="{{ route('cambio-titulo') }}">Modificación de título</a>
                     </li>
                     <li>
                         <a class="text-gray-600 hover:text-gray-800">Modificación de objetivos</a>
@@ -74,7 +74,7 @@
                         <a class="text-gray-600 hover:text-gray-800">Publicación</a>
                     </li>
                     <li>
-                        <a class="text-gray-600 hover:text-gray-800" href="{{ url('/estadia-estudiante-solicitud') }}">Estadía Técnica</a>
+                        <a class="text-gray-600 hover:text-gray-800" href="{{ route('estadia-tecnica') }}">Estadía Técnica</a>
                     </li>
                     <li>
                         <a class="text-gray-600 hover:text-gray-800">Constancia no plagio</a>

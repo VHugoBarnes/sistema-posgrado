@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\CambiarPassword;
 use Illuminate\Support\Facades\Route;
 
 /** Registrar administradores **/
@@ -33,6 +34,11 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
                 ->middleware('guest');
+
+/** Cambio de contraseña **/
+Route::post('/actualizar-password', [CambiarPassword::class, 'update'])
+            ->middleware('auth')
+            ->name('cambiar-pwd');
 
 /** Olvidé contraseña **/
 Route::get('/olvide-password', [PasswordResetLinkController::class, 'create'])
