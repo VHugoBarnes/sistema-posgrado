@@ -16,6 +16,7 @@ class BuscadorController extends Controller {
     }
 
     public function searchByFilter(Request $request) {
+        //
 
         // Filtros
         $numero_control = '';

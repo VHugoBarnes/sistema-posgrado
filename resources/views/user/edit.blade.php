@@ -6,6 +6,18 @@
     </x-slot>
 
     <div class="py-12">
+        @if (session('status'))
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-{{ session('color') }}-300 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-{{ session('color') }}-300 border-b border-gray-200">
+                        <p id="session" class="text-{{ session('color') }}-700">{{ session('status') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -73,6 +85,37 @@
                     </form>
                 </div>
             </div>
+
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 mt-6">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    Cambiar contraseña
+                </h2>
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+                <form method="POST" action="{{ route('cambiar-pwd') }}">
+                    @csrf
+                    <!-- Contraseña actual -->
+                    <div class="mt-4">
+                        <x-label for="old_pwd" class="text-gray-600 font-light" :value="__('Contraseña actual')" />
+
+                        <x-input id="old_pwd" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="password" name="old_pwd"  autofocus />
+                    </div>
+
+                    <!-- Nueva contraseña -->
+                    <div class="mt-4">
+                        <x-label for="new_pwd" class="text-gray-600 font-light" :value="__('Contraseña nueva')" />
+
+                        <x-input id="new_pwd" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="password" name="new_pwd" required />
+                    </div>
+
+                    <div class="flex items-center justify-end mt-4">
+                        <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
+                            {{ __('Actualizar contraseña') }}
+                        </x-button>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
     

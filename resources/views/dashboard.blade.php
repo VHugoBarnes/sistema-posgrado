@@ -4,6 +4,17 @@
             {{ __('Inicio') }}
         </h2>
     </x-slot>
+    @if (session('status'))
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-yellow-400 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-yellow-400 border-b border-gray-200">
+                    <p id="session">{{ session('status') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
