@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Documentacion de Egreso') }}
+            {{ __('Revision de Documentacion de Egreso') }}
         </h2>
     </x-slot>
 
@@ -12,7 +12,7 @@
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form action="{{ route('egreso') }}" method="POST">
+                    <form action="{{ route('egreso-estudiantes') }}" method="POST">
                         @csrf
 
 

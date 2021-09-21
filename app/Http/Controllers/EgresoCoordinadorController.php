@@ -7,12 +7,13 @@ use App\Models\Linea_Investigacion;
 use App\Models\Programa;
 use Illuminate\Support\Facades\Auth;
 
-class EgresoController extends Controller
+class EgresoCoordinadorController extends Controller
 {
+  
     public function index()
    
     {
-        return view('egreso.subir'); 
+        return view('egreso.revisar'); 
     }
-
 }
+

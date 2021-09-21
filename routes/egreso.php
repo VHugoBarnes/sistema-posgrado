@@ -13,4 +13,11 @@ use App\Http\Controllers\EgresoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/egreso', [EgresoController::class, 'index'])->name('egreso');
+Route::get('/egreso', [EgresoController::class, 'index'])
+->name('egreso')
+->middleware(['auth', 'estudiantePermission']);
+
+Route::get('/egreso/estudiantes', [EgresoCoordinadorController::class, 'index'])
+->name('egreso/estudiantes')
+->middleware(['auth', 'jefePermission','cordinadorPermission','docentePermission']);
+
