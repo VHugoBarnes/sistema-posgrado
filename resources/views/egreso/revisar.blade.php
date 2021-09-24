@@ -12,20 +12,20 @@
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form action="{{ route('egreso-estudiantes') }}" method="POST">
+                    <form action="{{ route('egresorevisar') }}" method="POST" nctype="multipart/form-data">
                         @csrf
 
 
                         <div>
                             <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('1. Liberación de tesis')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="" :value="old('nombre_empresa')" autofocus required/>
                         </div>
-                        <div>
+                       <div>
                             <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('2. Tesis última versión')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="" :value="old('nombre_empresa')" autofocus required/>                        </div>
                         <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('3. Constancia de no plagio')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
+                            <x-label for="constancia_plagio" class="text-gray-600 font-light" :value="__('3. Constancia de no plagio')" />
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="" :value="old('nombre_empresa')" autofocus required/>                        </div>
                         <div>
                             <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('4. Estadía técnica')" />
                             <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
@@ -49,7 +49,7 @@
                             <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
                         <div>
                             <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('11. Datos personales actualizados')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
+                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div> 
 
                         
 
@@ -60,33 +60,6 @@
                         </div>
 
                     </form>
-                    <!--<form action="{{ route('estadia-estudiante-solicitud') }}" method="POST">
-                        @csrf
-
-                        <label for="nombre_empresa">Nombre de la empresa</label>
-                        <input type="text" name="nombre_empresa" id="">
-
-                        <label for="asesor">Nombre completo del asesor</label>
-                        <input type="text" name="asesor" id="">
-
-                        <label for="puesto_asesor">Puesto del asesor</label>
-                        <input type="text" name="puesto_asesor" id="">
-
-                        <label for="area">Área</label>
-                        <input type="text" name="area" id="">
-
-                        <label for="nombre_proyecto">Nombre del proyecto</label>
-                        <input type="text" name="nombre_proyecto">
-
-                        <label for="desde">Fecha de inicio</label>
-                        <input type="date" name="desde" id="">
-
-                        <label for="hasta">Fecha de finalización</label>
-                        <input type="date" name="hasta">
-
-                        <input type="submit" value="Solicitar carta presentación">
-
-                    </form> -->
 
                 </div>
             </div>
