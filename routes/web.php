@@ -30,6 +30,7 @@ require __DIR__.'/tesis.php';
 require __DIR__.'/solicitudes.php';
 require __DIR__.'/dominio.php';
 require __DIR__.'/estadia-tecnica.php';
+require __DIR__.'/avance.php';
 
 /**
  *  Rutas Usuarios
