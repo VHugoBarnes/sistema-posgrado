@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Revision de Documentacion de Egreso') }}
+            {{ __('Documentacion de estudiantes') }}
         </h2>
     </x-slot>
 
@@ -9,61 +9,32 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <!-- Validation Errors -->
-                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                @foreach ($tesis as $t)
+                    <div>
+               
+                        <h1 class="text-blue-400 p-2"><b>Estudiante:</b> {{ $t->estudiante->usuario->nombre }} {{ $t->estudiante->usuario->apellidos }}</h1>
+                        <style>
+                            .btn {
+                            background-color: blue;
+                            border: none;
+                            color: white;
+                            padding: 10px 32px;
+                            text-align: center;
+                            font-size: 16px;
+                            margin: 4px 2px;
+                            opacity: 1;
+                            transition: 0.3s;
+                            }
 
-                    <form action="{{ route('egresorevisar') }}" method="POST" nctype="multipart/form-data">
-                        @csrf
-
-
-                        <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('1. Liberación de tesis')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="" :value="old('nombre_empresa')" autofocus required/>
-                        </div>
-                       <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('2. Tesis última versión')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="" :value="old('nombre_empresa')" autofocus required/>                        </div>
-                        <div>
-                            <x-label for="constancia_plagio" class="text-gray-600 font-light" :value="__('3. Constancia de no plagio')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="" :value="old('nombre_empresa')" autofocus required/>                        </div>
-                        <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('4. Estadía técnica')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
-                        <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('5. Publicación de artículo')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
-                        <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('6. Evaluación del desempeño del becario')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
-                        <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('7. CVU Conacyt actualizado')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
-                        <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('8. Número de CVU + contraseña')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
-                        <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('9. Encuesta de egresado')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
-                        <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('10. Validación del idioma inglés')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div>
-                        <div>
-                            <x-label for="nombre_empresa" class="text-gray-600 font-light" :value="__('11. Datos personales actualizados')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>                        </div> 
-
-                        
-
-                        <div class="flex items-center justify-end mt-4">
-                            <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
-                                {{ __('Enviar Documentos a revision') }}
-                            </x-button>
-                        </div>
-
-                    </form>
-
+                            .btn:hover {opacity: 0.6}
+                            </style>
+                            </head>
+                            <body>
+                            <button class="btn">Revisar documentacion</button>
+                    </div>
+                @endforeach
                 </div>
             </div>
         </div>
     </div>
-    
 </x-app-layout>

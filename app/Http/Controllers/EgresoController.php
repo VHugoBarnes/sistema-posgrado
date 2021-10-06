@@ -9,6 +9,7 @@ use App\Models\Estudiante;
 use App\Models\Linea_Investigacion;
 use App\Models\Programa;
 use App\Models\Usuario;
+use App\Models\Tesis;
 use Illuminate\Support\Facades\Auth;
 
 class EgresoController extends Controller
@@ -18,7 +19,16 @@ class EgresoController extends Controller
       
     }
     public function revisarCoordinador(){
-       return view('egreso.revisar');
+     // $estudiantes = estudiante::with(['nombre','apellidos','email'])->get();
+      
+      // return view('egreso.revisar',['estudiantes' => $estudiantes]);
+      $tesis = Tesis::with(['estudiante','director_usuario', 'codirector_usuario', 'secretario_usuario', 'vocal_usuario'])->get();
+
+      return view('egreso.revisar',[
+          'tesis' => $tesis
+      ]);
+  
+     
      }
    
    public function store(Request $request){
