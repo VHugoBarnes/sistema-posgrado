@@ -21,6 +21,10 @@ Route::get('/egresorevisar', [EgresoController::class, 'revisarCoordinador'])
 ->name('egresorevisar')
 ->middleware(['auth', 'cordinadorPermission']);
 
+Route::get('/egresorevisardoc', [EgresoController::class, 'revisardoc'])
+->name('egresorevisardoc')
+->middleware(['auth', 'cordinadorPermission']);
+
 Route::post('/egreso', [EgresoController::class, 'store'])
 ->middleware(['auth', 'estudiantePermission'])
 ->name('guardar-egreso');

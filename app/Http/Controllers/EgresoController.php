@@ -18,11 +18,16 @@ class EgresoController extends Controller
        return view('egreso.subir'); 
       
     }
+
+    public function revisardoc(){
+       return view('egreso.revisardoc');
+    }
+
     public function revisarCoordinador(){
      // $estudiantes = estudiante::with(['nombre','apellidos','email'])->get();
       
       // return view('egreso.revisar',['estudiantes' => $estudiantes]);
-      $tesis = Tesis::with(['estudiante','director_usuario', 'codirector_usuario', 'secretario_usuario', 'vocal_usuario'])->get();
+      $tesis = Tesis::with(['estudiante'])->get();
 
       return view('egreso.revisar',[
           'tesis' => $tesis
