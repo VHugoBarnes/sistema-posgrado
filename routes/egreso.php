@@ -29,5 +29,8 @@ Route::post('/egreso', [EgresoController::class, 'store'])
 ->middleware(['auth', 'estudiantePermission'])
 ->name('guardar-egreso');
 
+Route::get('/archivo', [EgresoController::class, 'archivo'])
+->name('archivo');
+
 
 

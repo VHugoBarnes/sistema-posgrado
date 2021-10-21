@@ -75,7 +75,32 @@ class EgresoController extends Controller
           $documentacion_egreso['validacion_ingles'] = $request->file('validacion_ingles')->store($estudiante->usuario_id.'/ingles');
           
 
-      return redirect()->route('home')->with(['message'=>'Documetacion subida correctamente']);
+      return redirect()->route('home')->with(['message'=>'La documetacion se ha mandado a revision correctamente']);
 
    }
-}
+
+   public function archivo(Request $request){
+      $documentacion_egreso = $request->all();
+
+      $usuario = Auth::user();
+      $id = $usuario->id;
+      $usuario = Usuario::find($id);
+
+      // Conseguir id del estudiante.
+      $id_estudiante = $usuario->estudiante->id;
+      $estudiante = Estudiante::find($id_estudiante);
+
+      //Guarda la ruta donde se guardaran los archivos.
+      $documentacion_egreso = new  Documentacion_egreso;
+      $documentacion_egreso->estudiante_id = $estudiante->usuario_id;
+      $documentacion_egreso->liberacion_tesis = $estudiante->usuario_id.'/liberaciontesis/'.$request->liberacion_tesis->getClientOriginalName();
+
+
+       // Devolvemos el pdf en el navegador
+       return response()->file(storage_path('app/public/' . $estudiante->usuario_id . '/liberaciontesis' . '/') . 'cQ0D1aR1poCYoZVLDSuwCAbH6SkaT1O5mgS9jJ77.pdf');
+   }
+
+     
+     
+   }
+

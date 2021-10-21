@@ -11,44 +11,101 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                    <style>
+                    
+                    .btn {
+                    width: 100%;
+                    border: 2px solid black;
+                    background-color: inherit;
+                    padding: 7px 68px;
+                    font-size: 15px;
+                    cursor: pointer;
+                    }
 
-                    <form action="{{ route('egresorevisardoc') }}" method="POST" enctype="multipart/form-data">
+
+                    /* Azul */
+                    
+                    .boton1 {
+                    border-color: #2196F3;
+                    color: dodgerblue;
+                    }
+
+                    .boton1:hover {
+                    background: #2196F3;
+                    color: white;
+                    }
+                    /* Morado */
+
+                    .boton2 {
+                    border-color: #8B5CF6;
+                    color: #8B5CF6;
+                    }
+
+                    .boton2:hover {
+                    background: #8B5CF6;
+                    color: white;
+                    }
+
+                    </style>
+
+                    <form action="{{ route('egresorevisardoc') }}" method="" enctype="multipart/form-data">
                         @csrf
 
 
                         <div>
                             <x-label for="liberacion_tesis" class="text-gray-600 font-light" :value="__('1. Liberación de tesis')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="liberacion_tesis" :value="old('liberacion_tesis')" autofocus required/>
+                            <button class="btn boton1"><a href="{{ route('archivo')}}">Revisar documento</a></button>
+                            <x-label for="Comentarios" class="text-gray-600 font-light" :value="__('Comentarios:')" />
+                            <textarea name="Comentarios" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea>
+                        
                         </div>
                          <div>
                             <x-label for="tesis_ultima_version" class="text-gray-600 font-light" :value="__('2. Tesis última versión')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="tesis_ultima_version" :value="old('tesis_ultima_version')" autofocus required/>                        </div>
+                            <button class="btn boton2">Revisar documento</button>
+                            <x-label for="Comentarios" class="text-gray-600 font-light" :value="__('Comentarios:')" />
+                            <textarea name="Comentarios" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea></div>
                         <div>
                             <x-label for="constancia_plagio" class="text-gray-600 font-light" :value="__('3. Constancia de no plagio')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="constancia_plagio" :value="old('constancia_plagio')" autofocus required/>                        </div>
+                            <button class="btn boton1">Revisar documento</button>
+                            <x-label for="Comentarios" class="text-gray-600 font-light" :value="__('Comentarios:')" />
+                            <textarea name="Comentarios" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea></div>
                         <div>
                             <x-label for="estadia" class="text-gray-600 font-light" :value="__('4. Estadía técnica')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="estadia" :value="old('estadia')" autofocus required/>                        </div>
+                            <button class="btn boton2">Revisar documento</button>
+                            <x-label for="Comentarios" class="text-gray-600 font-light" :value="__('Comentarios:')" />
+                            <textarea name="Comentarios" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea></div>
                         <div>
                             <x-label for="articulo" class="text-gray-600 font-light" :value="__('5. Publicación de artículo')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="articulo" :value="old('articulo')" autofocus required/>                        </div>
+                            <button class="btn boton1">Revisar documento</button>
+                            <x-label for="Comentarios" class="text-gray-600 font-light" :value="__('Comentarios:')" />
+                            <textarea name="Comentarios" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea></div>
                         <div>
                             <x-label for="evaluacion_desemp" class="text-gray-600 font-light" :value="__('6. Evaluación del desempeño del becario')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="evaluacion_desemp" :value="old('evaluacion_desemp')" autofocus required/>                        </div>
+                            <button class="btn boton2">Revisar documento</button>
+                            <x-label for="Comentarios" class="text-gray-600 font-light" :value="__('Comentarios:')" />
+                            <textarea name="Comentarios" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea></div>
                         <div>
                             <x-label for="cvu" class="text-gray-600 font-light" :value="__('7. CVU Conacyt actualizado')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="cvu" :value="old('cvu')" autofocus required/>                        </div>
+                            <button class="btn boton1">Revisar documento</button>
+                            <x-label for="Comentarios" class="text-gray-600 font-light" :value="__('Comentarios:')" />
+                            <textarea name="Comentarios" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea></div>
                         <div>
                             <x-label for="numero_cvu" class="text-gray-600 font-light" :value="__('8. Número de CVU + contraseña')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="numero_cvu" :value="old('numero_cvu')" autofocus required/>                        </div>
+                            <button class="btn boton2">Revisar documento</button>
+                            <x-label for="Comentarios" class="text-gray-600 font-light" :value="__('Comentarios:')" />
+                            <textarea name="Comentarios" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea></div>
                         <div>
                             <x-label for="encuesta_egresado" class="text-gray-600 font-light" :value="__('9. Encuesta de egresado')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="encuesta_egresado" :value="old('encuesta_egresado')" autofocus required/>                        </div>
+                            <button class="btn boton1">Revisar documento</button>
+                            <x-label for="Comentarios" class="text-gray-600 font-light" :value="__('Comentarios:')" />
+                            <textarea name="Comentarios" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea></div>
                         <div>
                             <x-label for="validacion_ingles" class="text-gray-600 font-light" :value="__('10. Validación del idioma inglés')" />
-                            <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="validacion_ingles" :value="old('validacion_ingles')" autofocus required/>                        </div>
+                            <button class="btn boton2">Revisar documento</button>
+                            <x-label for="Comentarios" class="text-gray-600 font-light" :value="__('Comentarios:')" />
+                            <textarea name="Comentarios" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea></div>
                         <div>
-                            <x-label class="text-gray-600 font-light" :value="__('11. Actualizar Datos personales')" />
+                            <!--<x-label class="text-gray-600 font-light" :value="__('11. Actualizar Datos personales')" /></div>-->
                            <!-- <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>  -->                      </div>
 
                         
