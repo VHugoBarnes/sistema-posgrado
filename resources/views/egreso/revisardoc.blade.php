@@ -13,7 +13,7 @@
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
                    <!-- @foreach ($tesis as $t) @endforeach-->
                     <form action="{{ route('egresorevisardoc', ['usuario_id'=>$t->estudiante->usuario_id]) }}" method="POST">
-                   <!-- <form action="{{ route('egresorevisardoc', ['usuario_id'=>$tesis->estudiante->usuario_id]) }}" method="POST" enctype="multipart/form-data"-->
+                  
 
                     <style>
                     
