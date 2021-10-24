@@ -29,6 +29,12 @@ class Tesis extends Model
         'vocal',
         'ruta_tesis'
     ];
+    public function usuario() 
+    {
+        // Nombre del modelo, llave foranea
+        return $this->belongsTo(Usuario::class, 'usuario_id');
+    }
+
 
     public function estudiante()
     {
@@ -59,5 +65,6 @@ class Tesis extends Model
     {
         return $this->hasMany(Solicitud_Cambio::class, 'tesis_id');
     }
+
 
 }

@@ -20,7 +20,10 @@ class EgresoController extends Controller
     }
 
     public function revisardoc(){
-       return view('egreso.revisardoc');
+       $tesis = Tesis::with(['estudiante'])->first();
+       return view('egreso.revisardoc',[
+          'tesis' => $tesis
+       ]);
     }
 
     public function revisarCoordinador(){

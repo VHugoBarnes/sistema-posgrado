@@ -42,7 +42,9 @@ class TesisController extends Controller
         return view('tesis.viewOne',[
             'tesis' => $tesis,
             'tipo_usuario' => $user_role,
-            'docentes' => $docentes
+            'docentes' => $docentes,
+            
+            
         ]);
     }
 

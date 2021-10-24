@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\EgresoController;
+use App\Http\Controllers\SolicitudesController;
+use App\Http\Controllers\TesisController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,11 +19,11 @@ Route::get('/egreso', [EgresoController::class, 'index'])
 ->name('egreso')
 ->middleware(['auth', 'estudiantePermission']);
 
-Route::get('/egresorevisar', [EgresoController::class, 'revisarCoordinador'])
+Route::get('/egreso/revisar', [EgresoController::class, 'revisarCoordinador'])
 ->name('egresorevisar')
 ->middleware(['auth', 'cordinadorPermission']);
-
-Route::get('/egresorevisardoc', [EgresoController::class, 'revisardoc'])
+//Ruta de donde se muestran los botones de mostrar el PDF
+Route::get('/egreso/revisar/documentacion/{usuario_id}', [EgresoController::class, 'revisardoc'])//{usuario_id}
 ->name('egresorevisardoc')
 ->middleware(['auth', 'cordinadorPermission']);
 
