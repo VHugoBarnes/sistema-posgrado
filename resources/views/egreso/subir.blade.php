@@ -51,13 +51,14 @@
                             <x-label class="text-gray-600 font-light" :value="__('11. Actualizar Datos personales')" />
                            <!-- <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>  -->                      </div>
 
-                        
 
                         <div class="flex items-center justify-end mt-4">
-                            <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
+                            <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none" href="{{url('/SubirRevision')}}">
                                 {{ __('Enviar Documentos a revision') }}
                             </x-button>
                         </div>
+
+                        
 
                     </form>
                     <!--<form action="{{ route('estadia-estudiante-solicitud') }}" method="POST">

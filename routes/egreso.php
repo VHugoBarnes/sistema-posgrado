@@ -34,5 +34,8 @@ Route::post('/egreso', [EgresoController::class, 'store'])
 Route::get('/archivo', [EgresoController::class, 'archivo'])
 ->name('archivo');
 
+Route::post('/SubirRevision', [EgresoController::class, 'Subir'])
+->name('SubirRevision');
+
 
 

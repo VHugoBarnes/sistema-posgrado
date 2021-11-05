@@ -10,6 +10,7 @@ use App\Models\Linea_Investigacion;
 use App\Models\Programa;
 use App\Models\Usuario;
 use App\Models\Tesis;
+use App\Models\Comentariosdoc_egreso;
 use Illuminate\Support\Facades\Auth;
 
 class EgresoController extends Controller
@@ -103,7 +104,36 @@ class EgresoController extends Controller
        return response()->file(storage_path('app/public/' . $estudiante->usuario_id . '/liberaciontesis' . '/') . 'cQ0D1aR1poCYoZVLDSuwCAbH6SkaT1O5mgS9jJ77.pdf');
    }
 
-     
+   public function subir(Request $request){
+
+      $comentariosdoc_egreso = $request->all();
+      $comentariosdoc_egreso = new Comentariosdoc_egreso;
+      $comentariosdoc_egreso->estudiante_id = $request->estudiante_id;
+      $comentariosdoc_egreso->estado_liberacion_tesis = $request->estado_liberacion_tesis;
+      $comentariosdoc_egreso->estado_tesis_ultima_version = $request->estado_tesis_ultima_version;
+      $comentariosdoc_egreso->estado_constancia_plagio = $request->estado_constancia_plagio;
+      $comentariosdoc_egreso->estado_estadia = $request->estado_estadia;
+      $comentariosdoc_egreso->estado_articulo = $request->estado_articulo;
+      $comentariosdoc_egreso->estado_evaluacion_desemp = $request->estado_evaluacion_desemp;
+      $comentariosdoc_egreso->estado_cvu = $request->estado_cvu;
+      $comentariosdoc_egreso->estado_numero_cvu = $request->estado_numero_cvu;
+      $comentariosdoc_egreso->estado_encuesta_egresado = $request->estado_encuesta_egresado;
+      $comentariosdoc_egreso->estado_validacion_ingles = $request->estado_validacion_ingles;
+      $comentariosdoc_egreso->comentario_liberacion_tesis = $request->comentario_liberacion_tesis;
+      $comentariosdoc_egreso->comentario_tesis_ultima_version = $request->comentario_tesis_ultima_version;
+      $comentariosdoc_egreso->comentario_constancia_plagio = $request->comentario_constancia_plagio;
+      $comentariosdoc_egreso->comentario_estadia = $request->comentario_estadia;
+      $comentariosdoc_egreso->comentario_articulo = $request->comentario_articulo;
+      $comentariosdoc_egreso->comentario_evaluacion_desemp = $request->comentario_evaluacion_desemp;
+      $comentariosdoc_egreso->comentario_cvu = $request->comentario_cvu;
+      $comentariosdoc_egreso->comentario_numero_cvu = $request->comentario_numero_cvu;
+      $comentariosdoc_egreso->comentario_encuesta_egresado = $request->comentario_encuesta_egresado;
+      $comentariosdoc_egreso->comentario_validacion_ingles = $request->comentario_validacion_ingles;
+      $comentariosdoc_egreso->save();
+
+      return redirect()->route('home')->with(['message'=>'Documentacion Evaluada Correctamente!']);
+   }
+ 
      
    }
 
