@@ -7,17 +7,21 @@ Route::get('/presentacion-avance', [PresentacionAvance::class, 'index'])
     ->name('presentacion-avance');
 
 Route::get('/presentacion-avance/programar-fecha', [PresentacionAvance::class, 'programarFecha'])
-    ->middleware(['auth'])
+    ->middleware(['auth','cordinadorPermission'])
     ->name('presentacion-avance.programar-fecha');
 
-Route::post('/presentacion-avance/programar-fecha', [PresentacionAvance::class, 'guardarFecha'])
-    ->middleware(['auth'])
+Route::post('/presentacion-avance/programar-fecha', [PresentacionAvance::class, 'guardarfecha'])
+    ->middleware(['auth', 'cordinadorPermission'])
+    ->name('presentacion-avance.programar-fecha');
+
+Route::get('/presentacion-avance/ver-fecha', [PresentacionAvance::class, 'verFecha'])
+    ->middleware(['auth','estudiantePermission'])
     ->name('presentacion-avance.programar-fecha');
 
 Route::get('/presentacion-avance/enviar-reporte', [PresentacionAvance::class, 'enviarReporte'])
-    ->middleware(['auth'])
+    ->middleware(['auth', 'estudiantePermission'])
     ->name('presentacion-avance.enviar-reporte');
 
 Route::post('/presentacion-avance/enviar-reporte', [PresentacionAvance::class, 'guardarReporte'])
-    ->middleware(['auth'])
+    ->middleware(['auth', 'estudiantePermission'])
     ->name('presentacion-avance.enviar-reporte');
