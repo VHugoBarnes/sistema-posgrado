@@ -21,6 +21,17 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
 
+          @if($avance == false)
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">No tienes programada una fecha aún, vuelve más tarde.</h2>
+          @else
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Tienes programada la siguiente fecha para presentar tu avance</h2>
+            <p class="text-lg text-blue-400 mt-2">
+              En la fecha {{ $avance->fecha }} y hora {{ $avance->hora }}
+            </p>
+            <p class="mt-4 text-gray-400">
+              Comentarios: {{$avance->comentarios}}
+            </p>
+          @endif
 
         </div>
       </div>
