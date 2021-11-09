@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Presentacion de avance') }}
+        {{ __('Presentación de avance') }}
     </h2>
   </x-slot>
   <div class="py-12">
@@ -18,14 +18,17 @@
             </ol> 
             <br>
             <h2>Puedes consultar los miembros de tu comité tutorial en:</h2>
-            <h2><a class="text-blue-500 underline" href="https://tecmatamoros2.sharepoint.com/sites/CoordinacionMAI02/SitePages/TesisGeneracion20-22.aspx">
-            Generación 20-22 </a></h2>
-            <h2><a class="text-blue-500 underline" href="https://tecmatamoros2.sharepoint.com/sites/CoordinacionMAI02/SitePages/TesisGeneracion19-21.aspx">
-            Generación 19-21</a></h2>
-
-            <h2>Documentos</h2>
+            <!--https://tecmatamoros2.sharepoint.com/sites/CoordinacionMAI02/SitePages/TesisGeneracion19-21.aspx  -->
+            <h2><a class="text-blue-500 underline" href="{{route('tesis')}}">
+            Tesis</a></h2>
+            <br>
+            <h2><a class="text-blue-500 underline" href="{{route('presentacion-avance.programar-fecha')}}">
+            Ver horario de la presentación</a></h2>
+            <h2><a class="text-blue-500 underline" href="{{route('presentacion-avance.enviar-reporte')}}">
+            Enviar presentación de avance</a></h2>
         </div>
       </div>
     </div>
   </div>
 </x-app-layout>
+
