@@ -40,7 +40,7 @@ class PresentacionAvance extends Controller{
         $avance->comentarios = $request->comentarios;
         // El ->save(); guarda los campos que asigno en la base de datos.
         $avance->save();
-        return redirect()->route('presentacion-avance.programar-fecha')->with(['color'=>'green','message'=>'Fecha progrmada correctamente']);
+        return redirect()->route('presentacion-avance.programar-fecha')->with(['color'=>'green','message'=>'Fecha programada correctamente']);
     }
     //08/11/21 cambio
     public function editarfecha(){
@@ -55,21 +55,20 @@ class PresentacionAvance extends Controller{
             
     } 
     public function verFecha(){
-        //$usuario = Auth::user();
-        //$id = $usuario->id;
-        //$usuario = Usuario::find($id);
-        //$avance = $usuario->avance;
-        //echo "<pre> " , var_export($avance) , " </pre>";
-        //die();
         $usuario = Auth::user();
         $id = $usuario->id;
         $usuario = Usuario::find($id);
-        $avance_id = $usuario->avance->id;
-        $avance = Avance::find($avance_id)->get();
-        echo "<pre> " , var_export($avance) , " </pre>";
-        die();
-        $estudiantes = [];
-        return view('avance.ver-fecha');
+
+        if($usuario->avance) {
+            $avance_id = $usuario->avance->id;
+            $avance = Avance::find($avance_id)->first();
+        } else {
+            $avance = false;
+        }
+        
+        return view('avance.ver-fecha', [
+            'avance' => $avance
+        ]);
     }
 
 

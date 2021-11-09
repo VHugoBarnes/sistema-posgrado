@@ -7,7 +7,7 @@ Route::get('/presentacion-avance', [PresentacionAvance::class, 'index'])
     ->name('presentacion-avance');
 
 Route::get('/presentacion-avance/programar-fecha', [PresentacionAvance::class, 'programarFecha'])
-    ->middleware(['auth','cordinadorPermission'])
+    ->middleware(['auth', 'cordinadorPermission' ])
     ->name('presentacion-avance.programar-fecha');
 
 Route::post('/presentacion-avance/programar-fecha', [PresentacionAvance::class, 'guardarfecha'])

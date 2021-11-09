@@ -15,12 +15,12 @@
   </x-slot>
 
   <div class="py-12">
-  @if (session('status'))
+  @if (session('message'))
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-{{ session('color') }}-300 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-{{ session('color') }}-300 border-b border-gray-200">
-                        <p id="session" class="text-{{ session('color') }}-700">{{ session('status') }}</p>
+                        <p id="session" class="text-{{ session('color') }}-700">{{ session('message') }}</p>
                     </div>
                 </div>
             </div>

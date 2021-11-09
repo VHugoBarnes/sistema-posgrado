@@ -103,7 +103,7 @@
                                         {{ __('Procedimiento de la presentación') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link :href="route('presentacion-avance.programar-fecha')" :active="request()->routeIs('presentacion-avance.programar-fecha')">
+                                    <x-dropdown-link :href="route('presentacion-avance.ver-fecha')" :active="request()->routeIs('presentacion-avance.programar-fecha')">
                                         {{ __('Ver horario de la presentación') }}
                                     </x-dropdown-link>
 
