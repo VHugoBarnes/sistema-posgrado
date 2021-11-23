@@ -18,6 +18,18 @@ Route::get('/presentacion-avance/ver-fecha', [PresentacionAvance::class, 'verFec
     ->middleware(['auth','estudiantePermission'])
     ->name('presentacion-avance.ver-fecha');
 
+Route::get('/presentacion-avance/ver-reporte', [PresentacionAvance::class, 'verReporte'])
+    ->middleware(['auth','cordinadorPermission'])
+    ->name('presentacion-avance.ver-reporte');
+
+Route::get('/presentacion-avance/fechas-asignadas', [PresentacionAvance::class, 'verFechas'])
+    ->middleware(['auth','cordinadorPermission'])
+    ->name('presentacion-avance.ver-fechasCor');
+    
+Route::get('/presentacion-avance/miembros-del-comite/{id}', [PresentacionAvance::class, 'verTesis'])
+    ->middleware(['auth','estudiantePermission'])
+    ->name('presentacion-avance.miembrosComite');
+
 Route::get('/presentacion-avance/enviar-reporte', [PresentacionAvance::class, 'enviarReporte'])
     ->middleware(['auth', 'estudiantePermission'])
     ->name('presentacion-avance.enviar-reporte');

@@ -59,10 +59,11 @@ class PresentacionAvance extends Controller{
         $id = $usuario->id;
         $usuario = Usuario::find($id);
 
-        if($usuario->avance) {
+        // Si existe un registro de avance para el usuario        
+        if($usuario->avance) { // Tiene fecha asignada
             $avance_id = $usuario->avance->id;
-            $avance = Avance::find($avance_id)->first();
-        } else {
+            $avance = Avance::find($avance_id);
+        } else { // No tiene fecha asignada
             $avance = false;
         }
         
@@ -70,6 +71,24 @@ class PresentacionAvance extends Controller{
             'avance' => $avance
         ]);
     }
+    public function verReporte(){
+        return view('avance.ver-reporte');
+    }
+    public function verFechas(){
+        return view('avance.ver-fechasCor');
+    }
+    public function verTesis($id)
+    {
+        $usuario = Auth::user();
+        $id = $usuario->id;
+        $tesis = Tesis::find($id);
 
+        $tesis->director = $usuario_id;          
+        $tesis->codirector = $usuario_id;
+        $tesis->secretario = $usuario_id;
+        $tesis->vocal = $usuario_id;
+ 
+        return view('presentacion-avance.miembrosComite');
+    }
 
 }

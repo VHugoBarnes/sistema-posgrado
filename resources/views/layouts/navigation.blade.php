@@ -255,13 +255,18 @@
                                         {{ __('Programar fecha y hora') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link :href="route('presentacion-avance.enviar-reporte')" :active="request()->routeIs('presentacion-avance.enviar-reporte')">
+                                    <x-dropdown-link :href="route('presentacion-avance.ver-reporte')" :active="request()->routeIs('presentacion-avance.enviar-reporte')">
                                         {{ __('Ver reporte') }}
                                     </x-dropdown-link>
 
                                     <x-dropdown-link :href="route('tesis')" :active="request()->routeIs('tesis')">
                                         {{ __('Miembros del comité') }}
                                     </x-dropdown-link>
+                                    
+                                    <x-dropdown-link :href="route('presentacion-avance.ver-fechasCor')" :active="request()->routeIs('presentacion-avance.ver-fechasCor')">
+                                        {{ __('Ver fechas asignadas') }}
+                                    </x-dropdown-link>   
+                                    
                                 </form>
                             </x-slot>
                         </x-dropdown>
