@@ -23,10 +23,14 @@ Route::get('/egreso/revisar', [EgresoController::class, 'revisarCoordinador'])
 ->name('egresorevisar')
 ->middleware(['auth', 'cordinadorPermission']);
 //Ruta de donde se muestran los botones de mostrar el PDF
-Route::get('/egreso/revisar/documentacion/{usuario_id}', [EgresoController::class, 'revisardoc'])//{usuario_id}
+Route::get('/egreso/revisar/documentacion/{usuario_id}', [EgresoController::class,'revisardoc'/*,'idURL' */])//{usuario_id}
 ->name('egresorevisardoc')
 ->middleware(['auth', 'cordinadorPermission']);
-
+/*
+Route::get('/egreso/revisar/documentacion/{usuario_id}', [EgresoController::class,'idURL'])//{usuario_id}
+->name('egresorevisardocURL')
+->middleware(['auth', 'cordinadorPermission']);
+*/
 Route::post('/egreso', [EgresoController::class, 'store'])
 ->middleware(['auth', 'estudiantePermission'])
 ->name('guardar-egreso');

@@ -104,7 +104,7 @@
                             </style>
                             </head>
                             <body>
-                            <button class="btn"><a href="{{ route('egresorevisardoc', ['usuario_id'=>$t->estudiante->usuario_id]) }}"> Documentación</a></button>
+                            <button class="btn"><a href="{{ route('egresorevisardoc', [$idEstudiante='usuario_id'=>$t->estudiante->usuario_id]) }}"> Documentación</a></button>
                             </td>
                         </tr>
                           @endforeach  

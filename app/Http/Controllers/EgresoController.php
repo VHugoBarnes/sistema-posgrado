@@ -20,11 +20,14 @@ class EgresoController extends Controller
       
     }
 //donde muestra los documentos
-    public function revisardoc(){
+    public function revisardoc($usuario_id){
        $tesis = Tesis::with(['estudiante'])->get();
+       
        return view('egreso.revisardoc',[
-          'tesis' => $tesis
+          'tesis' => $tesis,
+          'usuario_id' => $usuario_id
        ]);
+      
     }
 //lista de todos los estudiantes 
     public function revisarCoordinador(){
@@ -133,7 +136,9 @@ class EgresoController extends Controller
 
       return redirect()->route('home')->with(['message'=>'Documentacion Evaluada Correctamente!']);
    }
- 
+   public function idURL($usuario_id){
+      return $usuario_id;
+   }
      
    }
 

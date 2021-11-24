@@ -56,7 +56,9 @@
                         
 
                         <div>
-                        
+                          
+                           <x-label for="estudiante_id" class="text-gray-600 font-light" :value="__('Estudiante ID:')"/>
+                            <textarea name="estudiante_id" rows="1"><?php echo $usuario_id; ?></textarea>
                             <x-label for="liberacion_tesis" class="text-gray-600 font-light" :value="__('1. Liberación de tesis')" />
                             <button class="btn boton1"><a href="">Revisar documento</a></button>
 
@@ -223,15 +225,11 @@
                             <x-label for="comentario_validacion_ingles" class="text-gray-600 font-light" :value="__('Comentarios:')" />
                             <textarea name="comentario_validacion_ingles" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea></div>
 
-                            <x-label for="estudiante_id" class="text-gray-600 font-light" :value="__('ID del Estudiante:')" />
-                            <textarea name="estudiante_id" class="w-full mt-2 mb-2 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="1"></textarea></div>
+                           
                    
 
                         <div>
-                            <!--<x-label class="text-gray-600 font-light" :value="__('11. Actualizar Datos personales')" /></div>-->
-                           <!-- <x-input id="" class="w-full mt-2 mb-3 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="nombre_empresa" :value="old('nombre_empresa')" autofocus required/>  -->                      </div>
-
-                        
+                            
 
                         <div class="flex items-center justify-end mt-4">
                             <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
