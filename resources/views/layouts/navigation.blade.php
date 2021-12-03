@@ -99,7 +99,10 @@
 
                             <x-slot name="content">
                                     <x-dropdown-link :href="route('egreso')" :active="request()->routeIs('egreso')">
-                                        {{ __('Documentacion') }}
+                                        {{ __('Documentación') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('estadorevision')" :active="request()->routeIs('egreso')">
+                                        {{ __('Estado de la Documentación') }}
                                     </x-dropdown-link>
                                 </form>
                             </x-slot>

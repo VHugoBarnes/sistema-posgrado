@@ -12,6 +12,7 @@ use App\Models\Usuario;
 use App\Models\Tesis;
 use App\Models\Comentariosdoc_egreso;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DB;
 
 class EgresoController extends Controller
 {
@@ -70,7 +71,7 @@ class EgresoController extends Controller
       $documentacion_egreso->save();
 
          //Guarda los archivos en la ruta.
-          $documentacion_egreso['liberacion_tesis'] = $request->file('liberacion_tesis')->store($estudiante->usuario_id.'/liberaciontesis');
+      /*    $documentacion_egreso['liberacion_tesis'] = $request->file('liberacion_tesis')->store($estudiante->usuario_id.'/liberaciontesis');
           $documentacion_egreso['tesis_ultima_version'] = $request->file('tesis_ultima_version')->store($estudiante->usuario_id.'/tesis');
           $documentacion_egreso['constancia_plagio'] = $request->file('constancia_plagio')->store($estudiante->usuario_id.'/plagio');
           $documentacion_egreso['estadia'] = $request->file('estadia')->store($estudiante->usuario_id.'/estadia');
@@ -81,7 +82,7 @@ class EgresoController extends Controller
           $documentacion_egreso['encuesta_egresado'] = $request->file('encuesta_egresado')->store($estudiante->usuario_id.'/encuesta');
           $documentacion_egreso['validacion_ingles'] = $request->file('validacion_ingles')->store($estudiante->usuario_id.'/ingles');
           
-
+*/
       return redirect()->route('home')->with(['message'=>'La documetacion se ha mandado a revision correctamente']);
 
    }
@@ -96,15 +97,10 @@ class EgresoController extends Controller
       // Conseguir id del estudiante.
       $id_estudiante = $usuario->estudiante->id;
       $estudiante = Estudiante::find($id_estudiante);
-
-      //Guarda la ruta donde se guardaran los archivos.
-      $documentacion_egreso = new  Documentacion_egreso;
-      $documentacion_egreso->estudiante_id = $estudiante->usuario_id;
-      $documentacion_egreso->liberacion_tesis = $estudiante->usuario_id.'/liberaciontesis/'.$request->liberacion_tesis->getClientOriginalName();
-
-
        // Devolvemos el pdf en el navegador
-       return response()->file(storage_path('app/public/' . $estudiante->usuario_id . '/liberaciontesis' . '/') . 'cQ0D1aR1poCYoZVLDSuwCAbH6SkaT1O5mgS9jJ77.pdf');
+
+       $liberiacion_tesis = 0;
+       return response()->file(storage_path('app/public/' . $estudiante->usuario_id . '/liberaciontesis' . '/') . $liberiacion_tesis);
    }
 
    public function subir(Request $request){
@@ -139,6 +135,32 @@ class EgresoController extends Controller
    public function idURL($usuario_id){
       return $usuario_id;
    }
+   
+   public function estadorevision(){
+      $usuario = Auth::user();
+      $id = $usuario->id;
+      $usuario = Usuario::find($id);
+
+      // Conseguir id del estudiante.
+      $id_estudiante = $usuario->estudiante->id;
+      $estudiante = Estudiante::find($id_estudiante);
+      $comentariosdoc_egreso = Comentariosdoc_egreso::find($id);
+        $user_role = getUserRole(Auth::user());
+
+
+        $comentariosdoc_egreso = Comentariosdoc_egreso::all();
+
+        return view('egreso.estadorevision',[
+            'Comentariosdoc_egreso' => $comentariosdoc_egreso,
+            
+            
+        ]);
+   
+  
+ }
+  
+     
      
    }
+   
 
