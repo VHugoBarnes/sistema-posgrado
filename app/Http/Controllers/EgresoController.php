@@ -70,7 +70,7 @@ class EgresoController extends Controller
       $documentacion_egreso->validacion_ingles = $estudiante->usuario_id.'/ingles/'.$request->validacion_ingles->getClientOriginalName();
       $documentacion_egreso->save();
 
-         //Guarda los archivos en la ruta.
+         //Guarda los archivos con un nombre pre establecido en la ruta dentro de una carpeta espesifica para el estudiante.
           $documentacion_egreso['liberacion_tesis'] = $request->file('liberacion_tesis')->storeAs($estudiante->usuario_id.'/liberaciontesis','liberaciontesis.pdf');
           $documentacion_egreso['tesis_ultima_version'] = $request->file('tesis_ultima_version')->storeAs($estudiante->usuario_id.'/tesis','tesis.pdf');
           $documentacion_egreso['constancia_plagio'] = $request->file('constancia_plagio')->storeAs($estudiante->usuario_id.'/plagio','plagio.pdf');
