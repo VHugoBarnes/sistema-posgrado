@@ -71,18 +71,18 @@ class EgresoController extends Controller
       $documentacion_egreso->save();
 
          //Guarda los archivos en la ruta.
-      /*    $documentacion_egreso['liberacion_tesis'] = $request->file('liberacion_tesis')->store($estudiante->usuario_id.'/liberaciontesis');
-          $documentacion_egreso['tesis_ultima_version'] = $request->file('tesis_ultima_version')->store($estudiante->usuario_id.'/tesis');
-          $documentacion_egreso['constancia_plagio'] = $request->file('constancia_plagio')->store($estudiante->usuario_id.'/plagio');
-          $documentacion_egreso['estadia'] = $request->file('estadia')->store($estudiante->usuario_id.'/estadia');
-          $documentacion_egreso['articulo'] = $request->file('articulo')->store($estudiante->usuario_id.'/articulo');
-          $documentacion_egreso['evaluacion_desemp'] = $request->file('evaluacion_desemp')->store($estudiante->usuario_id.'/evaluacion');
-          $documentacion_egreso['cvu'] = $request->file('cvu')->store($estudiante->usuario_id.'/cvu');
-          $documentacion_egreso['numero_cvu'] = $request->file('numero_cvu')->store($estudiante->usuario_id.'/numerocvu');
-          $documentacion_egreso['encuesta_egresado'] = $request->file('encuesta_egresado')->store($estudiante->usuario_id.'/encuesta');
-          $documentacion_egreso['validacion_ingles'] = $request->file('validacion_ingles')->store($estudiante->usuario_id.'/ingles');
+          $documentacion_egreso['liberacion_tesis'] = $request->file('liberacion_tesis')->storeAs($estudiante->usuario_id.'/liberaciontesis','liberaciontesis.pdf');
+          $documentacion_egreso['tesis_ultima_version'] = $request->file('tesis_ultima_version')->storeAs($estudiante->usuario_id.'/tesis','tesis.pdf');
+          $documentacion_egreso['constancia_plagio'] = $request->file('constancia_plagio')->storeAs($estudiante->usuario_id.'/plagio','plagio.pdf');
+          $documentacion_egreso['estadia'] = $request->file('estadia')->storeAs($estudiante->usuario_id.'/estadia','estadia.pdf');
+          $documentacion_egreso['articulo'] = $request->file('articulo')->storeAs($estudiante->usuario_id.'/articulo','articulo.pdf');
+          $documentacion_egreso['evaluacion_desemp'] = $request->file('evaluacion_desemp')->storeAs($estudiante->usuario_id.'/evaluacion','evaluacion.pdf');
+          $documentacion_egreso['cvu'] = $request->file('cvu')->storeAs($estudiante->usuario_id.'/cvu','cvu.pdf');
+          $documentacion_egreso['numero_cvu'] = $request->file('numero_cvu')->storeAs($estudiante->usuario_id.'/numerocvu','numerocvu.pdf');
+          $documentacion_egreso['encuesta_egresado'] = $request->file('encuesta_egresado')->storeAs($estudiante->usuario_id.'/encuesta','encuesta.pdf');
+          $documentacion_egreso['validacion_ingles'] = $request->file('validacion_ingles')->storeAs($estudiante->usuario_id.'/ingles','ingles.pdf');
           
-*/
+
       return redirect()->route('home')->with(['message'=>'La documetacion se ha mandado a revision correctamente']);
 
    }
@@ -137,30 +137,20 @@ class EgresoController extends Controller
    }
    
    public function estadorevision(){
-      $usuario = Auth::user();
-      $id = $usuario->id;
-      $usuario = Usuario::find($id);
-
-      // Conseguir id del estudiante.
-      $id_estudiante = $usuario->estudiante->id;
-      $estudiante = Estudiante::find($id_estudiante);
-      $comentariosdoc_egreso = Comentariosdoc_egreso::find($id);
-        $user_role = getUserRole(Auth::user());
-
-
-        $comentariosdoc_egreso = Comentariosdoc_egreso::all();
+   
+        $tesis = Tesis::with(['comentariosdoc_egreso'])->get();
 
         return view('egreso.estadorevision',[
-            'Comentariosdoc_egreso' => $comentariosdoc_egreso,
-            
-            
+            'tesis' => $tesis
         ]);
-   
+    
+       
+       }
   
  }
   
      
      
-   }
+   
    
 

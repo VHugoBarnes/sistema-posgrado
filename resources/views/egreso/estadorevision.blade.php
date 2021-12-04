@@ -81,8 +81,8 @@
                
                                 <tr> 
                                   <td class="left">1. Liberación de tesis</td>
-                                  @foreach ( $comentariosdoc_egreso as $comentariosdoc_egresos)
-                                  <td class="center">{{ $comentariosdoc_egresos->estado_tesis_ultima_version }}</td> 
+                                  @foreach ( $tesis as $t)
+                                  <td class="center">{{ $t->comentariosdoc_egresos->estudiante_id }}</td> 
                                   @endforeach
                                   <td class="centerultimo">Estado <td>
                                       

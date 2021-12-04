@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Estudiante;
 use App\Models\Usuario;
+use App\Models\Comentariosdoc_egreso;
 
 class Tesis extends Model
 {
@@ -64,6 +65,10 @@ class Tesis extends Model
     public function solicitud()
     {
         return $this->hasMany(Solicitud_Cambio::class, 'tesis_id');
+    }
+    public function comentariosdoc_egreso()
+    {
+        return $this->belongsTo(Comentariosdoc_egreso::class, 'estudiante_id');
     }
 
 
