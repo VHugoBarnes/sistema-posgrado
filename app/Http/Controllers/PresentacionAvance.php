@@ -197,8 +197,8 @@ class PresentacionAvance extends Controller{
 
     public function tempFunc(){die();}
 
-    public function resultadoBusqueda() {
-        return view('avance.ver-alumnos');
+    public function resultadoBusqueda($alumnos) {
+        return view('avance.ver-alumnos', ['alumnos' => $alumnos]);
     }
 
     public function BuscarAlumno(Request $request){
