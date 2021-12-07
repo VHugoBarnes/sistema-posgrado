@@ -51,6 +51,10 @@ Route::get('/presentacion-avance/ver-reporte', [PresentacionAvance::class, 'temp
 Route::post('/presentacion-avance/ver-reporte', [PresentacionAvance::class, 'BuscarAlumno'])
     ->middleware(['auth','cordinadorPermission']);
 
+Route::get('/presentacion-avance/busqueda-resultados', [PresentacionAvance::class, 'ResultadoBusqueda'])
+    ->middleware(['auth','cordinadorPermission'])
+    ->name('presentacion-avance.busqueda-resultados');
+
 Route::get('/presentacion-avance/ver-reporte/{estudiante_id}', [PresentacionAvance::class, 'verReporte'])
     ->middleware(['auth','cordinadorPermission'])
     ->name('presentacion-avance.ver-reporte-alumno');

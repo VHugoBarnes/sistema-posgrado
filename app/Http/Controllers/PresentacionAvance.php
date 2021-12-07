@@ -198,6 +198,10 @@ class PresentacionAvance extends Controller{
     public function tempFunc(){echo "<pre> " , var_export("Hola") , " </pre>";
     die();}
 
+    public function resultadoBusqueda() {
+        return view('avance.ver-alumnos');
+    }
+
     public function BuscarAlumno(Request $request){
         //recoge los datos del usuario se igual a la busqueda donde el rol sea (3 = estudiante)
         // $datosUsuario = Usuario::where('nombre', 'LIKE', "%$request->busqueda%")->where('role_id', 3)->get();
@@ -227,9 +231,11 @@ class PresentacionAvance extends Controller{
             array_push($datosAlumno, $datos);
         }
         
-        return view('avance.ver-alumnos',[
-            'alumnos' => $datosAlumno
-        ]);
+        // return view('avance.ver-alumnos',[
+        //     'alumnos' => $datosAlumno
+        // ]);
+
+        return redirect()->route('presentacion-avance.busqueda-resultados')->with(['alumnos' => $datosAlumno]);
     }
 
     
