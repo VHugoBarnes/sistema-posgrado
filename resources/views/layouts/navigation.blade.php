@@ -255,7 +255,7 @@
                                         {{ __('Programar fecha y hora') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link :href="route('presentacion-avance.ver-reporte')" :active="request()->routeIs('presentacion-avance.enviar-reporte')">
+                                    <x-dropdown-link :href="route('presentacion-avance.ver-reportes')" :active="request()->routeIs('presentacion-avance.enviar-reporte')">
                                         {{ __('Ver reporte') }}
                                     </x-dropdown-link>
 
