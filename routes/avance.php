@@ -11,8 +11,8 @@ Route::get('/presentacion-avance/programar-fecha', [PresentacionAvance::class, '
     ->name('presentacion-avance.programar-fecha');
 
 Route::post('/presentacion-avance/programar-fecha', [PresentacionAvance::class, 'guardarfecha'])
-    ->middleware(['auth', 'cordinadorPermission'])
-    ->name('presentacion-avance.programar-fecha');
+    ->middleware(['auth', 'cordinadorPermission']);
+    // ->name('presentacion-avance.programar-fecha');
 
 Route::get('/presentacion-avance/ver-fecha', [PresentacionAvance::class, 'verFecha'])
     ->middleware(['auth','estudiantePermission'])
@@ -31,8 +31,8 @@ Route::get('/presentacion-avance/enviar-reporte', [PresentacionAvance::class, 'e
     ->name('presentacion-avance.enviar-reporte');
 
 Route::post('/presentacion-avance/enviar-reporte', [PresentacionAvance::class, 'guardarReporte'])
-    ->middleware(['auth', 'estudiantePermission'])
-    ->name('presentacion-avance.enviar-reporte');
+    ->middleware(['auth', 'estudiantePermission']);
+    // ->name('presentacion-avance.enviar-reporte');
 
 Route::get('/presentacion-avance/obtener-reporte', [PresentacionAvance::class, 'obtenerReporte'])
     ->middleware(['auth', 'estudiantePermission'])
