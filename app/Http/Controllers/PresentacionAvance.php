@@ -204,8 +204,9 @@ class PresentacionAvance extends Controller{
     public function BuscarAlumno(Request $request){
         //recoge los datos del usuario se igual a la busqueda donde el rol sea (3 = estudiante)
         // $datosUsuario = Usuario::where('nombre', 'LIKE', "%$request->busqueda%")->where('role_id', 3)->get();
+        $busqueda = $request->busqueda;
         $datosUsuario = Usuario::whereHas('role', function($u) {
-            $u->where('nombre', 'LIKE', "%$request->busqueda%");
+            $u->where('nombre', 'LIKE', "%$busqueda%");
         })->get();
 
         $datosAlumno = [];
