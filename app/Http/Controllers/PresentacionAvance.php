@@ -208,6 +208,8 @@ class PresentacionAvance extends Controller{
         $datosUsuario = Usuario::whereHas('role', function($u) use($busqueda) {
             $u->where('nombre', 'LIKE', "%$busqueda%");
         })->get();
+        echo "<pre> " , var_export($datosUsuario) , " </pre>";
+        die();
 
         $datosAlumno = [];
 
