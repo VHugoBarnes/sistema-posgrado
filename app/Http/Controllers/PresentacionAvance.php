@@ -191,18 +191,8 @@ class PresentacionAvance extends Controller{
         ]);
     }
 
-    public function BuscarAlmno(Request $request)
-    {
-    	$data = [];
-
-        if($request->has('q')){
-            $search = $request->q;
-            $data = DB::table("Usuario")
-            		->select("nombre")
-            		->where('nombre','LIKE',"%$search%")
-            		->get();
-        }
-        return response()->json($data);
+    public function BuscadorDeAlumnos() {
+        return view('avance.ver-reporte');
     }
 
     public function BuscarAlumno(Request $request){
@@ -221,7 +211,10 @@ class PresentacionAvance extends Controller{
             $avance_id = $usuario['avance']->id;
             $tiene_avance = false;
             if($avance_id != null) {
-                $tiene_avance = true;
+                $avance = Avance::find($avance_id);
+                if($avance->ruta_avance !== null) {
+                    $tiene_avance = true;
+                }
             }
             $datos = [
                 'tiene_avance' => $tiene_avance,
@@ -231,10 +224,12 @@ class PresentacionAvance extends Controller{
             array_push($datosAlumno, $datos);
         }
         
-        return view('avance.ver-reporte',[
-            'alumno' => $datosAlumno
+        return view('avance.ver-alumnos',[
+            'alumnos' => $datosAlumno
         ]);
     }
+
+    
     public function verReporte($estudiante_id) {
         // Recoger id del estudiante autenticado
         $estudiante_id = $estudiante_id;
@@ -244,3 +239,4 @@ class PresentacionAvance extends Controller{
         return response()->file(storage_path('app/estudiantes/' . $numero_control . '/avance' . '/') . 'avance.pdf');
     }
 }
+
