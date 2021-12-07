@@ -212,9 +212,14 @@ class PresentacionAvance extends Controller{
         $busqueda = "\"".$request->busqueda . "\"";
 
         $datosUsuarios = Usuario::where('nombre', 'LIKE', $busqueda)->orWhere('apellidos', 'LIKE', $busqueda);
-        echo "<pre> " , var_export($datosUsuarios) , " </pre>";
-        die();
 
+        $soloEstudiantes = [];
+        foreach($datosUsuarios as $key => $usuario) {
+            if($usuario['estudiante'] != null) {
+                array_push($soloEstudiantes, $usuario);
+            }
+        }
+        
         // $datosUsuario = Usuario::whereHas('role', function(Builder $query) use($estudiante_rol) {
         //     $query->where('role_id', $estudiante_rol);
         // });
@@ -222,7 +227,7 @@ class PresentacionAvance extends Controller{
         $datosAlumno = [];
 
         // Recorrer datosUsuario
-        foreach($datosUsuarios as $key => $usuario) {
+        foreach($soloEstudiantes as $key => $usuario) {
             $nombre_estudiante = $usuario['nombre'] . " " . $usuario['apellidos'];
             $estudiante_id = $usuario['estudiante']->id;
             $avance_id = $usuario['avance']->id;
