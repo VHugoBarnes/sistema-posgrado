@@ -235,7 +235,7 @@ class PresentacionAvance extends Controller{
         //     'alumnos' => $datosAlumno
         // ]);
 
-        return redirect()->route('presentacion-avance.busqueda-resultados')->with(['alumnos' => $datosAlumno]);
+        return redirect()->route('presentacion-avance.busqueda-resultados', ['alumnos' => $datosAlumno]);
     }
 
     
