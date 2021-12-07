@@ -210,16 +210,17 @@ class PresentacionAvance extends Controller{
         $estudiante_rol = Role::where('roles', 'LIKE', 'Estudiante')->pluck('id');
 
         $busqueda = "\"".$request->busqueda . "\"";
-        $datosUsuario = Usuario::whereHas('role', function(Builder $query) use($estudiante_rol) {
-            $query->where('role_id', $estudiante_rol);
-        })->where('nombre', 'LIKE', "%$busqueda%")->get();
-        echo "<pre> " , var_export($datosUsuario) , " </pre>";
-        die();
+
+        $datosUsuarios = Usuario::where('nombre', 'LIKE', $busqueda)->where('apellidos', 'LIKE', $busqueda);
+
+        // $datosUsuario = Usuario::whereHas('role', function(Builder $query) use($estudiante_rol) {
+        //     $query->where('role_id', $estudiante_rol);
+        // });
 
         $datosAlumno = [];
 
         // Recorrer datosUsuario
-        foreach($datosUsuario as $key => $usuario) {
+        foreach($datosUsuarios as $key => $usuario) {
             $nombre_estudiante = $usuario['nombre'] . " " . $usuario['apellidos'];
             $estudiante_id = $usuario['estudiante']->id;
             $avance_id = $usuario['avance']->id;
