@@ -211,7 +211,7 @@ class PresentacionAvance extends Controller{
 
         $busqueda = "\"".$request->busqueda . "\"";
 
-        $datosUsuarios = Usuario::where('nombre', 'LIKE', $busqueda)->where('apellidos', 'LIKE', $busqueda);
+        $datosUsuarios = Usuario::where('nombre', 'LIKE', $busqueda)->orWhere('apellidos', 'LIKE', $busqueda);
 
         // $datosUsuario = Usuario::whereHas('role', function(Builder $query) use($estudiante_rol) {
         //     $query->where('role_id', $estudiante_rol);
