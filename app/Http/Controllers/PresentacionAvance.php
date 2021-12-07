@@ -195,7 +195,8 @@ class PresentacionAvance extends Controller{
         return view('avance.ver-reporte');
     }
 
-    public function tempFunc(){}
+    public function tempFunc(){echo "<pre> " , var_export("Hola") , " </pre>";
+    die();}
 
     public function BuscarAlumno(Request $request){
         //recoge los datos del usuario se igual a la busqueda donde el rol sea (3 = estudiante)
