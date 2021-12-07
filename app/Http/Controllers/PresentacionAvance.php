@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Tesis;
 use App\Models\Avance;
+use App\Models\Role;
 use App\Models\Usuario;
 use App\Models\Estudiante;
+
+use Illuminate\Database\Eloquent\Builder;
 
 class PresentacionAvance extends Controller{
     //vista
@@ -204,9 +207,11 @@ class PresentacionAvance extends Controller{
     public function BuscarAlumno(Request $request){
         //recoge los datos del usuario se igual a la busqueda donde el rol sea (3 = estudiante)
         // $datosUsuario = Usuario::where('nombre', 'LIKE', "%$request->busqueda%")->where('role_id', 3)->get();
+        $estudiante_rol = Role::where('roles', 'LIKE', 'Estudiante')->pluck('id');
+
         $busqueda = "\"".$request->busqueda . "\"";
-        $datosUsuario = Usuario::whereHas('role', function($u) use($busqueda) {
-            $u->where('nombre', 'LIKE', "%$busqueda%");
+        $datosUsuario = Usuario::whereHas('role', function(Builder $query) use($busqueda) {
+            $query->where('role_id', $estudiante_rol)->where('nombre', 'LIKE', "%$busqueda%");
         })->get();
         echo "<pre> " , var_export($datosUsuario) , " </pre>";
         die();
