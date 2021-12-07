@@ -231,11 +231,11 @@ class PresentacionAvance extends Controller{
             array_push($datosAlumno, $datos);
         }
         
-        // return view('avance.ver-alumnos',[
-        //     'alumnos' => $datosAlumno
-        // ]);
+        return view('avance.ver-alumnos',[
+            'alumnos' => $datosAlumno
+        ]);
 
-        return redirect()->route('presentacion-avance.busqueda-resultados', ['alumnos' => $datosAlumno]);
+        // return redirect()->route('presentacion-avance.busqueda-resultados', ['alumnos' => $datosAlumno]);
     }
 
     
