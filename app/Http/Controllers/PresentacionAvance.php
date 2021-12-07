@@ -210,7 +210,7 @@ class PresentacionAvance extends Controller{
         $estudiante_rol = Role::where('roles', 'LIKE', 'Estudiante')->pluck('id');
 
         $busqueda = "\"".$request->busqueda . "\"";
-        $datosUsuario = Usuario::whereHas('role', function(Builder $query) use($busqueda) {
+        $datosUsuario = Usuario::whereHas('role', function(Builder $query) use($busqueda, $estudiante_rol) {
             $query->where('role_id', $estudiante_rol)->where('nombre', 'LIKE', "%$busqueda%");
         })->get();
         echo "<pre> " , var_export($datosUsuario) , " </pre>";
