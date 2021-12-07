@@ -16,14 +16,14 @@
                 <x-label for="busqueda" class="text-gray-600 font-light" :value="__('Nombre del estudiante')" />
                 <x-input id="busqueda" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="busqueda"  autofocus />
             </div>
+            <div class="flex items-center justify-end mt-4">
+              <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
+              {{ __('Buscar alumno') }}
+              </x-button>                  
+            </div>
         </form>
        <!-- <h2 class="font-semibold text-xl text-gray-800 leading-tight">Pendiente de subir reporte</h2> -->
         
-        <div class="flex items-center justify-end mt-4">
-          <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
-          {{ __('Buscar alumno') }}
-          </x-button>                  
-        </div>
 
         </div>
       </div>
