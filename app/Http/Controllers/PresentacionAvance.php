@@ -195,14 +195,15 @@ class PresentacionAvance extends Controller{
         return view('avance.ver-reporte');
     }
 
-    public function tempFunc(){echo "<pre> " , var_export("Hola") , " </pre>";
-    die();}
+    public function tempFunc(){die();}
 
     public function resultadoBusqueda() {
         return view('avance.ver-alumnos');
     }
 
     public function BuscarAlumno(Request $request){
+        echo "<pre> " , var_export($request->busqueda) , " </pre>";
+        die();
         //recoge los datos del usuario se igual a la busqueda donde el rol sea (3 = estudiante)
         // $datosUsuario = Usuario::where('nombre', 'LIKE', "%$request->busqueda%")->where('role_id', 3)->get();
         $datosUsuario = Usuario::whereHas('role', function($u) {
