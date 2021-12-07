@@ -6,7 +6,7 @@
   </x-slot>
 
   <div class="py-12">
-  <!-- Cuando se asigna una fecha este c'odigo aparece para afirmar que la fecha se ha asignado -->
+  <!-- Cuando se asigna una fecha este codigo aparece para afirmar que la fecha se ha asignado -->
   @if (session('message'))
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

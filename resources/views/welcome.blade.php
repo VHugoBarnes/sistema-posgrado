@@ -55,8 +55,7 @@
             
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <x-auth-session-status class="mb-4 text-blue-600" :status="session('message')" />
-
+                <x-auth-session-status class="mb-4 text-blue-600 my-8 p-4 bg-blue-200 rounded-lg" :status="session('message')" />
 
                 <section class="text-gray-600 body-font">
                     <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">

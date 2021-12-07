@@ -19,6 +19,7 @@ class CreateAvanceTable extends Migration
             $table->date('fecha');
             $table->string('hora');
             $table->text('comentarios');
+            $table->text('ruta_avance')->nullable();
             $table->timestamps();
             
             $table->foreign('usuario_id')->references('id')->on('usuarios');

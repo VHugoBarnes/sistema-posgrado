@@ -111,7 +111,7 @@
                                         {{ __('Enviar presentación de avance') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link :href="route('tesis')" :active="request()->routeIs('tesis')">
+                                    <x-dropdown-link :href="route('presentacion-avance.miembrosComite')" :active="request()->routeIs('presentacion-avance.miembrosComite')">
                                         {{ __('Miembros del comité') }}
                                     </x-dropdown-link>
                                 </form>

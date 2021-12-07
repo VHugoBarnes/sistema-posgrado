@@ -37,11 +37,11 @@ require __DIR__.'/avance.php';
  * - Cambiar datos
  */
 Route::get('/editar-usuario', [UsuarioController::class, 'edit'])
-    ->middleware(['auth','highPermission'])
+    ->middleware(['auth'])
     ->name('editar-usuario');
 
 Route::put('/editar-usuario', [UsuarioController::class, 'update'])
-    ->middleware(['auth', 'highPermission']);
+    ->middleware(['auth']);
 
 /**
  *  Rutas Estudiantes
