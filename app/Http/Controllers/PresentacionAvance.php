@@ -98,7 +98,7 @@ class PresentacionAvance extends Controller{
     public function guardarReporte(Request $request){
 
         $validate = $this->validate($request, [
-            "reporte" => 'required|mimes:pdf'
+            "reporte" => 'required|mimes:pdf,docx'
         ]);
         $archivo_reporte = $request->file('reporte');
 
@@ -207,20 +207,40 @@ class PresentacionAvance extends Controller{
 
     public function BuscarAlumno(Request $request){
         //recoge los datos del usuario se igual a la busqueda donde el rol sea (3 = estudiante)
-        $datosAlumno = Usuario::where('nombre', 'LIKE', $request->busqueda)->where('role_id', 3);
-        $alumno = Usuario::pluck('nombre')->prepend('selecciona');
+        // $datosUsuario = Usuario::where('nombre', 'LIKE', "%$request->busqueda%")->where('role_id', 3)->get();
+        $datosUsuario = Usuario::whereHas('role', function($u) {
+            $u->where('nombre', 'LIKE', "%$request->busqueda%");
+        })->get();
+
+        $datosAlumno = [];
+
+        // Recorrer datosUsuario
+        foreach($datosUsuario as $key => $usuario) {
+            $nombre_estudiante = $usuario['nombre'] . " " . $usuario['apellidos'];
+            $estudiante_id = $usuario['estudiante']->id;
+            $avance_id = $usuario['avance']->id;
+            $tiene_avance = false;
+            if($avance_id != null) {
+                $tiene_avance = true;
+            }
+            $datos = [
+                'tiene_avance' => $tiene_avance,
+                'nombre_estudiante' => $nombre_estudiante,
+                'estudiante_id' => $estudiante_id
+            ];
+            array_push($datosAlumno, $datos);
+        }
         
         return view('avance.ver-reporte',[
-            'alumno' => $alumno
+            'alumno' => $datosAlumno
         ]);
     }
-    public function verReporte(Request $request) {
+    public function verReporte($estudiante_id) {
         // Recoger id del estudiante autenticado
-        $estudiante_id = Auth::user()->id;
+        $estudiante_id = $estudiante_id;
         // Recoger el numero de control
         $numero_control = Estudiante::where('usuario_id', $estudiante_id)->pluck('numero_control')[0];
 
         return response()->file(storage_path('app/estudiantes/' . $numero_control . '/avance' . '/') . 'avance.pdf');
     }
-
 }

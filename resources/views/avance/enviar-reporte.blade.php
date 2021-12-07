@@ -36,7 +36,7 @@
 
             <!-- Adjuntar reporte -->
             <div>
-                <x-label for="reporte" class="text-gray-600 font-light" :value="__('Adjuntar reporte (solo PDF)')" />
+                <x-label for="reporte" class="text-gray-600 font-light" :value="__('Adjuntar reporte (solo PDF y word)')" />
 
                 <x-input id="reporte" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="file" name="reporte" :value="old('reporte')" autofocus />
             </div>

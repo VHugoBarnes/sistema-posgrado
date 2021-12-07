@@ -13,8 +13,8 @@
                         @csrf
                         <!-- buscar por nombre y numero de control -->
                         <div>
-                            <x-label for="numero_control" class="text-gray-600 font-light" :value="__('Número de control y estudiante')" />
-                            <x-input id="numero_control" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="numero_control"  autofocus />
+                            <x-label for="busqueda" class="text-gray-600 font-light" :value="__('Nombre del estudiante')" />
+                            <x-input id="busqueda" class="w-full mt-2 mb-4 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-50" type="text" name="busqueda"  autofocus />
                         </div>
                     </form>
        <!-- <h2 class="font-semibold text-xl text-gray-800 leading-tight">Pendiente de subir reporte</h2> -->
