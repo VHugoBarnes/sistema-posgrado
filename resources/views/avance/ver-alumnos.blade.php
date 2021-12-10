@@ -15,15 +15,15 @@
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white border-b border-gray-200">
+        <div class="p-6 bg-white border-b border-gray-200 space-y-4">
 
         @foreach($alumnos as $alumno)
-            <div class="space-y-4 bg-gray-200 rounded-xl shadow-lg">
-                <h1>{{ $alumno->nombre_estudiante }}</h1>
-                @if($alumno->tiene_avance)
-                    <a class="text-blue-500 underline" href="{{ route('presentacion-avance.ver-reporte-alumno', ['estudiante_id' => $alumno->estudiante_id]) }}">Ver documento</a>
+            <div class="bg-gray-100 rounded-xl shadow-lg p-4">
+                <h1 class="text-xl text-gray-700">{{ $alumno['nombre_estudiante'] }}</h1>
+                @if($alumno['tiene_avance'])
+                    <a class="text-blue-500 underline" href="{{ route('presentacion-avance.ver-reporte-alumno', ['estudiante_id' => $alumno['estudiante_id']]) }}">Ver documento</a>
                 @else
-                    <p>Sin documento de avance aún</p>
+                    <p class="text-gray-500 font-light">Sin documento de avance aún</p>
                 @endif
             </div>
         @endforeach

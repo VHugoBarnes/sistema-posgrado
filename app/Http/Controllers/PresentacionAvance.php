@@ -209,9 +209,9 @@ class PresentacionAvance extends Controller{
         // $datosUsuario = Usuario::where('nombre', 'LIKE', "%$request->busqueda%")->where('role_id', 3)->get();
         $estudiante_rol = Role::where('roles', 'LIKE', 'Estudiante')->pluck('id');
 
-        $busqueda = "\"".$request->busqueda . "\"";
+        $busqueda = $request->busqueda;
 
-        $datosUsuarios = Usuario::where('nombre', 'LIKE', $busqueda)->orWhere('apellidos', 'LIKE', $busqueda);
+        $datosUsuarios = Usuario::where('nombre', 'LIKE', $busqueda)->orWhere('apellidos', 'LIKE', $busqueda)->get();
 
         $soloEstudiantes = [];
         foreach($datosUsuarios as $key => $usuario) {
@@ -219,21 +219,17 @@ class PresentacionAvance extends Controller{
                 array_push($soloEstudiantes, $usuario);
             }
         }
-        
-        // $datosUsuario = Usuario::whereHas('role', function(Builder $query) use($estudiante_rol) {
-        //     $query->where('role_id', $estudiante_rol);
-        // });
 
         $datosAlumno = [];
 
         // Recorrer datosUsuario
         foreach($soloEstudiantes as $key => $usuario) {
-            $nombre_estudiante = $usuario['nombre'] . " " . $usuario['apellidos'];
+            $nombre_estudiante = $usuario['nombre'] . " " . $usuario['apellidos']; 
             $estudiante_id = $usuario['estudiante']->id;
-            $avance_id = $usuario['avance']->id;
+            $avanca_doc = $usuario['avance'];
             $tiene_avance = false;
-            if($avance_id != null) {
-                $avance = Avance::find($avance_id);
+            if($avanca_doc != null) {
+                $avance = Avance::find($usuario['avance']->id);
                 if($avance->ruta_avance !== null) {
                     $tiene_avance = true;
                 }
@@ -249,8 +245,6 @@ class PresentacionAvance extends Controller{
         return view('avance.ver-alumnos',[
             'alumnos' => $datosAlumno
         ]);
-
-        // return redirect()->route('presentacion-avance.busqueda-resultados', ['alumnos' => $datosAlumno]);
     }
 
     
