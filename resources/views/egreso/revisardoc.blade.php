@@ -74,8 +74,8 @@
                             <x-button class="boton1"><a  class=" btn" href="{{ url('/storage/')}}/<?php echo $usuario_id ?>{{('/liberaciontesis/liberaciontesis.pdf')}}">Revisar documento   </a></x-button>
                              <div class="form-group">   
                              <select name="estado_liberacion_tesis" id="estado_liberacion_tesis" class="form-control">
-                                <option value="1">Aprobar documento</option>
-                                <option value="0">Rechazar documento</option>
+                                <option value="Aprobado">Aprobar documento</option>
+                                <option value="Rechazado">Rechazar documento</option>
                                 </select>
                               </div>
                             
@@ -91,8 +91,8 @@
                             <x-button class="boton2"><a  class=" btn"  href="{{ url('/storage/')}}/<?php echo $usuario_id ?>{{('/tesis/tesis.pdf')}}">Revisar documento   </a></x-button>
                             <div class="form-group">   
                              <select name="estado_tesis_ultima_version" id="estado_tesis_ultima_version" class="form-control">
-                                <option value="1">Aprobar documento</option>
-                                <option value="0">Rechazar documento</option>
+                             <option value="Aprobado">Aprobar documento</option>
+                                <option value="Rechazado">Rechazar documento</option>
                                 </select>
                               </div>
 
@@ -108,8 +108,8 @@
                             <x-button class="boton1"><a  class=" btn" href="{{ url('/storage/')}}/<?php echo $usuario_id ?>{{('/plagio/plagio.pdf')}}">Revisar documento   </a></x-button>
                             <div class="form-group">   
                              <select name="estado_constancia_plagio" id="estado_constancia_plagio" class="form-control">
-                                <option value="1">Aprobar documento</option>
-                                <option value="0">Rechazar documento</option>
+                                <option value="Aprobado">Aprobar documento</option>
+                                <option value="Rechazado">Rechazar documento</option>
                                 </select>
                               </div>
 
@@ -124,8 +124,8 @@
                             <x-label for="estadia" class="text-gray-600 font-light" :value="__('4. Estadía técnica')" />
                             <x-button class="boton2"><a  class=" btn" href="{{ url('/storage/')}}/<?php echo $usuario_id ?>{{('/estadia/estadia.pdf')}}">Revisar documento   </a></x-button>                            <div class="form-group">   
                              <select name="estado_estadia" id="estado_estadia" class="form-control">
-                                <option value="1">Aprobar documento</option>
-                                <option value="0">Rechazar documento</option>
+                                <option value="Aprobado">Aprobar documento</option>
+                                <option value="Rechazado">Rechazar documento</option>
                                 </select>
                               </div>
 
@@ -141,8 +141,8 @@
                             <x-button class="boton1"><a  class=" btn" href="{{ url('/storage/')}}/<?php echo $usuario_id ?>{{('/articulo/articulo.pdf')}}">Revisar documento   </a></x-button>
                             <div class="form-group">   
                              <select name="estado_articulo" id="estado_articulo" class="form-control">
-                                <option value="1">Aprobar documento</option>
-                                <option value="0">Rechazar documento</option>
+                                <option value="Aprobado">Aprobar documento</option>
+                                <option value="Rechazado">Rechazar documento</option>
                                 </select>
                               </div>
 
@@ -157,8 +157,8 @@
                             <x-label for="evaluacion_desemp" class="text-gray-600 font-light" :value="__('6. Evaluación del desempeño del becario')" />
                             <x-button class="boton2"><a  class=" btn" href="{{ url('/storage/')}}/<?php echo $usuario_id ?>{{('/evaluacion/evaluacion.pdf')}}">Revisar documento   </a></x-button>                            <div class="form-group">   
                              <select name="estado_evaluacion_desemp" id="estado_evaluacion_desemp" class="form-control">
-                                <option value="1">Aprobar documento</option>
-                                <option value="0">Rechazar documento</option>
+                                <option value="Aprobado">Aprobar documento</option>
+                                <option value="Rechazado">Rechazar documento</option>
                                 </select>
                               </div>
 
@@ -174,8 +174,8 @@
                             <x-button class="boton1"><a  class=" btn" href="{{ url('/storage/')}}/<?php echo $usuario_id ?>{{('/cvu/cvu.pdf')}}">Revisar documento   </a></x-button>
                             <div class="form-group">   
                              <select name="estado_cvu" id="estado_cvu" class="form-control">
-                                <option value="1">Aprobar documento</option>
-                                <option value="0">Rechazar documento</option>
+                                <option value="Aprobado">Aprobar documento</option>
+                                <option value="Rechazado">Rechazar documento</option>
                                 </select>
                               </div>
 
@@ -190,8 +190,8 @@
                             <x-label for="numero_cvu" class="text-gray-600 font-light" :value="__('8. Número de CVU + contraseña')" />
                             <x-button class="boton2"><a  class=" btn" href="{{ url('/storage/')}}/<?php echo $usuario_id ?>{{('/numerocvu/numerocvu.pdf')}}">Revisar documento   </a></x-button>                            <div class="form-group">   
                              <select name="estado_numero_cvu" id="estado_numero_cvu" class="form-control">
-                                <option value="1">Aprobar documento</option>
-                                <option value="0">Rechazar documento</option>
+                                <option value="Aprobado">Aprobar documento</option>
+                                <option value="Rechazado">Rechazar documento</option>
                                 </select>
                               </div>
 
@@ -207,8 +207,8 @@
                             <x-button class="boton1"><a  class=" btn" href="{{ url('/storage/')}}/<?php echo $usuario_id ?>{{('/encuesta/encuesta.pdf')}}">Revisar documento   </a></x-button>
                             <div class="form-group">   
                              <select name="estado_encuesta_egresado" id="estado_encuesta_egresado" class="form-control">
-                                <option value="1">Aprobar documento</option>
-                                <option value="0">Rechazar documento</option>
+                                <option value="Aprobado">Aprobar documento</option>
+                                <option value="Rechazado">Rechazar documento</option>
                                 </select>
                               </div>
 
@@ -223,8 +223,8 @@
                             <x-label for="validacion_ingles" class="text-gray-600 font-light" :value="__('10. Validación del idioma inglés')" />
                             <x-button class="boton2"><a  class=" btn" href="{{ url('/storage/')}}/<?php echo $usuario_id ?>{{('/ingles/ingles.pdf')}}">Revisar documento   </a></x-button>                            <div class="form-group">   
                              <select name="estado_validacion_ingles" id="estado_validacion_ingles" class="form-control">
-                                <option value="1">Aprobar documento</option>
-                                <option value="0">Rechazar documento</option>
+                                <option value="Aprobado">Aprobar documento</option>
+                                <option value="Rechazado">Rechazar documento</option>
                                 </select>
                               </div>
 

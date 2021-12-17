@@ -19,17 +19,16 @@ class ComentariosDocEgreso extends Migration
         Schema::create('ComentariosDoc_egresos', function(Blueprint $table){
             $table->id();
             $table->unsignedBigInteger('estudiante_id');
-            $table->unsignedBigInteger('estado_liberacion_tesis')->nullable();
-            $table->unsignedBigInteger('estado_tesis_ultima_version')->nullable();
-            $table->unsignedBigInteger('estado_constancia_plagio')->nullable();
-            $table->unsignedBigInteger('estado_estadia')->nullable();
-            $table->unsignedBigInteger('estado_articulo')->nullable();
-            $table->unsignedBigInteger('estado_evaluacion_desemp')->nullable();
-            $table->unsignedBigInteger('estado_cvu')->nullable();
-            $table->unsignedBigInteger('estado_numero_cvu')->nullable();
-            $table->unsignedBigInteger('estado_encuesta_egresado')->nullable();
-            $table->unsignedBigInteger('estado_validacion_ingles')->nullable();
-            
+            $table->string('estado_liberacion_tesis')->nullable();
+            $table->string('estado_tesis_ultima_version')->nullable();
+            $table->string('estado_constancia_plagio')->nullable();
+            $table->string('estado_estadia')->nullable();
+            $table->string('estado_articulo')->nullable();
+            $table->string('estado_evaluacion_desemp')->nullable();
+            $table->string('estado_cvu')->nullable();
+            $table->string('estado_numero_cvu')->nullable();
+            $table->string('estado_encuesta_egresado')->nullable();
+            $table->string('estado_validacion_ingles')->nullable();
             $table->string('comentario_liberacion_tesis')->nullable();
             $table->string('comentario_tesis_ultima_version')->nullable();
             $table->string('comentario_constancia_plagio')->nullable();
@@ -56,6 +55,6 @@ class ComentariosDocEgreso extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('table');
     }
 }

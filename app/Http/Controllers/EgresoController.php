@@ -13,6 +13,7 @@ use App\Models\Tesis;
 use App\Models\Comentariosdoc_egreso;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DB;
+use ComentariosDocEgreso;
 
 class EgresoController extends Controller
 {
@@ -137,19 +138,23 @@ class EgresoController extends Controller
    }
    
    public function estadorevision(){
-   
-        $tesis = Tesis::with(['comentariosdoc_egreso'])->get();
+   // Conseguir id del estudiante.
+   $usuario = Auth::user();
+   $id = $usuario->id;
+   $usuario = Usuario::find($id);
+   // Conseguir id del estudiante.
+   $id_estudiante = $usuario->estudiante->id;
+   $estudiante = Estudiante::find($id_estudiante);
 
-        return view('egreso.estadorevision',[
-            'tesis' => $tesis
-        ]);
-    
-       
-       }
+   
+      $comentarios=Comentariosdoc_egreso::where('estudiante_id',$estudiante->usuario_id)->get();
+      
+      return view('egreso.estadorevision',compact('comentarios'));
+        
   
- }
-  
-     
+   }
+}
+
      
    
    
