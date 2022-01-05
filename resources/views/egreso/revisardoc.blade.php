@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Documentacion de Egreso') }}
+            {{ __('Documentación de Egreso') }}
         </h2>
     </x-slot>
     <form action="{{ route('SubirRevision')}}" method="POST" enctype="multipart/form-data">
@@ -240,7 +240,7 @@
                         <div class="flex items-center justify-end mt-4">
                         
                             <x-button class="mb-1 w-full bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none">
-                                {{ __('Enviar Documentos a revision') }}
+                                {{ __('Enviar Documentos a revisados') }}
                             </x-button>
                         </div>
 
