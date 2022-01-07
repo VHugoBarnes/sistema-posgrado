@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Estudiante;
 use App\Models\Usuario;
+use App\Models\Comentariosdoc_egreso;
 
 class Tesis extends Model
 {
@@ -29,6 +30,12 @@ class Tesis extends Model
         'vocal',
         'ruta_tesis'
     ];
+    public function usuario() 
+    {
+        // Nombre del modelo, llave foranea
+        return $this->belongsTo(Usuario::class, 'usuario_id');
+    }
+
 
     public function estudiante()
     {
@@ -59,5 +66,10 @@ class Tesis extends Model
     {
         return $this->hasMany(Solicitud_Cambio::class, 'tesis_id');
     }
+    public function comentariosdoc_egreso()
+    {
+        return $this->belongsTo(Comentariosdoc_egreso::class, 'estudiante_id');
+    }
+
 
 }
