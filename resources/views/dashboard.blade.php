@@ -16,6 +16,18 @@
     </div>
     @endif
 
+    @if (session('message'))
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-{{ session('color') }}-300 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-{{ session('color') }}-300 border-b border-gray-200">
+                        <p id="session" class="text-{{ session('color') }}-700">{{ session('message') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

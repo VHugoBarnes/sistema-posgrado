@@ -20,7 +20,7 @@ Route::get('/obtener-solicitud/solicitud', [SolicitudesController::class, 'sendS
 
 Route::get('/obtener-solicitud/protocolo', [SolicitudesController::class, 'sendProtocolo'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'redirectIfChangeRequestNotMade', 'requestSubjectIsTema'])
-    ->name('obtener-solicitud');
+    ->name('obtener-solicitud-protocolo');
 
 Route::get('/solicitud-estatus', [SolicitudesController::class, 'viewStatus'])
     ->middleware(['auth', 'docenteEstudiantePermission']);
@@ -73,8 +73,7 @@ Route::get('/cambio-tesis/titulo', [CambioTituloController::class, 'create'])
     ->name('cambio-titulo');
 
 Route::post('/cambio-tesis/titulo', [CambioTituloController::class, 'store'])
-    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'hasDirector', 'redirectIfChangeRequestPending'])
-    ->name('cambio-titulo');
+    ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'hasDirector', 'redirectIfChangeRequestPending']);
 
 Route::get('/enviar-modificacion/titulo', [CambioTituloController::class, 'uploadModification'])
     ->middleware(['auth', 'estudiantePermission', 'redirectIfTesisNotUploaded', 'hasDirector', 'redirectIfChangeRequestNotMade', 'requestSubjectIsTitulo'])

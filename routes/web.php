@@ -30,17 +30,18 @@ require __DIR__.'/tesis.php';
 require __DIR__.'/solicitudes.php';
 require __DIR__.'/dominio.php';
 require __DIR__.'/estadia-tecnica.php';
+require __DIR__.'/avance.php';
 
 /**
  *  Rutas Usuarios
  * - Cambiar datos
  */
 Route::get('/editar-usuario', [UsuarioController::class, 'edit'])
-    ->middleware(['auth','highPermission'])
+    ->middleware(['auth'])
     ->name('editar-usuario');
 
 Route::put('/editar-usuario', [UsuarioController::class, 'update'])
-    ->middleware(['auth', 'highPermission']);
+    ->middleware(['auth']);
 
 /**
  *  Rutas Estudiantes
