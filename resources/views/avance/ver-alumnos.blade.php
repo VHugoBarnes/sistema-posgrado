@@ -8,7 +8,7 @@
 
   @if(getUserRole(Auth::user()) == "Administrador" || (getUserRole(Auth::user()) == "Coordinador"))
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Ver reporte') }}
+        {{ __('Ver reportes de presentacion de avance') }}
     </h2>
   @endif
   </x-slot>
@@ -19,12 +19,17 @@
 
         @foreach($alumnos as $alumno)
             <div class="bg-gray-100 rounded-xl shadow-lg p-4">
+            <a href="{{route('presentacion-avance.comite-ver-reporte', ['estudiante_id' => $alumno['estudiante_id']])}}">
                 <h1 class="text-xl text-gray-700">{{ $alumno['nombre_estudiante'] }}</h1>
                 @if($alumno['tiene_avance'])
-                    <a class="text-blue-500 underline" href="{{ route('presentacion-avance.ver-reporte-alumno', ['estudiante_id' => $alumno['estudiante_id']]) }}">Ver documento</a>
+                <a class="text-blue-500 underline" href="{{ route('presentacion-avance.ver-reporte-alumno', ['estudiante_id' => $alumno['estudiante_id']]) }}">Ver documento</a>
                 @else
-                    <p class="text-gray-500 font-light">Sin documento de avance aún</p>
+                <p class="text-gray-500 font-light">Sin documento de avance aún</p>
                 @endif
+                <p class="text-gray-500 font-light">
+                  {{ $alumno['fecha_programada'] }}
+                </p>
+            </a>
             </div>
         @endforeach
         
@@ -33,4 +38,3 @@
     </div>
   </div>
 </x-app-layout>
-

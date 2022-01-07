@@ -78,8 +78,8 @@
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'montserrat' => array(
-    'normal' => $fontDir . '/montserrat_normal_3ecff72e52e6ba01b6976c9eb4cfb54d',
-    'bold' => $fontDir . '/montserrat_bold_46e41ea529ac72021cda00861033afe9',
+    'normal' => $fontDir . '/montserrat_normal_7d841b1471c147816dcb05a0698e2793',
+    'bold' => $fontDir . '/montserrat_bold_7463ca55930205e9211b1982cc82d240',
   ),
   'montserrat-regular' => array(
     'normal' => $fontDir . '/montserrat_regular_normal_6ce9ddc5fa484c8890d03e26dc3c90e3',

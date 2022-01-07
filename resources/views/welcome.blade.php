@@ -39,11 +39,7 @@
                                 <a href="{{ url('/dashboard') }}" class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Dashboard</a>
                                 <a class="text-sm text-gray-700">Hola {{ Auth::user()->nombre }}!</a>
                             @else
-                                <a href="{{ route('login') }}" class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Entrar</a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Registrarse</a>
-                                @endif
+                                <a href="{{ route('login') }}" class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Iniciar sesión</a>
                             @endauth
                         </div>
                     @endif
@@ -62,11 +58,16 @@
                         <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="{{ asset('/assets')}}/pixeltrue-welcome-1.svg" width="200" id="img1">
                         <div class="text-center lg:w-2/3 w-full">
                         <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Maestría en Administración Industrial</h1>
+                        @auth
+                        <div class="flex justify-center">
+                            <a href="{{ route('dashboard') }}" class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Ir al dashboard</a>
+                        </div>
+                        @else
                         <p class="mb-8 leading-relaxed">Bienvenido al Sistema de Posgrado, ingresa tus credenciales para iniciar sesión en el sistema. Si no cuentas con ellas registraste o ponte en contacto con la coordinación.</p>
                         <div class="flex justify-center">
-                            <button class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Entrar</button>
-                            <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Registrarse</button>
+                            <a href="{{ route('login') }}" class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Iniciar sesión</a>
                         </div>
+                        @endif
                         </div>
                     </div>
                 </section>
